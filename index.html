@@ -4,352 +4,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicono.png">
 
     <title>My Extreme Demons</title>
 
     <style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0d080d;
-            color: #f2f2f2;
-            min-height: 100vh;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d080d;
+    color: #f2f2f2;
+    min-height: 100vh;
+}
 
-        header {
-            padding: 55px 20px 40px;
-            text-align: center;
 
-            background:
-                radial-gradient(
-                    circle at top,
-                    #2c1a31 0%,
-                    #0c080d 60%
-                );
+/* =========================
+   HEADER
+========================= */
 
-            border-bottom: 1px solid #1c1e26;
-        }
+header {
+    position: relative;
 
-        header h1 {
-            font-size: 44px;
-            font-weight: 800;
-            letter-spacing: -2px;
-        }
+    padding: 55px 20px 40px;
+    text-align: center;
 
-        header h1 span {
-            color: #e48cff;
-        }
+    background:
+        radial-gradient(
+            circle at top,
+            #2d102e 0%,
+            #0d080d 60%
+        );
 
-        header p {
-            margin-top: 10px;
-            color: #847789;
-        }
+    border-bottom: 1px solid #241824;
+}
 
-        .stats {
-            max-width: 1100px;
-            margin: 30px auto;
+header h1 {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
 
-            padding: 0 20px;
+header h1 span {
+    color: #fa6fff;
+}
 
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+header p {
+    margin-top: 10px;
+    color: #827782;
+}
 
-            gap: 15px;
-        }
 
-        .stat {
-            background: #181019;
+/* =========================
+   SOCIAL LINKS
+========================= */
 
-            border: 1px solid #291c29;
-            border-radius: 14px;
+.social-links {
+    position: absolute;
 
-            padding: 22px;
+    top: 20px;
+    right: 25px;
 
-            text-align: center;
-        }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-        .stat-number {
-            font-size: 28px;
-            font-weight: 800;
-            color: #f79cff;
-        }
+    gap: 14px;
+}
 
-        .stat-label {
-            margin-top: 5px;
-            color: #897789;
-            font-size: 13px;
-        }
+.social-links a {
+    display: flex;
 
-        .container {
-            max-width: 1100px;
+    width: 38px;
+    height: 38px;
 
-            margin: auto;
+    transition: 0.2s;
+}
 
-            padding: 10px 20px 60px;
-        }
+.social-links a:hover {
+    transform: translateY(-2px) scale(1.08);
+}
 
-        .section-title {
-            color: #877789;
+.social-links img {
+    width: 100%;
+    height: 100%;
 
-            font-size: 13px;
+    object-fit: contain;
+}
 
-            text-transform: uppercase;
 
-            letter-spacing: 1px;
+/* =========================
+   STATS
+========================= */
 
-            margin-bottom: 15px;
-        }
+.stats {
+    max-width: 1100px;
 
-        .level {
-            background: #181019;
+    margin: 30px auto;
 
-            border: 1px solid #291c29;
+    padding: 0 20px;
 
-            border-radius: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 
-            margin-bottom: 10px;
+    gap: 15px;
+}
 
-            overflow: hidden;
+.stat {
+    background: #131014;
 
-            transition: 0.2s;
-        }
+    border: 1px solid #231b24;
+    border-radius: 14px;
 
-        .level:hover {
-            border-color: #4a364d;
-            transform: translateY(-1px);
-        }
+    padding: 22px;
 
-        .level-header {
-            display: flex;
+    text-align: center;
 
-            align-items: center;
+    transition: 0.2s;
+}
 
-            padding: 17px 18px;
+.stat:hover {
+    border-color: #3d283d;
+    transform: translateY(-1px);
+}
 
-            cursor: pointer;
+.stat-number {
+    font-size: 28px;
+    font-weight: 800;
 
-            user-select: none;
-        }
+    color: #f47bff;
+}
 
-        .rank {
-            width: 55px;
+.stat-label {
+    margin-top: 5px;
 
-            color: #736274;
+    color: #827782;
 
-            font-size: 13px;
+    font-size: 13px;
+}
 
-            font-weight: bold;
-        }
 
-        .level-info {
-            flex: 1;
-        }
+/* =========================
+   MAIN CONTAINER
+========================= */
 
-        .level-name {
-            font-size: 16px;
+.container {
+    max-width: 1100px;
 
-            font-weight: 700;
-        }
+    margin: auto;
 
-        .publisher {
-            color: #7f6d80;
+    padding: 10px 20px 60px;
+}
 
-            font-size: 12px;
+.section-title {
+    color: #827782;
 
-            margin-top: 4px;
-        }
+    font-size: 13px;
 
-        .arrow {
-            color: #766677;
+    text-transform: uppercase;
 
-            transition: 0.25s;
+    letter-spacing: 1px;
 
-            font-size: 13px;
-        }
+    margin-bottom: 15px;
+}
 
-        .level.open .arrow {
-            transform: rotate(180deg);
-        }
 
-        .level-details {
-            max-height: 0;
+/* =========================
+   SEARCH / SORT
+========================= */
 
-            overflow: hidden;
+.search-controls {
+    display: flex;
 
-            transition: max-height 0.35s ease;
-        }
+    gap: 12px;
 
-        .details-content {
-            border-top: 1px solid #281c29;
+    margin-bottom: 25px;
+}
 
-            padding: 20px;
+#levelSearch,
+#levelSort {
+    background: #120e12;
 
-            display: grid;
+    border: 1px solid #29202a;
 
-            grid-template-columns: 1fr;
+    border-radius: 12px;
 
-            gap: 20px;
-        }
+    color: #f2f2f2;
 
-        .details-grid {
-            display: grid;
+    font-size: 14px;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+    outline: none;
 
-            gap: 12px;
-        }
+    transition: 0.2s;
+}
 
-        .detail {
-            background: #110b11;
+#levelSearch {
+    flex: 1;
 
-            border: 1px solid #241923;
+    padding: 14px 16px;
+}
 
-            border-radius: 10px;
+#levelSort {
+    padding: 14px 42px 14px 16px;
 
-            padding: 12px;
-        }
+    cursor: pointer;
+}
 
-        .detail-label {
-            color: #756677;
+#levelSearch::placeholder {
+    color: #776b76;
+}
 
-            font-size: 10px;
+#levelSearch:focus,
+#levelSort:focus {
+    border-color: #663b67;
+}
 
-            text-transform: uppercase;
+#levelSort option {
+    background: #120e12;
+    color: #f2f2f2;
+}
 
-            letter-spacing: 0.5px;
-        }
 
-        .detail-value {
-            margin-top: 5px;
+/* =========================
+   LEVEL
+========================= */
 
-            font-size: 14px;
+.level {
+    background: #141014;
 
-            font-weight: 600;
-        }
+    border: 1px solid #231b24;
 
-        .notes {
-            grid-column: 1 / -1;
-        }
+    border-radius: 14px;
 
-        .notes .detail-value {
-            color: #b8aaba;
+    margin-bottom: 10px;
 
-            font-weight: normal;
+    overflow: hidden;
 
-            line-height: 1.5;
-        }
+    transition: 0.2s;
+}
 
-        .video-container {
-            width: 100%;
+.level:hover {
+    border-color: #433044;
 
-            max-width: 750px;
+    transform: translateY(-1px);
+}
 
-            aspect-ratio: 16 / 9;
+.level-header {
+    display: flex;
 
-            background: #110b11;
+    align-items: center;
 
-            border: 1px solid #231924;
+    padding: 17px 18px;
 
-            border-radius: 12px;
+    cursor: pointer;
 
-            overflow: hidden;
+    user-select: none;
+}
 
-            margin-top: 5px;
-        }
+.rank {
+    width: 55px;
 
-        .video-container iframe {
-            width: 100%;
+    color: #6a616a;
 
-            height: 100%;
+    font-size: 13px;
 
-            border: none;
-        }
+    font-weight: bold;
+}
 
-        @media (max-width: 700px) {
+.level-info {
+    flex: 1;
+}
 
-            header h1 {
-                font-size: 32px;
-            }
+.level-name {
+    font-size: 16px;
 
-            .stats {
-                grid-template-columns: 1fr;
-            }
+    font-weight: 700;
+}
 
-            .details-content {
-                grid-template-columns: 1fr;
-            }
+.publisher {
+    color: #746c75;
 
-            .details-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+    font-size: 12px;
 
-            .video-container {
-                max-width: 100%;
-            }
-        }
+    margin-top: 4px;
+}
 
-        header {
-            position: relative;
-        }
+.arrow {
+    color: #746c75;
 
-        .social-links {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 14px;
-        }
+    transition: 0.25s;
 
-        .social-links a {
-            display: flex;
-            width: 34px;
-            height: 34px;
-            transition: 0.2s;
-        }
+    font-size: 13px;
+}
 
-        .social-links a {
-            transform: translateY(-2px);
-        }
+.level.open .arrow {
+    transform: rotate(180deg);
+}
 
-        .social-links img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
 
-        .search-container {
-            margin-bottom: 25px;
-        }
+/* =========================
+   LEVEL DETAILS
+========================= */
 
-        #levelSearch {
-            width: 100%;
-            padding: 14px 16px;
-            background: #181019;
-            border: 1px solid #291c29;
-            border-radius: 12px;
-            color: #f2f2f2;
-            font-size: 14px;
-            outline: none;
-            transition: 0.2s;
-        }
+.level-details {
+    max-height: 0;
 
-        #levelSearch::placeholder {
-            color: #756677;
-        }
+    overflow: hidden;
 
-        #levelSearch:focus {
-            border-color: #4a364d;
-        }
+    transition: max-height 0.35s ease;
+}
 
+.details-content {
+    border-top: 1px solid #241b24;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+}
+
+.details-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.detail {
+    background: #0e0b0e;
+
+    border: 1px solid #211a21;
+
+    border-radius: 10px;
+
+    padding: 12px;
+}
+
+.detail-label {
+    color: #6e666f;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    margin-top: 5px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.notes {
+    grid-column: 1 / -1;
+}
+
+.notes .detail-value {
+    color: #aaa3aa;
+
+    font-weight: normal;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   VIDEO
+========================= */
+
+.video-container {
+    width: 100%;
+
+    max-width: 750px;
+
+    aspect-ratio: 16 / 9;
+
+    background: #0e0b0e;
+
+    border: 1px solid #211a21;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    margin-top: 5px;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
+
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results {
+    text-align: center;
+
+    padding: 40px 20px;
+
+    color: #6f666f;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .social-links {
+        top: 15px;
+        right: 15px;
+    }
+
+    .social-links a {
+        width: 32px;
+        height: 32px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .search-controls {
+        flex-direction: column;
+    }
+
+    #levelSort {
+        width: 100%;
+    }
+
+    .details-content {
+        grid-template-columns: 1fr;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .video-container {
+        max-width: 100%;
+    }
+
+    .rank {
+        width: 45px;
+    }
+}
 
     </style>
 
@@ -358,28 +481,55 @@
 
 <body>
 
+    <!-- =========================
+         HEADER
+    ========================= -->
+
     <header>
 
         <div class="social-links">
 
-            <a href="https://www.youtube.com/@nWnye" target="_blank" rel="noopener noreferrer">
-                <img src="images/youtube.png" alt="YouTube">
+            <!-- Replace these with your own images if needed -->
+
+            <a
+                href="https://www.youtube.com/@nWnye"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    src="images/youtube.png"
+                    alt="YouTube"
+                >
             </a>
 
-            <a href="https://www.twitch.tv/nwnye" target="_blank" rel="noopener noreferrer">
-                <img src="images/twitch.png" alt="Twitch">
+            <a
+                href="https://www.twitch.tv/nwnye"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    src="images/twitch.png"
+                    alt="Twitch"
+                >
             </a>
+
         </div>
+
 
         <h1>
             My <span>EXTREME DEMONS</span>
         </h1>
 
         <p>
-            All My Completed Extreme Demons Ranked By Difficulty
+            All My Completed Extreme Demons
         </p>
 
     </header>
+
+
+    <!-- =========================
+         STATS
+    ========================= -->
 
     <div class="stats">
 
@@ -387,7 +537,8 @@
 
             <div
                 class="stat-number"
-                id="totalLevels">
+                id="totalLevels"
+            >
                 0
             </div>
 
@@ -402,7 +553,8 @@
 
             <div
                 class="stat-number"
-                id="averageEnjoyment">
+                id="averageEnjoyment"
+            >
                 0/100
             </div>
 
@@ -417,7 +569,8 @@
 
             <div
                 class="stat-number"
-                id="totalAttempts">
+                id="totalAttempts"
+            >
                 0
             </div>
 
@@ -429,27 +582,94 @@
 
     </div>
 
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
     <div class="container">
 
-        <div class="search-container">
+        <div class="section-title">
+            completed levels
+        </div>
+
+
+        <!-- =========================
+             SEARCH + SORT
+        ========================= -->
+
+        <div class="search-controls">
+
             <input
                 type="text"
                 id="levelSearch"
-                placeholder="Search levels..."
+                placeholder="Search level by name..."
                 autocomplete="off"
             >
+
+
+            <select id="levelSort">
+
+                <option value="default">
+                    Hardest → Easiest
+                </option>
+
+                <option value="easy">
+                    Easiest → Hardest
+                </option>
+
+                <option value="high">
+                    Enjoyment: Highest → Lowest
+                </option>
+
+                <option value="low">
+                    Enjoyment: Lowest → Highest
+                </option>
+
+                <option value="attempts-high">
+                    Attempts: Highest → Lowest
+                </option>
+
+                <option value="attempts-low">
+                    Attempts: Lowest → Highest
+                </option>
+
+                <option value="death-high">
+                    Furthest Death: Highest → Lowest
+                </option>
+
+                <option value="death-low">
+                    Furthest Death: Lowest → Highest
+                </option>
+
+                <option value="date-old">
+                    Date: Oldest → Latest
+                </option>
+
+                <option value="date-new">
+                    Date: Latest → Oldest
+                </option>
+
+            </select>
+
         </div>
 
-        <div class="section-title">
-            hardest → easiest
-        </div>
 
         <div id="levelList"></div>
 
     </div>
 
 
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
     <script>
+
+
+        /* ============================================
+           YOUR LEVELS
+        ============================================ */
 
         const levels = [
 
@@ -1833,7 +2053,7 @@
 
                 furthestDeath: "78% x4",
 
-                date: "Oct 23th, 2022",
+                date: "Oct 23rd 2022",
 
                 video: "https://youtu.be/tXcMd53fPH4?si=bDBB2Q5oBPhnBZEr",
 
@@ -2469,6 +2689,33 @@
 
         ];
 
+
+        /* ============================================
+           DATE PARSER
+
+           Handles:
+           Jan 29th, 2024
+           Jul 13th, 2024
+           Feb 23rd, 2026
+           etc.
+        ============================================ */
+
+        function parseDate(dateString) {
+
+            const cleanedDate =
+                dateString.replace(
+                    /(\d+)(st|nd|rd|th)/i,
+                    "$1"
+                );
+
+            return new Date(cleanedDate);
+        }
+
+
+        /* ============================================
+           YOUTUBE EMBED
+        ============================================ */
+
         function getYoutubeEmbed(url) {
 
             if (!url) {
@@ -2481,6 +2728,7 @@
 
                 let videoId = "";
 
+
                 if (
                     parsedUrl.hostname.includes("youtube.com") &&
                     parsedUrl.searchParams.get("v")
@@ -2491,6 +2739,7 @@
 
                 }
 
+
                 else if (
                     parsedUrl.hostname === "youtu.be"
                 ) {
@@ -2499,6 +2748,7 @@
                         parsedUrl.pathname.substring(1);
 
                 }
+
 
                 else if (
                     parsedUrl.hostname.includes("youtube.com") &&
@@ -2530,194 +2780,407 @@
 
         }
 
-        const levelList =
-            document.getElementById("levelList");
+
+        /* ============================================
+           DISPLAY LEVELS
+        ============================================ */
+
+        function displayLevels(levelArray) {
+
+            const levelList =
+                document.getElementById("levelList");
 
 
-        function displayLevels(filteredLevels) {
+            levelList.innerHTML = "";
 
-    levelList.innerHTML = "";
 
-    filteredLevels.forEach((level) => {
+            if (levelArray.length === 0) {
 
-        const rank = levels.indexOf(level) + 1;
-
-        const levelElement =
-            document.createElement("div");
-
-        levelElement.className = "level";
-
-        const videoEmbed =
-            getYoutubeEmbed(level.video);
-
-        levelElement.innerHTML = `
-
-            <div
-                class="level-header"
-                onclick="toggleLevel(this)"
-            >
-
-                <div class="rank">
-                    #${rank}
-                </div>
-
-                <div class="level-info">
-
-                    <div class="level-name">
-                        ${level.name}
+                levelList.innerHTML = `
+                    <div class="no-results">
+                        No levels found.
                     </div>
+                `;
 
-                    <div class="publisher">
-                        by ${level.publisher}
-                    </div>
+                return;
 
-                </div>
-
-                <div class="arrow">
-                    ▼
-                </div>
-
-            </div>
+            }
 
 
-            <div class="level-details">
+            levelArray.forEach(level => {
 
-                <div class="details-content">
+                /*
+                    Find the original ranking.
 
-                    <div class="details-grid">
+                    This means sorting by enjoyment/date/etc.
+                    does NOT change the actual difficulty rank.
+                */
 
-                        <div class="detail">
+                const rank =
+                    levels.indexOf(level) + 1;
 
-                            <div class="detail-label">
-                                position
+
+                const levelElement =
+                    document.createElement("div");
+
+
+                levelElement.className = "level";
+
+
+                const videoEmbed =
+                    getYoutubeEmbed(level.video);
+
+
+                levelElement.innerHTML = `
+
+                    <div
+                        class="level-header"
+                        onclick="toggleLevel(this)"
+                    >
+
+                        <div class="rank">
+                            #${rank}
+                        </div>
+
+
+                        <div class="level-info">
+
+                            <div class="level-name">
+                                ${level.name}
                             </div>
 
-                            <div class="detail-value">
-                                #${rank}
+                            <div class="publisher">
+                                by ${level.publisher}
                             </div>
 
                         </div>
 
 
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                attempts
-                            </div>
-
-                            <div class="detail-value">
-                                ${level.attempts.toLocaleString()}
-                            </div>
-
-                        </div>
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                enjoyment
-                            </div>
-
-                            <div class="detail-value">
-                                ${level.enjoyment}
-                            </div>
-
-                        </div>
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                completion date
-                            </div>
-
-                            <div class="detail-value">
-                                ${level.date}
-                            </div>
-
-                        </div>
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                furthest death
-                            </div>
-
-                            <div class="detail-value">
-                                ${level.furthestDeath}
-                            </div>
-
-                        </div>
-
-
-                        <div class="detail notes">
-
-                            <div class="detail-label">
-                                notes
-                            </div>
-
-                            <div class="detail-value">
-                                ${level.notes}
-                            </div>
-
+                        <div class="arrow">
+                            ▼
                         </div>
 
                     </div>
 
 
-                    ${
-                        videoEmbed
-                        ?
-                        `
-                        <div class="video-container">
+                    <div class="level-details">
 
-                            <iframe
-                                src="${videoEmbed}"
-                                title="${level.name} completion video"
-                                loading="lazy"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
+                        <div class="details-content">
+
+                            <div class="details-grid">
+
+
+                                <div class="detail">
+
+                                    <div class="detail-label">
+                                        position
+                                    </div>
+
+                                    <div class="detail-value">
+                                        #${rank}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="detail-label">
+                                        attempts
+                                    </div>
+
+                                    <div class="detail-value">
+                                        ${level.attempts.toLocaleString()}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="detail-label">
+                                        enjoyment
+                                    </div>
+
+                                    <div class="detail-value">
+                                        ${level.enjoyment}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="detail-label">
+                                        completion date
+                                    </div>
+
+                                    <div class="detail-value">
+                                        ${level.date}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail">
+
+                                    <div class="detail-label">
+                                        furthest death
+                                    </div>
+
+                                    <div class="detail-value">
+                                        ${level.furthestDeath}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="detail notes">
+
+                                    <div class="detail-label">
+                                        notes
+                                    </div>
+
+                                    <div class="detail-value">
+                                        ${level.notes}
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            ${
+                                videoEmbed
+                                ?
+                                `
+                                <div class="video-container">
+
+                                    <iframe
+                                        src="${videoEmbed}"
+                                        title="${level.name} completion video"
+                                        loading="lazy"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen>
+                                    </iframe>
+
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
 
                         </div>
-                        `
-                        :
-                        ""
-                    }
 
-                </div>
+                    </div>
 
-            </div>
-
-        `;
-
-        levelList.appendChild(levelElement);
-
-    });
-
-}
-
-        displayLevels(levels);
+                `;
 
 
-document.getElementById("levelSearch")
-    .addEventListener("input", function () {
+                levelList.appendChild(levelElement);
 
-        const searchTerm =
-            this.value.toLowerCase().trim();
+            });
 
-        const filteredLevels =
-            levels.filter(level =>
-                level.name
+        }
+
+
+        /* ============================================
+           SEARCH + SORT
+        ============================================ */
+
+        function updateLevelList() {
+
+            const searchTerm =
+                document
+                    .getElementById("levelSearch")
+                    .value
                     .toLowerCase()
-                    .includes(searchTerm)
-            );
+                    .trim();
 
-        displayLevels(filteredLevels);
 
-    });
+            const sortType =
+                document
+                    .getElementById("levelSort")
+                    .value;
+
+
+            /*
+                IMPORTANT:
+
+                Create a new array using filter().
+                This prevents sorting from permanently
+                changing the original levels array.
+            */
+
+            let filteredLevels =
+                levels.filter(level =>
+                    level.name
+                        .toLowerCase()
+                        .includes(searchTerm)
+                );
+
+
+            /* =========================
+               HARDEST → EASIEST
+            ========================= */
+
+            if (sortType === "default") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        levels.indexOf(a) -
+                        levels.indexOf(b)
+                );
+
+            }
+
+
+            /* =========================
+               EASIEST → HARDEST
+            ========================= */
+
+            else if (sortType === "easy") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        levels.indexOf(b) -
+                        levels.indexOf(a)
+                );
+
+            }
+
+
+            /* =========================
+               ENJOYMENT HIGH → LOW
+            ========================= */
+
+            else if (sortType === "high") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        parseInt(b.enjoyment) -
+                        parseInt(a.enjoyment)
+                );
+
+            }
+
+
+            /* =========================
+               ENJOYMENT LOW → HIGH
+            ========================= */
+
+            else if (sortType === "low") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        parseInt(a.enjoyment) -
+                        parseInt(b.enjoyment)
+                );
+
+            }
+
+
+            /* =========================
+               ATTEMPTS HIGH → LOW
+            ========================= */
+
+            else if (sortType === "attempts-high") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        b.attempts -
+                        a.attempts
+                );
+
+            }
+
+
+            /* =========================
+               ATTEMPTS LOW → HIGH
+            ========================= */
+
+            else if (sortType === "attempts-low") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        a.attempts -
+                        b.attempts
+                );
+
+            }
+
+
+            /* =========================
+               FURTHEST DEATH HIGH → LOW
+            ========================= */
+
+            else if (sortType === "death-high") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        parseInt(b.furthestDeath) -
+                        parseInt(a.furthestDeath)
+                );
+
+            }
+
+
+            /* =========================
+               FURTHEST DEATH LOW → HIGH
+            ========================= */
+
+            else if (sortType === "death-low") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        parseInt(a.furthestDeath) -
+                        parseInt(b.furthestDeath)
+                );
+
+            }
+
+
+            /* =========================
+               DATE OLDEST → LATEST
+            ========================= */
+
+            else if (sortType === "date-old") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        parseDate(a.date) -
+                        parseDate(b.date)
+                );
+
+            }
+
+
+            /* =========================
+               DATE LATEST → OLDEST
+            ========================= */
+
+            else if (sortType === "date-new") {
+
+                filteredLevels.sort(
+                    (a, b) =>
+                        parseDate(b.date) -
+                        parseDate(a.date)
+                );
+
+            }
+
+
+            displayLevels(filteredLevels);
+
+        }
+
+
+        /* ============================================
+           EXPAND / COLLAPSE LEVEL
+        ============================================ */
 
         function toggleLevel(header) {
 
@@ -2727,6 +3190,11 @@ document.getElementById("levelSearch")
 
             const details =
                 level.querySelector(".level-details");
+
+
+            /*
+                Close every other open level.
+            */
 
             document
                 .querySelectorAll(".level.open")
@@ -2743,6 +3211,7 @@ document.getElementById("levelSearch")
                     }
 
                 });
+
 
             level.classList.toggle("open");
 
@@ -2762,34 +3231,82 @@ document.getElementById("levelSearch")
 
         }
 
-        document.getElementById("totalLevels")
-            .textContent = levels.length;
+
+        /* ============================================
+           SEARCH EVENT
+        ============================================ */
+
+        document
+            .getElementById("levelSearch")
+            .addEventListener(
+                "input",
+                updateLevelList
+            );
+
+
+        /* ============================================
+           SORT EVENT
+        ============================================ */
+
+        document
+            .getElementById("levelSort")
+            .addEventListener(
+                "change",
+                updateLevelList
+            );
+
+
+        /* ============================================
+           STATS
+        ============================================ */
+
+        document
+            .getElementById("totalLevels")
+            .textContent =
+            levels.length;
+
 
         const averageEnjoyment =
             levels.length > 0
+
                 ? levels.reduce(
                     (total, level) =>
-                        total + parseInt(level.enjoyment),
+                        total +
+                        parseInt(level.enjoyment),
+
                     0
+
                 ) / levels.length
+
                 : 0;
 
 
-        document.getElementById("averageEnjoyment")
+        document
+            .getElementById("averageEnjoyment")
             .textContent =
             `${averageEnjoyment.toFixed(1)}/100`;
+
 
         const totalAttempts =
             levels.reduce(
                 (total, level) =>
                     total + level.attempts,
+
                 0
             );
 
 
-        document.getElementById("totalAttempts")
+        document
+            .getElementById("totalAttempts")
             .textContent =
             totalAttempts.toLocaleString();
+
+
+        /* ============================================
+           INITIAL DISPLAY
+        ============================================ */
+
+        updateLevelList();
 
 
     </script>
