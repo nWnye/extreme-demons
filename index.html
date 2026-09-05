@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Extreme Demons</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0d080d;
+            color: #f2f2f2;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 55px 20px 40px;
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #2c1a31 0%,
+                    #0c080d 60%
+                );
+
+            border-bottom: 1px solid #1c1e26;
+        }
+
+        header h1 {
+            font-size: 44px;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        header h1 span {
+            color: #e48cff;
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #847789;
+        }
+
+        .stats {
+            max-width: 1100px;
+            margin: 30px auto;
+
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .stat {
+            background: #181019;
+
+            border: 1px solid #291c29;
+            border-radius: 14px;
+
+            padding: 22px;
+
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f79cff;
+        }
+
+        .stat-label {
+            margin-top: 5px;
+            color: #897789;
+            font-size: 13px;
+        }
+
+        .container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 10px 20px 60px;
+        }
+
+        .section-title {
+            color: #877789;
+
+            font-size: 13px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+        }
+
+        .level {
+            background: #181019;
+
+            border: 1px solid #291c29;
+
+            border-radius: 14px;
+
+            margin-bottom: 10px;
+
+            overflow: hidden;
+
+            transition: 0.2s;
+        }
+
+        .level:hover {
+            border-color: #4a364d;
+            transform: translateY(-1px);
+        }
+
+        .level-header {
+            display: flex;
+
+            align-items: center;
+
+            padding: 17px 18px;
+
+            cursor: pointer;
+
+            user-select: none;
+        }
+
+        .rank {
+            width: 55px;
+
+            color: #736274;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .level-info {
+            flex: 1;
+        }
+
+        .level-name {
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+        .publisher {
+            color: #7f6d80;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+        }
+
+        .arrow {
+            color: #766677;
+
+            transition: 0.25s;
+
+            font-size: 13px;
+        }
+
+        .level.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .level-details {
+            max-height: 0;
+
+            overflow: hidden;
+
+            transition: max-height 0.35s ease;
+        }
+
+        .details-content {
+            border-top: 1px solid #281c29;
+
+            padding: 20px;
+
+            display: grid;
+
+            grid-template-columns: 1fr;
+
+            gap: 20px;
+        }
+
+        .details-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+        .detail {
+            background: #110b11;
+
+            border: 1px solid #241923;
+
+            border-radius: 10px;
+
+            padding: 12px;
+        }
+
+        .detail-label {
+            color: #756677;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            margin-top: 5px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .notes {
+            grid-column: 1 / -1;
+        }
+
+        .notes .detail-value {
+            color: #b8aaba;
+
+            font-weight: normal;
+
+            line-height: 1.5;
+        }
+
+        .video-container {
+            width: 100%;
+
+            max-width: 750px;
+
+            aspect-ratio: 16 / 9;
+
+            background: #110b11;
+
+            border: 1px solid #231924;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            margin-top: 5px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+        }
+
+        @media (max-width: 700px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .details-content {
+                grid-template-columns: 1fr;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .video-container {
+                max-width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <h1>
+            My <span>EXTREME DEMONS</span>
+        </h1>
+
+        <p>
+            Top 100 Hardest Levels I've Completed
+        </p>
+
+    </header>
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="totalLevels">
+                0
+            </div>
+
+            <div class="stat-label">
+                EXTREME DEMONS COMPLETED
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="averageEnjoyment">
+                0/100
+            </div>
+
+            <div class="stat-label">
+                AVERAGE ENJOYMENT
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="totalAttempts">
+                0
+            </div>
+
+            <div class="stat-label">
+                TOTAL ATTEMPTS
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="section-title">
+            hardest → easiest
+        </div>
+
+        <div id="levelList"></div>
+
+    </div>
+
+
+    <script>
+
+        const levels = [
+
+            {
+                name: "SUPERHATEMEWORLD",
+
+                publisher: "IcEDCave",
+
+                attempts: 13107,
+
+                enjoyment: "4/100",
+
+                furthestDeath: "96%",
+
+                date: "Jul 19th, 2026",
+
+                video: "https://youtu.be/Wqtv0krgrl4?si=a5KF_7-t3sb9Hvid",
+
+                notes: "Current hardest. Took me only 4 days. In my personal opinion, this is harder than SNC."
+            },
+
+
+            {
+                name: "SARY NEVER CLEAR",
+
+                publisher: "IIKugelBlitZII",
+
+                attempts: 50000,
+
+                enjoyment: "10/100",
+
+                furthestDeath: "91%",
+
+                date: "Jan 29th, 2024",
+
+                video: "https://youtu.be/xdbMQ8Vmz38?si=KdAMrwI2YKM5u4b8",
+
+                notes: "This was a hardest for me. Took around 2 months."
+            },
+
+
+            {
+                name: "Pagoda",
+
+                publisher: "Seturan",
+
+                attempts: 13969,
+
+                enjoyment: "96/100",
+
+                furthestDeath: "78%",
+
+                date: "Jul 13th, 2024",
+
+                video: "https://youtu.be/xnKALFvdak4?si=yv_gkoZFhJ63pZwq",
+
+                notes: "Was a second hardest at the time. Love this level to death. Had a time limit too, so there was extra pressure."
+            },
+
+
+            {
+                name: "kowareta",
+
+                publisher: "Gablor",
+
+                attempts: 54179,
+
+                enjoyment: "54/100",
+
+                furthestDeath: "93%",
+
+                date: "Aug 29th, 2023",
+
+                video: "https://youtu.be/kxQ0OHN8tvM?si=7r4tDIK3yJUOZPYC",
+
+                notes: "Took around a month I think. Was a hardest. Mid experience."
+            },
+
+
+            {
+                name: "Arctic Lights",
+
+                publisher: "Metalface221",
+
+                attempts: 43132,
+
+                enjoyment: "82/100",
+
+                furthestDeath: "90%",
+
+                date: "Feb 15th, 2023",
+
+                video: "https://youtu.be/1NoOa3gl0fU?si=zX_oebTiJ_rIVdA_",
+
+                notes: "My first real hard experience in this game. Was a big jump from Stalemate Redux. Love this level."
+            },
+
+
+            {
+                name: "Hyper Paracosm",
+
+                publisher: "iIiViRuZiIi",
+
+                attempts: 17142,
+
+                enjoyment: "34/100",
+
+                furthestDeath: "67%",
+
+                date: "Jun 14th, 2024",
+
+                video: "https://youtu.be/L13O2S1eCV4?si=t10K9jJ4vxPoX9K1",
+
+                notes: "Cool level I guess but gameplay kinda atrocious, plus I was really unlucky at the end of the wave for some reason."
+            },
+
+
+            {
+                name: "Aquatic Auroras",
+
+                publisher: "EndLevel",
+
+                attempts: 16032,
+
+                enjoyment: "80/100",
+
+                furthestDeath: "72%",
+
+                date: "Jun 23rd, 2024",
+
+                video: "https://youtu.be/FhTnbItPXEI?si=MoPV9BNggEB_JN8-",
+
+                notes: "Beat this pretty quick, only one week. One of my favourite Nine Circles extreme demons for sure."
+            },
+
+
+            {
+                name: "Macabre",
+
+                publisher: "ZephiroX",
+
+                attempts: 11374,
+
+                enjoyment: "47/100",
+
+                furthestDeath: "96%",
+
+                date: "Jun 24th, 2025",
+
+                video: "https://youtu.be/g98idFWNE7Y?si=q3-KGgJgE_-09lT_",
+
+                notes: "An amazing level that I didn't have the best experience with. Gameplay is definitely super fun."
+            },
+
+
+            {
+                name: "xo",
+
+                publisher: "KrmaL",
+
+                attempts: 7586,
+
+                enjoyment: "85/100",
+
+                furthestDeath: "58%",
+
+                date: "Feb 23rd, 2026",
+
+                video: "https://youtu.be/zkXzHLp9YEc?si=iiljnHIH0nIFNuth",
+
+                notes: "Like this one a lot. A bit too long for my standards but the fun gameplay makes up for it for sure. Got pretty lucky, fluked from 58%."
+            },
+
+
+            {
+                name: "Sonic Wave Rebirth",
+
+                publisher: "Serponge",
+
+                attempts: 2571,
+
+                enjoyment: "9/100",
+
+                furthestDeath: "93%",
+
+                date: "Mar 5th, 2024",
+
+                video: "https://youtu.be/ibcpFWcq4UU?si=LGMyx5dnDtNen2cY",
+
+                notes: "Complete bullshit just like Sonic Wave. Beat this one quickly in 2 days after Sonic Wave."
+            },
+
+
+            {
+                name: "Sonic Wave",
+
+                publisher: "lSunix",
+
+                attempts: 32000,
+
+                enjoyment: "14/100",
+
+                furthestDeath: "98%",
+
+                date: "Feb 27th, 2024",
+
+                video: "https://youtu.be/zhq7nhkE_Sc?si=ubMa3ugbvSzuWJFR",
+
+                notes: "Little backstory: In early 2023, I got 98% as a fluke from 55% somehow. Played it on and off after that, and a year later I beat it. Bullshit level."
+            },
+
+
+            {
+                name: "Erebus",
+
+                publisher: "BoldStep",
+
+                attempts: 19297,
+
+                enjoyment: "14/100",
+
+                furthestDeath: "95%",
+
+                date: "Jun 10th, 2023",
+
+                video: "https://youtu.be/VqmkjeGvrdo?si=IYGZNSyEM2kbEO0e",
+
+                notes: "My first really bad experience in this game. Was a second hardest. Originally I liked it, but after playing it more and more, it became some steaming bullshit. Literally prayed every morning that I could beat it that day, and I'm not even religious."
+            },
+
+
+            {
+                name: "Necromancer",
+
+                publisher: "T G I",
+
+                attempts: 10000,
+
+                enjoyment: "75/100",
+
+                furthestDeath: "83%",
+
+                date: "Mar 3rd, 2025",
+
+                video: "https://youtu.be/1dsOYRWGSy4?si=r05Juuwz72hJ6cw2",
+
+                notes: "Cool level that I initially tried to beat ages ago, but got the urge again to do it and decided to beat it. Nothing else to say."
+            },
+
+
+            {
+                name: "Generic Wave",
+
+                publisher: "Pennutoh",
+
+                attempts: 2583,
+
+                enjoyment: "5/100",
+
+                furthestDeath: "75%",
+
+                date: "Mar 6th, 2024",
+
+                video: "https://youtu.be/CCy0DmrhSNQ?si=JJVONnL1yZOkSfcx",
+
+                notes: "One of the worst extremes I've done. Such atrocious gameplay. But I had to do it since I was doing every other SW level."
+            },
+
+
+            {
+                name: "Devil Vortex",
+
+                publisher: "Rustam",
+
+                attempts: 3012,
+
+                enjoyment: "25/100",
+
+                furthestDeath: "84%",
+
+                date: "Aug 24th, 2025",
+
+                video: "https://youtu.be/3UY1UU11DZQ?si=c-t3HS2YtvBpyQoU",
+
+                notes: "Funny saw level, that I beat in 2 days. The gameplay is really bad but it's lowkey funny so it's chill."
+            },
+
+        ];
+
+        function getYoutubeEmbed(url) {
+
+            if (!url) {
+                return "";
+            }
+
+            try {
+
+                const parsedUrl = new URL(url);
+
+                let videoId = "";
+
+                if (
+                    parsedUrl.hostname.includes("youtube.com") &&
+                    parsedUrl.searchParams.get("v")
+                ) {
+
+                    videoId =
+                        parsedUrl.searchParams.get("v");
+
+                }
+
+                else if (
+                    parsedUrl.hostname === "youtu.be"
+                ) {
+
+                    videoId =
+                        parsedUrl.pathname.substring(1);
+
+                }
+
+                else if (
+                    parsedUrl.hostname.includes("youtube.com") &&
+                    parsedUrl.pathname.startsWith("/shorts/")
+                ) {
+
+                    videoId =
+                        parsedUrl.pathname
+                            .split("/shorts/")[1]
+                            .split("/")[0];
+
+                }
+
+
+                if (!videoId) {
+                    return "";
+                }
+
+
+                return `https://www.youtube-nocookie.com/embed/${videoId}`;
+
+            }
+
+            catch (error) {
+
+                return "";
+
+            }
+
+        }
+
+        const levelList =
+            document.getElementById("levelList");
+
+
+        levels.forEach((level, index) => {
+
+            const rank = index + 1;
+
+
+            const levelElement =
+                document.createElement("div");
+
+
+            levelElement.className = "level";
+
+
+            const videoEmbed =
+                getYoutubeEmbed(level.video);
+
+
+            levelElement.innerHTML = `
+
+                <div
+                    class="level-header"
+                    onclick="toggleLevel(this)"
+                >
+
+                    <div class="rank">
+                        #${rank}
+                    </div>
+
+
+                    <div class="level-info">
+
+                        <div class="level-name">
+                            ${level.name}
+                        </div>
+
+                        <div class="publisher">
+                            by ${level.publisher}
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">
+                        ▼
+                    </div>
+
+                </div>
+
+
+                <div class="level-details">
+
+                    <div class="details-content">
+
+
+                        <div class="details-grid">
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    position
+                                </div>
+
+                                <div class="detail-value">
+                                    #${rank}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    attempts
+                                </div>
+
+                                <div class="detail-value">
+                                    ${level.attempts.toLocaleString()}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    enjoyment
+                                </div>
+
+                                <div class="detail-value">
+                                    ${level.enjoyment}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    completion date
+                                </div>
+
+                                <div class="detail-value">
+                                    ${level.date}
+                                </div>
+
+                            </div>
+
+                            <div class="detail">
+
+                                <div class="detail-label">
+                                    furthest death
+                                </div>
+
+                                <div class="detail-value">
+                                    ${level.furthestDeath}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail notes">
+
+                                <div class="detail-label">
+                                    notes
+                                </div>
+
+                                <div class="detail-value">
+                                    ${level.notes}
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        ${
+                            videoEmbed
+                            ?
+                            `
+                            <div class="video-container">
+
+                                <iframe
+                                    src="${videoEmbed}"
+                                    title="${level.name} completion video"
+                                    loading="lazy"
+                                    referrerpolicy="strict-origin-when-cross-origin"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen>
+                                </iframe>
+
+                            </div>
+                            `
+                            :
+                            ""
+                        }
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            levelList.appendChild(levelElement);
+
+        });
+
+        function toggleLevel(header) {
+
+            const level =
+                header.parentElement;
+
+
+            const details =
+                level.querySelector(".level-details");
+
+            document
+                .querySelectorAll(".level.open")
+                .forEach(openLevel => {
+
+                    if (openLevel !== level) {
+
+                        openLevel.classList.remove("open");
+
+                        openLevel
+                            .querySelector(".level-details")
+                            .style.maxHeight = null;
+
+                    }
+
+                });
+
+            level.classList.toggle("open");
+
+
+            if (level.classList.contains("open")) {
+
+                details.style.maxHeight =
+                    details.scrollHeight + "px";
+
+            }
+
+            else {
+
+                details.style.maxHeight = null;
+
+            }
+
+        }
+
+        document.getElementById("totalLevels")
+            .textContent = levels.length;
+
+        const averageEnjoyment =
+            levels.length > 0
+                ? levels.reduce(
+                    (total, level) =>
+                        total + parseInt(level.enjoyment),
+                    0
+                ) / levels.length
+                : 0;
+
+
+        document.getElementById("averageEnjoyment")
+            .textContent =
+            `${averageEnjoyment.toFixed(1)}/100`;
+
+        const totalAttempts =
+            levels.reduce(
+                (total, level) =>
+                    total + level.attempts,
+                0
+            );
+
+
+        document.getElementById("totalAttempts")
+            .textContent =
+            totalAttempts.toLocaleString();
+
+
+    </script>
+
+</body>
+
+</html>
