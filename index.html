@@ -295,6 +295,62 @@
             }
         }
 
+        header {
+            position: relative;
+        }
+
+        .social-links {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .social-links a {
+            display: flex;
+            width: 34px;
+            height: 34px;
+            transition: 0.2s;
+        }
+
+        .social-links a {
+            transform: translateY(-2px);
+        }
+
+        .social-links img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .search-container {
+            margin-bottom: 25px;
+        }
+
+        #levelSearch {
+            width: 100%;
+            padding: 14px 16px;
+            background: #181019;
+            border: 1px solid #291c29;
+            border-radius: 12px;
+            color: #f2f2f2;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        #levelSearch::placeholder {
+            color: #756677;
+        }
+
+        #levelSearch:focus {
+            border-color: #4a364d;
+        }
+
+
     </style>
 
 </head>
@@ -304,12 +360,23 @@
 
     <header>
 
+        <div class="social-links">
+
+            <a href="https://www.youtube.com/@nWnye" target="_blank" rel="noopener noreferrer">
+                <img src="images/youtube.png" alt="YouTube">
+            </a>
+
+            <a href="https://www.twitch.tv/nwnye" target="_blank" rel="noopener noreferrer">
+                <img src="images/twitch.png" alt="Twitch">
+            </a>
+        </div>
+
         <h1>
             My <span>EXTREME DEMONS</span>
         </h1>
 
         <p>
-            Top 100 Hardest Levels I've Completed
+            All My Completed Extreme Demons Ranked By Difficulty
         </p>
 
     </header>
@@ -363,6 +430,15 @@
     </div>
 
     <div class="container">
+
+        <div class="search-container">
+            <input
+                type="text"
+                id="levelSearch"
+                placeholder="Search levels..."
+                autocomplete="off"
+            >
+        </div>
 
         <div class="section-title">
             hardest → easiest
@@ -658,7 +734,1737 @@
 
                 video: "https://youtu.be/3UY1UU11DZQ?si=c-t3HS2YtvBpyQoU",
 
-                notes: "Funny saw level, that I beat in 2 days. The gameplay is really bad but it's lowkey funny so it's chill."
+                notes: "Funny saw level that I beat in 2 days. The gameplay is really bad but it's lowkey funny so it's chill."
+            },
+
+
+            {
+                name: "Molten Core",
+
+                publisher: "Janucha",
+
+                attempts: 5372,
+
+                enjoyment: "56/100",
+
+                furthestDeath: "73%",
+
+                date: "May 27th, 2024",
+
+                video: "https://youtu.be/nPuyfLRxS-U?si=yJnxxElLrVB589w0",
+
+                notes: "Very good NC level. I love it even if my experience with it was pretty mid. Nothing bad to say about it, really."
+            },
+
+
+            {
+                name: "Stalemate Redux",
+
+                publisher: "GdTheTactiq",
+
+                attempts: 15000,
+
+                enjoyment: "71/100",
+
+                furthestDeath: "59%",
+
+                date: "Oct 6th, 2022",
+
+                video: "https://youtu.be/NIReQVCfWjM?si=OcHqhAP7Es-A1hYN",
+
+                notes: "My first list demon. So this was a pretty big struggle but I managed to fluke it from 59% somehow. I'd call this my entrance into the harder GD extremes. I love the level, by the way. Amazing."
+            },
+
+
+            {
+                name: "Digital Descent",
+
+                publisher: "ViPriN",
+
+                attempts: 18828,
+
+                enjoyment: "95/100",
+
+                furthestDeath: "92%",
+
+                date: "Nov 22nd, 2023",
+
+                video: "https://youtu.be/2IX9c2R_teE?si=_ZSL5SzkB3S0c6s5",
+
+                notes: "One of my favourite extremes for sure, it's just so memorable, fun and iconic. Was a level I had always wanted to do, so I was really glad to have it done when I beat it."
+            },
+
+
+            {
+                name: "Killbot",
+
+                publisher: "BoldStep",
+
+                attempts: 5470,
+
+                enjoyment: "96/100",
+
+                furthestDeath: "75%",
+
+                date: "Apr 21st, 2024",
+
+                video: "https://youtu.be/loCe6FEQ0UQ?si=ELay4fc8gHRToy_2",
+
+                notes: "I fucking somehow fluked this from 75%, which is most of the last ship and then the last UFO, which is fucking insane, because the last UFO is like the infamous hardest part and I usually took around 60 attempts to pass it once. I really don't know what kind of luck I had to pull this one off but god damn I'm happy I fluked it because it's such an amazing level and I wouldn't have wanted to have my experience ruined by the last UFO."
+            },
+
+
+            {
+                name: "Bete Noire",
+
+                publisher: "ThePurgatory",
+
+                attempts: 3167,
+
+                enjoyment: "26/100",
+
+                furthestDeath: "64%",
+
+                date: "May 20th, 2024",
+
+                video: "https://youtu.be/sl1ejniU8Rs?si=atAoGS4it9M-EtoZ",
+
+                notes: "I don't even wanna talk bout how cancerous the gameplay is. Shut up"
+            },
+
+
+            {
+                name: "Friday Vortex",
+
+                publisher: "Cersia",
+
+                attempts: 5211,
+
+                enjoyment: "72/100",
+
+                furthestDeath: "78%",
+
+                date: "May 17th, 2024",
+
+                video: "https://youtu.be/xCdalP-PcdU?si=6zzWWrPkwfmKqKlU",
+
+                notes: "Fun level, song is good, just a level I beat pretty fast. Don't remember much about it."
+            },
+
+
+            {
+                name: "FIREPOWER",
+
+                publisher: "Sillow",
+
+                attempts: 4980,
+
+                enjoyment: "28/100",
+
+                furthestDeath: "96% x2",
+
+                date: "May 15th, 2024",
+
+                video: "https://youtu.be/4ZkhLIF89vQ?si=WSN5GEr9VEm8Ronw",
+
+                notes: "Yeah ts some bullshi bro 🥀"
+            },
+
+
+            {
+                name: "Black Blizzard",
+
+                publisher: "KrmaL",
+
+                attempts: 13741,
+
+                enjoyment: "73/100",
+
+                furthestDeath: "69%",
+
+                date: "Jan 12th, 2023",
+
+                video: "https://youtu.be/olJkU-gV7ic?si=unzR1p7SHjMd7NAC",
+
+                notes: "In my reaction I shouted 'fuck this level' but I didn't mean that. I think it's a pretty enjoyable and fun level overall. Just got a bit frustrated. Was a second hardest."
+            },
+
+
+            {
+                name: "Artificial Ascent",
+
+                publisher: "ViPriN",
+
+                attempts: 25000,
+
+                enjoyment: "86/100",
+
+                furthestDeath: "88%",
+
+                date: "Jun 24th, 2024",
+
+                video: "https://youtu.be/o9_wwNjeAe0?si=-r6GThjr1uF90aAx",
+
+                notes: "Very fun level that I started way back in December of 2022, played on and off for like 1.5 years and then in summer 2024 I beat it. Also died to some weird bug at 88% that never happened in practice."
+            },
+
+
+            {
+                name: "Dolos",
+
+                publisher: "Enzeux",
+
+                attempts: 9834,
+
+                enjoyment: "8/100",
+
+                furthestDeath: "91% x4",
+
+                date: "Oct 28th, 2023",
+
+                video: "https://youtu.be/QqgANIJMgfE?si=lewbPcSBaqhrnGwM",
+
+                notes: "Dogshit"
+            },
+
+
+            {
+                name: "Static Ignition",
+
+                publisher: "Magmeta",
+
+                attempts: 4400,
+
+                enjoyment: "71/100",
+
+                furthestDeath: "76%",
+
+                date: "Dec 20th, 2025",
+
+                video: "https://youtu.be/Hf2iZvNEoMQ?si=Ls6GW3LPtWz0j-Df",
+
+                notes: "Boring ahh nothing burger of a level"
+            },
+
+
+            {
+                name: "Ithacropolis",
+
+                publisher: "BIGMAC77",
+
+                attempts: 2299,
+
+                enjoyment: "1/100",
+
+                furthestDeath: "96%",
+
+                date: "Jul 21st, 2026",
+
+                video: "https://youtu.be/OvfvWL4tWcI?si=8bUItLwoNPNKoYlV",
+
+                notes: "Actually the worst extreme demon of all time. The style is boring af, song gets repetitive and boring, but above all the FUCKING GAMEPLAY. I would rather clean up a homeless mans ass crack with my tongue and eat the dingleberries than play this rancid bullshit ever again. Never touch this rabies-infected level that gives off the same stench as fermented brain matter."
+            },
+
+
+            {
+                name: "WcropoliX",
+
+                publisher: "BlassCFB",
+
+                attempts: 1312,
+
+                enjoyment: "14/100",
+
+                furthestDeath: "97% x2",
+
+                date: "Oct 18th, 2025",
+
+                video: "https://youtu.be/qL6FrwLZ8PI?si=AHkijSUyKRDEebL8",
+
+                notes: "The gameplay is fun and simple but I just got the worst luck with this level. Shame."
+            },
+
+
+            {
+                name: "Balengu Vortex",
+
+                publisher: "lTemp",
+
+                attempts: 8604,
+
+                enjoyment: "86/100",
+
+                furthestDeath: "97%",
+
+                date: "Dec 22nd, 2022",
+
+                video: "https://youtu.be/D7Y5E_o3lKA?si=R5xGOP0SaWBC13lC",
+
+                notes: "One of my favourite NC levels for sure. The gameplay is super fun. And so is the deco. And song."
+            },
+
+
+            {
+                name: "Bausha Vortex",
+
+                publisher: "Pennutoh",
+
+                attempts: 7726,
+
+                enjoyment: "89/100",
+
+                furthestDeath: "68%",
+
+                date: "Nov 20th, 2022",
+
+                video: "https://youtu.be/JN7OaszAyw4?si=60yDB3UWXIgEiukH",
+
+                notes: "This was my first NC extreme demon. I've always loved NC levels so it was nice to do an extreme demon. Fun gameplay and also got pretty lucky with it."
+            },
+
+
+            {
+                name: "SubSonic",
+
+                publisher: "ViPriN",
+
+                attempts: 8451,
+
+                enjoyment: "94/100",
+
+                furthestDeath: "81%",
+
+                date: "Apr 7th, 2023",
+
+                video: "https://youtu.be/o9e1r466X9g?si=2sVtBRnXX4xHbO5N",
+
+                notes: "This was very fun. Very good level that flows well with the song for sure. Nothing else to say about it."
+            },
+
+            
+            {
+                name: "Auditory Breaker",
+
+                publisher: "LazerBlitz",
+
+                attempts: 2430,
+
+                enjoyment: "63/100",
+
+                furthestDeath: "84%",
+
+                date: "Mar 2nd, 2024",
+
+                video: "https://youtu.be/rq3mrJKk4ZA?si=DS8DINGRySgELT1X",
+
+                notes: "It's simply just a more bearable Sonic Wave. Took me one day."
+            },
+
+
+            {
+                name: "Hyper Paradox",
+
+                publisher: "ItsHybrid",
+
+                attempts: 4068,
+
+                enjoyment: "68/100",
+
+                furthestDeath: "61%",
+
+                date: "May 11th, 2024",
+
+                video: "https://youtu.be/-ea1sHKE7Kk?si=shdc2P0nh2qfAvLb",
+
+                notes: "It's decently fun, except for that one unsynced ahh dual wave at 36%."
+            },
+
+
+            {
+                name: "The Hell Inferno",
+
+                publisher: "Stormfly",
+
+                attempts: 1999,
+
+                enjoyment: "59/100",
+
+                furthestDeath: "75%",
+
+                date: "Oct 20th, 2025",
+
+                video: "https://youtu.be/F-1oGzOuGvc?si=LJyDVhX_5iVn5PIh",
+
+                notes: "I don't remember shit about this level"
+            },
+
+
+            {
+                name: "Fexty",
+
+                publisher: "lSkyJax",
+
+                attempts: 1996,
+
+                enjoyment: "1/100",
+
+                furthestDeath: "82% x2",
+
+                date: "Oct 17th, 2025",
+
+                video: "https://youtu.be/ytcIZiCDt40?si=j_QU2T-hVQ9DVXTk",
+
+                notes: "Genuine trauma from the gameplay."
+            },
+
+
+            {
+                name: "Quantum Processing",
+
+                publisher: "Riot",
+
+                attempts: 6000,
+
+                enjoyment: "78/100",
+
+                furthestDeath: "70%",
+
+                date: "Feb 18th, 2025",
+
+                video: "https://youtu.be/v_W6qc9EYFI?si=yU-h2TdAwA24OTM8",
+
+                notes: "It's pretty cool. quatum pocesing"
+            },
+
+
+            {
+                name: "gravity",
+
+                publisher: "KazaGD",
+
+                attempts: 8567,
+
+                enjoyment: "99/100",
+
+                furthestDeath: "85%",
+
+                date: "Nov 7th, 2022",
+
+                video: "https://youtu.be/sdoVzn5tyl8?si=F0pS9ILOotNaZpql",
+
+                notes: "Genuinely one of the best levels in Geometry Dash in my opinion. I loved moment so it only makes sense I love gravity even more. It's so good."
+            },
+
+
+            {
+                name: "moment",
+
+                publisher: "lexycat",
+
+                attempts: 8381,
+
+                enjoyment: "94/100",
+
+                furthestDeath: "70%",
+
+                date: "Oct 11th, 2022",
+
+                video: "https://youtu.be/TQor-OQhCbY?si=9mvrZXKLPmK967KN",
+
+                notes: "It's just gravity but slightly easier. Very very fun, also got pretty lucky with it. Love the song."
+            },
+
+
+            {
+                name: "Mujigae",
+
+                publisher: "YGYoshI",
+
+                attempts: 3940,
+
+                enjoyment: "73/100",
+
+                furthestDeath: "77%",
+
+                date: "Dec 25th, 2022",
+
+                video: "https://youtu.be/kvKhTHu-AVM?si=6fDmK9PWZGfsOvo8",
+
+                notes: "It's pretty fun and the song is good, I just feel like the level drags out for a bit too long."
+            },
+
+
+            {
+                name: "Abandoned Planet",
+
+                publisher: "Metalface221",
+
+                attempts: 1665,
+
+                enjoyment: "85/100",
+
+                furthestDeath: "85%",
+
+                date: "May 10th, 2024 (my birthday lets go)",
+
+                video: "https://youtu.be/k2KsDz-j-Qs?si=OWBP_HKiUf1z7ZgB",
+
+                notes: "Very very fun NC level. The song is really good too it really fits the level and the theme. Love the color scheme too. Fantastic"
+            },
+
+
+            {
+                name: "Phobos",
+
+                publisher: "KrmaL",
+
+                attempts: 7985,
+
+                enjoyment: "84/100",
+
+                furthestDeath: "87%",
+
+                date: "Feb 23rd, 2023",
+
+                video: "https://youtu.be/HTY_U3aYIsI?si=_K4XEGMy8aZoREVP",
+
+                notes: "Pretty good level except for the line at 87% and the ship at 69%. Don't remember much else."
+            },
+
+
+            {
+                name: "Blade of Justice",
+
+                publisher: "Manix648",
+
+                attempts: 5449,
+
+                enjoyment: "91/100",
+
+                furthestDeath: "78%",
+
+                date: "Feb 22nd, 2024",
+
+                video: "https://youtu.be/QySxkXq4EzQ?si=lZuM6CGze-cuzv5x",
+
+                notes: "Always thought this was a pretty boring level. Only reason my enjoyment is high is because I got lucky. I remember absolutely nothing about this level."
+            },
+
+
+            {
+                name: "Bloodbath",
+
+                publisher: "Riot",
+
+                attempts: 13832,
+
+                enjoyment: "78/100",
+
+                furthestDeath: "79%",
+
+                date: "Nov 8th, 2022",
+
+                video: "https://youtu.be/ynkzECkehk8?si=H9q3MkBoq7zskkpx",
+
+                notes: "I mean I don't have to say anything about this level. Everyone knows it. It's fine in my opinion."
+            },
+
+
+            {
+                name: "Infinite Inversion",
+
+                publisher: "Filqh",
+
+                attempts: 2968,
+
+                enjoyment: "78/100",
+
+                furthestDeath: "98%",
+
+                date: "Jun 7th, 2025",
+
+                video: "https://youtu.be/LEajYW-xk3Q?si=7zf--pzOG7JyH1gV",
+
+                notes: "I remember absolutely nothing about this level except that I died at 98%."
+            },
+
+
+            {
+                name: "Poltergeist Reborn",
+
+                publisher: "ThePrimeEvil",
+
+                attempts: 2273,
+
+                enjoyment: "78/100",
+
+                furthestDeath: "94%",
+
+                date: "May 9th, 2024",
+
+                video: "https://youtu.be/onTvgRDPm-c?si=4LFFdppg1NcB8yFj",
+
+                notes: "I remember absolutely nothing about this level."
+            },
+
+
+            {
+                name: "Tenth Circle",
+
+                publisher: "DeniPol",
+
+                attempts: 1593,
+
+                enjoyment: "87/100",
+
+                furthestDeath: "87%",
+
+                date: "Apr 26th, 2024",
+
+                video: "https://youtu.be/GeQWLCMWUOA?si=LulZFY-UFBFPgI83",
+
+                notes: "It's alright. Quite unbalanced, though. Song is good."
+            },
+
+
+            {
+                name: "Astrophobia",
+
+                publisher: "Jakalope",
+
+                attempts: 2045,
+
+                enjoyment: "66/100",
+
+                furthestDeath: "80%",
+
+                date: "Nov 25th, 2023",
+
+                video: "https://youtu.be/XNUAq2nvysU?si=dM0qSfAk4rq-h8SS",
+
+                notes: "One of my favourite NC extreme demons, I just got pretty unlucky with it. Shout out Jakalope, the creator of this level. He's a friend."
+            },
+
+
+            {
+                name: "Athanatos",
+
+                publisher: "IIExenityII",
+
+                attempts: 3000,
+
+                enjoyment: "75/100",
+
+                furthestDeath: "86%",
+
+                date: "Feb 1st, 2025",
+
+                video: "https://youtu.be/QgOfxQfeZv4?si=w4ge_CLBLTDKhIo-",
+
+                notes: "I don't remember shit about this level."
+            },
+
+
+            {
+                name: "aftermath",
+
+                publisher: "IIExenityII",
+
+                attempts: 3339,
+
+                enjoyment: "35/100",
+
+                furthestDeath: "88%",
+
+                date: "Nov 12th, 2022",
+
+                video: "https://youtu.be/Eq0QB-cfNtQ?si=GsoEweQq2swgBHN-",
+
+                notes: "Didn't really like this one. Felt too unbalanced to have fun."
+            },
+
+
+            {
+                name: "Sakupen Hell",
+
+                publisher: "TrusTa",
+
+                attempts: 12656,
+
+                enjoyment: "79/100",
+
+                furthestDeath: "87%",
+
+                date: "Oct 6th, 2023",
+
+                video: "https://youtu.be/RLtk_T-aJTk?si=V9ry9Mka4EL8_sBL",
+
+                notes: "I know it's objectively ass but I kinda like it."
+            },
+
+
+            {
+                name: "Down Bass",
+
+                publisher: "Spectruh",
+
+                attempts: 7156,
+
+                enjoyment: "69/100",
+
+                furthestDeath: "73%",
+
+                date: "Dec 28th, 2022",
+
+                video: "https://youtu.be/zk7KoDXssDw?si=d6wDl_5gYt4nOn4A",
+
+                notes: "I don't really remember this level either."
+            },
+
+
+            {
+                name: "Hateful Reflection",
+
+                publisher: "GD Iris",
+
+                attempts: 2387,
+
+                enjoyment: "87/100",
+
+                furthestDeath: "76%",
+
+                date: "Apr 28th, 2024",
+
+                video: "https://youtu.be/TKxh2xhEvMk?si=QVbXJyzwfkN8nU0E",
+
+                notes: "It's fun."
+            },
+
+
+            {
+                name: "AcropoliX",
+
+                publisher: "SoulsTRWKNation",
+
+                attempts: 2000,
+
+                enjoyment: "68/100",
+
+                furthestDeath: "71%",
+
+                date: "Aug 18th, 2022",
+
+                video: "https://youtu.be/txFo2S_ASHs?si=8rz2Nhlr78zGmjUj",
+
+                notes: "I don't remember shit about this."
+            },
+
+
+            {
+                name: "Azurite",
+
+                publisher: "Royen",
+
+                attempts: 1914,
+
+                enjoyment: "52/100",
+
+                furthestDeath: "56%",
+
+                date: "Apr 25th, 2024",
+
+                video: "https://youtu.be/GqcO1ssVfpE?si=U74SuIZ4le-Y_z5b",
+
+                notes: "Painfully mid."
+            },
+
+
+            {
+                name: "EKO",
+
+                publisher: "PureDinoMight",
+
+                attempts: 1742,
+
+                enjoyment: "88/100",
+
+                furthestDeath: "85%",
+
+                date: "Nov 1st, 2023",
+
+                video: "https://youtu.be/mAfIhtRy6iA?si=3i1JcQuD4dldLR6w",
+
+                notes: "It's fun. Idk."
+            },
+
+
+            {
+                name: "doradura",
+
+                publisher: "IvashkaUA",
+
+                attempts: 3485,
+
+                enjoyment: "100/100",
+
+                furthestDeath: "55%",
+
+                date: "Dec 25th, 2023",
+
+                video: "https://youtu.be/T20jLx0u1m0?si=nbyJqSLTQ0OqhIud",
+
+                notes: "I absolutely love this level to death, one of the best extremes of all time. Amazing song, amazing gameplay, amazing decoration, amazing theme. Beautiful"
+            },
+
+
+            {
+                name: "Conical Depression",
+
+                publisher: "KrmaL",
+
+                attempts: 4425,
+
+                enjoyment: "94/100",
+
+                furthestDeath: "66%",
+
+                date: "Feb 14th, 2024",
+
+                video: "https://youtu.be/FrRiI-D17Iw?si=vDu3SnCTatVViHog",
+
+                notes: "I actually kind of love this level. It's objectively pretty horrible but I have a soft spot for it."
+            },
+
+
+            {
+                name: "Sakupen Joy",
+
+                publisher: "sparktwo",
+
+                attempts: 1244,
+
+                enjoyment: "9/100",
+
+                furthestDeath: "92%",
+
+                date: "Jun 23rd, 2026",
+
+                video: "https://youtu.be/Cu5j5-j2lD8?si=I6Y6gdwI80RkYFjA",
+
+                notes: "It's ass. Sakupen Joy more like Sakupen Oh Boy, This Shit Is Like Eating Asbestos."
+            },
+
+
+            {
+                name: "Cat Planet",
+
+                publisher: "IcEDCave",
+
+                attempts: 2363,
+
+                enjoyment: "82/100",
+
+                furthestDeath: "70%",
+
+                date: "Nov 14th, 2023",
+
+                video: "https://youtu.be/zDwRyeFdnS0?si=kyuSKxTU9HkD6e-z",
+
+                notes: "I dont remember shit bout ts"
+            },
+
+
+            {
+                name: "Glide",
+
+                publisher: "crohn44",
+
+                attempts: 6580,
+
+                enjoyment: "96/100",
+
+                furthestDeath: "81%",
+
+                date: "Feb 16th, 2024",
+
+                video: "https://youtu.be/OLs5kXSv5NQ?si=oIlLK1HHjrqW9O06",
+
+                notes: "Tried this as my 3rd extreme demon but failed miserably so I came back 2 years later to beat it. It's a very fun level. Love the gameplay but the song is mid."
+            },
+
+
+            {
+                name: "NecropoliX",
+
+                publisher: "Namtar",
+
+                attempts: 3500,
+
+                enjoyment: "81/100",
+
+                furthestDeath: "96%",
+
+                date: "Aug 12th, 2022",
+
+                video: "https://youtu.be/At9WTmlDTQ4?si=IH3FWa0-uZWsd0vE",
+
+                notes: "This was a hardest for me and was my 3rd extreme demon. But I never recorded it so I came back two years later to rebeat it for a video."
+            },
+
+
+            {
+                name: "Falling Up",
+
+                publisher: "KrmaL",
+
+                attempts: 9999,
+
+                enjoyment: "70/100",
+
+                furthestDeath: "95%",
+
+                date: "Mar 11th, 2022",
+
+                video: "https://youtu.be/DuUX_7aQehw?si=bfbjZBLfOgqXX8YI",
+
+                notes: "Second extreme demon, also a hardest. This is like my little brother, idk why. Falling Up was definitely a journey back in the day. It's a pretty good level overall."
+            },
+
+
+            {
+                name: "Volume",
+
+                publisher: "Metalface221",
+
+                attempts: 799,
+
+                enjoyment: "94/100",
+
+                furthestDeath: "71%",
+
+                date: "Jun 18th, 2023",
+
+                video: "https://youtu.be/fEgVcckDOUI?si=CcLh1bErh-gjq4pG",
+
+                notes: "Also one of my favourite extreme demons. The song is awesome and the gameplay fits it so well. I just love it. Such a satisfying level to play."
+            },
+
+
+            {
+                name: "Lost Love",
+
+                publisher: "TheBlackHell",
+
+                attempts: 4434,
+
+                enjoyment: "89/100",
+
+                furthestDeath: "95%",
+
+                date: "May 10th, 2023 (my birthday lets go)",
+
+                video: "https://youtu.be/RiM5WItFZqI?si=xEl_e24KEJ5Jxzrf",
+
+                notes: "My first memory extreme demon. It was actually better than I thought it was going to be. Really enjoyed it for sure."
+            },
+
+
+            {
+                name: "Incipient",
+
+                publisher: "Jenkins",
+
+                attempts: 2443,
+
+                enjoyment: "34/100",
+
+                furthestDeath: "96%",
+
+                date: "Jun 20th, 2023",
+
+                video: "https://youtu.be/f5PxHDD-9z4?si=4bOkNdzB5-l2vn_s",
+
+                notes: "It's ass."
+            },
+
+
+            {
+                name: "Crowd Control",
+
+                publisher: "zDeadlox",
+
+                attempts: 2917,
+
+                enjoyment: "83/100",
+
+                furthestDeath: "83%",
+
+                date: "Jun 17th, 2023",
+
+                video: "https://youtu.be/KURCjrQb9kc?si=4kBQ8JVBAwpiOaka",
+
+                notes: "I dont remember shit about ts level"
+            },
+
+
+            {
+                name: "Voided",
+
+                publisher: "JustXSoos",
+
+                attempts: 1956,
+
+                enjoyment: "49/100",
+
+                furthestDeath: "87%",
+
+                date: "Mar 29th, 2024",
+
+                video: "https://youtu.be/2_6Bh-T-JxY?si=cp8SGBdfR_-x4ckB",
+
+                notes: "All I remember about this is that I got unlucky at the ending."
+            },
+
+
+            {
+                name: "cerebral hemorrhage",
+
+                publisher: "NateFH",
+
+                attempts: 2520,
+
+                enjoyment: "90/100",
+
+                furthestDeath: "91%",
+
+                date: "Apr 27th, 2024",
+
+                video: "https://youtu.be/ICN0A7kufx4?si=7eeL9B-hzcpRTHGc",
+
+                notes: "I dont remember nothing bout this."
+            },
+
+
+
+            {
+                name: "HyperSonic",
+
+                publisher: "ViPriN",
+
+                attempts: 2500,
+
+                enjoyment: "85/100",
+
+                furthestDeath: "74%",
+
+                date: "Sep 4th, 2022",
+
+                video: "https://youtu.be/Ehf8ZOa7H5U?si=DNBR4GpSVLp_5tEf",
+
+                notes: "It's a very fun level. Song is very good."
+            },
+
+
+            {
+                name: "Forbidden Isle",
+
+                publisher: "Sillow",
+
+                attempts: 2591,
+
+                enjoyment: "43/100",
+
+                furthestDeath: "88%",
+
+                date: "Oct 27th, 2022",
+
+                video: "https://youtu.be/iwlTr4VBNZI?si=wuIRvhlZk7GipRiU",
+
+                notes: "All I remember is that it was very mid."
+            },
+
+
+            {
+                name: "Disruption",
+
+                publisher: "Ka1sa",
+
+                attempts: 2096,
+
+                enjoyment: "92/100",
+
+                furthestDeath: "46%",
+
+                date: "Jun 16th, 2023",
+
+                video: "https://youtu.be/HmocTZoNH3g?si=_wrJ2L4fiuUXSr05",
+
+                notes: "I really liked this level. Also got pretty lucky, fluking it from 46%"
+            },
+
+
+            {
+                name: "Precipitance",
+
+                publisher: "Extravagon",
+
+                attempts: 1737,
+
+                enjoyment: "93/100",
+
+                furthestDeath: "81%",
+
+                date: "Jun 20th, 2023",
+
+                video: "https://youtu.be/rgHCOHIqpEE?si=wiauSZBejCz93Wml",
+
+                notes: "I don't remember ANYTHING about this one. Such a forgettable level tbh."
+            },
+
+
+            {
+                name: "Azurite",
+
+                publisher: "Sillow",
+
+                attempts: 3041,
+
+                enjoyment: "68/100",
+
+                furthestDeath: "78% x4",
+
+                date: "Oct 23th, 2022",
+
+                video: "https://youtu.be/tXcMd53fPH4?si=bDBB2Q5oBPhnBZEr",
+
+                notes: "This was pretty fun and easy but I really died a lot at 78%. Bummer."
+            },
+
+
+            {
+                name: "Penombre",
+
+                publisher: "ZephiroX",
+
+                attempts: 1844,
+
+                enjoyment: "87/100",
+
+                furthestDeath: "92%",
+
+                date: "Jun 15th, 2023",
+
+                video: "https://youtu.be/pp02cnQT0pU?si=emMHg9Ls9N8QUvXU",
+
+                notes: "I don't remember much. But it was fun, I remember that."
+            },
+
+
+            {
+                name: "Nove Cerchi",
+
+                publisher: "LudiumGD",
+
+                attempts: 652,
+
+                enjoyment: "91/100",
+
+                furthestDeath: "84%",
+
+                date: "Jul 29th, 2026",
+
+                video: "https://youtu.be/siEhnSDkg5M?si=KtPR96BkwBT7Xfz8",
+
+                notes: "This one was pretty fun, as almost always with NC levels. This also looks a lot harder than it is."
+            },
+
+
+            {
+                name: "No Survivors",
+
+                publisher: "Fawxu",
+
+                attempts: 825,
+
+                enjoyment: "100/100",
+
+                furthestDeath: "76%",
+
+                date: "Jul 29th, 2026",
+
+                video: "https://youtu.be/X5nYCoyXwNQ?si=IctRWRkhvOpyrxEn",
+
+                notes: "This is my absolute favourite extreme demon of all time, no questions asked. Something about the song really makes this level work SO well. I think the gameplay is super fun and the theme fits for sure with the grayscale and occasionally red flashes. The song is fucking awesome by the way. Actually a masterpiece even though it looks like a pretty normal NC level with no crazy deco or anything."
+            },
+
+
+            {
+                name: "The Lost Existence",
+
+                publisher: "JonathanGD",
+
+                attempts: 3890,
+
+                enjoyment: "79/100",
+
+                furthestDeath: "93%",
+
+                date: "Oct 19th, 2022",
+
+                video: "https://youtu.be/4aFbgBdks8Y?si=Fahoal_VM33aJ0ga",
+
+                notes: "This was supposed to be my first extreme but it was too long for me to have the patience to play it. So it ended up being like my fifth extreme I think. It's pretty boring due to the length."
+            },
+
+
+            {
+                name: "The Flawless",
+
+                publisher: "fin",
+
+                attempts: 7939,
+
+                enjoyment: "80/100",
+
+                furthestDeath: "90%",
+
+                date: "Nov 25th, 2023",
+
+                video: "https://youtu.be/2OLU4YLUlS4?si=QV0quKFpgafSjvkF",
+
+                notes: "The most generic and boring hell level ever."
+            },
+
+
+            {
+                name: "Cerebral Torment",
+
+                publisher: "SirPotatOwO",
+
+                attempts: 975,
+
+                enjoyment: "2/100",
+
+                furthestDeath: "97%",
+
+                date: "Mar 30th, 2024",
+
+                video: "https://youtu.be/tPZy9uNhgFw?si=eCzp0Xttw-tC_u9y",
+
+                notes: "One of the worst extreme demons. It's just ass. Don't ever talk to me about it."
+            },
+
+
+            {
+                name: "Polish Alphabet",
+
+                publisher: "AxolotlCamellia",
+
+                attempts: 1135,
+
+                enjoyment: "67/100",
+
+                furthestDeath: "81%",
+
+                date: "Mar 28th, 2024",
+
+                video: "https://youtu.be/ahk_THapno0?si=UXXb3WtwJnY6lggz",
+
+                notes: "Most generic, boring and forgettable ahh level."
+            },
+
+
+            {
+                name: "Stellaluna",
+
+                publisher: "SamMaxx",
+
+                attempts: 894,
+
+                enjoyment: "47/100",
+
+                furthestDeath: "93%",
+
+                date: "Mar 30th, 2024",
+
+                video: "https://youtu.be/ilQ6KN59cEI?si=sZcN-6xtYej_9h78",
+
+                notes: "It's so mid that my dih hurts."
+            },
+
+
+            {
+                name: "Redemption",
+
+                publisher: "ZestWagon",
+
+                attempts: 708,
+
+                enjoyment: "80/100",
+
+                furthestDeath: "59%",
+
+                date: "Jan 25th, 2025",
+
+                video: "",
+
+                notes: "I dont remember shit. Also never recorded this one."
+            },
+
+
+            {
+                name: "Convulsing Light",
+
+                publisher: "Yerylik",
+
+                attempts: 737,
+
+                enjoyment: "90/100",
+
+                furthestDeath: "90%",
+
+                date: "Jul 30th, 2026",
+
+                video: "https://youtu.be/d19ft6jc818?si=gLd-3AMA9jvfKcGE",
+
+                notes: "This is a really good NC level. really liked it, Song is good, and the gameplay flows super well."
+            },
+
+
+            {
+                name: "Cataclysm",
+
+                publisher: "Ggb0y",
+
+                attempts: 3887,
+
+                enjoyment: "51/100",
+
+                furthestDeath: "66%",
+
+                date: "Oct 20th, 2022",
+
+                video: "https://youtu.be/sBZY3d0f1Nk?si=EbKIAXxL41K5chp7",
+
+                notes: "Everyone knows this level but I think it's pretty mid. Nothing too special about it other than being one of the first extremes."
+            },
+
+
+            {
+                name: "sunburn",
+
+                publisher: "pocke",
+
+                attempts: 1000,
+
+                enjoyment: "87/100",
+
+                furthestDeath: "39%",
+
+                date: "Oct 14th, 2024",
+
+                video: "https://youtu.be/7VfWMEanWUY?si=d7KOgDGASUd94E1d",
+
+                notes: "Remember ABSOLUTELY nothing about this level."
+            },
+
+
+            {
+                name: "Project alter",
+
+                publisher: "soumpeixe",
+
+                attempts: 1322,
+
+                enjoyment: "85/100",
+
+                furthestDeath: "81%",
+
+                date: "Jan 28th, 2025",
+
+                video: "https://youtu.be/_ESeCim59k4?si=KoTtDlCbc6crB-ht",
+
+                notes: "I remember nothing about this either lol."
+            },
+
+
+            {
+                name: "Proteus",
+
+                publisher: "SpergQuos",
+
+                attempts: 1100,
+
+                enjoyment: "97/100",
+
+                furthestDeath: "79%",
+
+                date: "Mar 18th, 2023",
+
+                video: "https://youtu.be/sch56YIxug8?si=G4ZJshVs9rMtiR8w",
+
+                notes: "This one was very very fun because it was so easy and the song is good. Meow."
+            },
+
+
+            {
+                name: "The Ultimate Demon",
+
+                publisher: "vit12",
+
+                attempts: 1781,
+
+                enjoyment: "89/100",
+
+                furthestDeath: "57%",
+
+                date: "Oct 18th, 2023",
+
+                video: "https://youtu.be/KEf8Uj90lV8?si=v6rHJY0dsEL5YqOY",
+
+                notes: "I don't remember anything about this one."
+            },
+
+
+            {
+                name: "Uprise",
+
+                publisher: "Blad3m",
+
+                attempts: 1043,
+
+                enjoyment: "76/100",
+
+                furthestDeath: "94%",
+
+                date: "Mar 27th, 2024",
+
+                video: "https://youtu.be/64PFWmeo6y8?si=X6lG3PtOAeJ1w91V",
+
+                notes: "This one was pretty fun."
+            },
+
+
+            {
+                name: "Allegiance",
+
+                publisher: "nikroplays",
+
+                attempts: 3195,
+
+                enjoyment: "83/100",
+
+                furthestDeath: "91%",
+
+                date: "Feb 17th, 2024",
+
+                video: "https://youtu.be/MxF1fIR2jYE?si=dNMbHtIMiKUIQzdM",
+
+                notes: "It's alright, I just really don't like the FNAF type of songs that this one has."
+            },
+
+
+            {
+                name: "Napalm",
+
+                publisher: "Marwec",
+
+                attempts: 1452,
+
+                enjoyment: "85/100",
+
+                furthestDeath: "67%",
+
+                date: "Mar 30th, 2024",
+
+                video: "https://youtu.be/hHebMLOAqEA?si=Jf1P8YtSQe4XoU7F",
+
+                notes: "I remember ABSOLUTELY NOTHING about this."
+            },
+
+
+            {
+                name: "4 Matilda",
+
+                publisher: "Jeyzor",
+
+                attempts: 2574,
+
+                enjoyment: "99/100",
+
+                furthestDeath: "91%",
+
+                date: "Oct 18th, 2022",
+
+                video: "https://youtu.be/CEcRCs6Ii4I?si=8mmN7x4gh9y_gUZl",
+
+                notes: "This level is SO good. One of my favourite extreme demons. Glad someone in my country made this. W Jeyzor."
+            },
+
+
+            {
+                name: "Bangarang",
+
+                publisher: "LP44",
+
+                attempts: 659,
+
+                enjoyment: "67/100",
+
+                furthestDeath: "62%",
+
+                date: "Jan 26th, 2025",
+
+                video: "",
+
+                notes: "I dont remember shit. Also never recorded this one."
+            },
+
+
+            {
+                name: "Sweater Weather",
+
+                publisher: "VelYT",
+
+                attempts: 450,
+
+                enjoyment: "88/100",
+
+                furthestDeath: "70%",
+
+                date: "Dec 8th, 2025",
+
+                video: "",
+
+                notes: "It's pretty fun. Also never recorded this one."
+            },
+
+
+            {
+                name: "Heartbeat",
+
+                publisher: "KrmaL",
+
+                attempts: 1000,
+
+                enjoyment: "90/100",
+
+                furthestDeath: "36%",
+
+                date: "Nov 7th, 2024",
+
+                video: "https://youtu.be/IxudmM9aUxk?si=aGseKH4X7HVCRZkzS",
+
+                notes: "Weird but good ahh level. Fluked it from 36% too. Pretty tuff."
+            },
+
+
+            {
+                name: "Acu",
+
+                publisher: "neigefeu",
+
+                attempts: 9000,
+
+                enjoyment: "92/100",
+
+                furthestDeath: "98%",
+
+                date: "Jan 13th, 2022",
+
+                video: "https://youtu.be/bvgkO-OJ21Q?si=jvj1FBT-YXDHPcYT",
+
+                notes: "This was my first extreme demon, just like for many many others. It's a very fun level, so fun that nowadays I've beaten it like 50 times just because."
+            },
+
+
+            {
+                name: "Red World Rebirth",
+
+                publisher: "Riot",
+
+                attempts: 972,
+
+                enjoyment: "65/100",
+
+                furthestDeath: "94%",
+
+                date: "Feb 25th, 2024",
+
+                video: "https://youtu.be/FkQcq3EX5uk?si=QcW8uq-0rVL7udGk",
+
+                notes: "It's just Red World but slightly better and harder. Pretty easy still, though."
+            },
+
+
+            {
+                name: "FISH FISH GODMODE",
+
+                publisher: "whoiskeve",
+
+                attempts: 1784,
+
+                enjoyment: "91/100",
+
+                furthestDeath: "95% x2",
+
+                date: "Mar 25th, 2024",
+
+                video: "https://youtu.be/I60QvMadIDM?si=MTFEEqsN9iuf8LjL",
+
+                notes: "I liked this level a lot. Song kinda funky but good. Had to rebeat it cuz my first recording the mic was muted."
+            },
+
+
+            {
+                name: "Robi",
+
+                publisher: "robianny",
+
+                attempts: 857,
+
+                enjoyment: "93/100",
+
+                furthestDeath: "94%",
+
+                date: "Mar 27th, 2024",
+
+                video: "https://youtu.be/lzxNYDjQ9TU?si=PlKpI_by5uPmCxlY",
+
+                notes: "This was such a chill and calm peaceful but good level. Love it"
+            },
+
+
+            {
+                name: "Awakening Horus",
+
+                publisher: "Juhou",
+
+                attempts: 1085,
+
+                enjoyment: "95/100",
+
+                furthestDeath: "28%",
+
+                date: "Mar 26th, 2024",
+
+                video: "https://youtu.be/VLdQLOIVRG4?si=s4b_vzxatBYQbquB",
+
+                notes: "My biggest fluke on any extreme, lol. The level is easy but still a fluke is a fluke I guess."
+            },
+
+
+            {
+                name: "Tesseract",
+
+                publisher: "iiLuna",
+
+                attempts: 1060,
+
+                enjoyment: "79/100",
+
+                furthestDeath: "69%",
+
+                date: "Mar 29th, 2024",
+
+                video: "https://youtu.be/2LEWc9N15Ok?si=TJDA271whnPfVzFs",
+
+                notes: "I don't remember a thing about this level."
+            },
+            
+
+            {
+                name: "Red World",
+
+                publisher: "saRy",
+
+                attempts: 3200,
+
+                enjoyment: "43/100",
+
+                furthestDeath: "97%",
+
+                date: "Feb 24th, 2024",
+
+                video: "https://youtu.be/wiCkaUiE198?si=Yp4CLBmvra8-kSGD",
+
+                notes: "It's so ass."
+            },
+
+
+            {
+                name: "Dark Odyssey",
+
+                publisher: "JonathanGD",
+
+                attempts: 2500,
+
+                enjoyment: "89/100",
+
+                furthestDeath: "76%",
+
+                date: "Dec 30th, 2024",
+
+                video: "",
+
+                notes: "It's a very good level but too long for my liking. Never recorded this btw."
+            },
+
+
+            {
+                name: "8o X",
+
+                publisher: "f3lixsram",
+
+                attempts: 1474,
+
+                enjoyment: "88/100",
+
+                furthestDeath: "82%",
+
+                date: "Mar 28th, 2024",
+
+                video: "https://youtu.be/47TR9WF8oOM?si=fM59nhOLtXrXPF5j",
+
+                notes: "I dont remember a thing about this one."
+            },
+
+
+            {
+                name: "Misty Mountains",
+
+                publisher: "We4therMan",
+
+                attempts: 279,
+
+                enjoyment: "83/100",
+
+                furthestDeath: "52%",
+
+                date: "Aug 3rd, 2024",
+
+                video: "https://youtu.be/0EIktIB0NeE?si=Kj_-Jhrz5kir9AF-",
+
+                notes: "This one was so easy lowkey. But also pretty fun. Still, slightly too long for my liking."
+            },
+
+
+            {
+                name: "rauchkammer",
+
+                publisher: "Devilmine",
+
+                attempts: 398,
+
+                enjoyment: "88/100",
+
+                furthestDeath: "95%",
+
+                date: "Aug 31st, 2026",
+
+                video: "https://youtu.be/7_xflo7Lttk?si=V-B42P8eYRrYOUyf",
+
+                notes: "It's a joke how easy this is. No idea how this is extreme demon, lol."
             },
 
         ];
@@ -728,173 +2534,190 @@
             document.getElementById("levelList");
 
 
-        levels.forEach((level, index) => {
+        function displayLevels(filteredLevels) {
 
-            const rank = index + 1;
+    levelList.innerHTML = "";
 
+    filteredLevels.forEach((level) => {
 
-            const levelElement =
-                document.createElement("div");
+        const rank = levels.indexOf(level) + 1;
 
+        const levelElement =
+            document.createElement("div");
 
-            levelElement.className = "level";
+        levelElement.className = "level";
 
+        const videoEmbed =
+            getYoutubeEmbed(level.video);
 
-            const videoEmbed =
-                getYoutubeEmbed(level.video);
+        levelElement.innerHTML = `
 
+            <div
+                class="level-header"
+                onclick="toggleLevel(this)"
+            >
 
-            levelElement.innerHTML = `
+                <div class="rank">
+                    #${rank}
+                </div>
 
-                <div
-                    class="level-header"
-                    onclick="toggleLevel(this)"
-                >
+                <div class="level-info">
 
-                    <div class="rank">
-                        #${rank}
+                    <div class="level-name">
+                        ${level.name}
                     </div>
 
-
-                    <div class="level-info">
-
-                        <div class="level-name">
-                            ${level.name}
-                        </div>
-
-                        <div class="publisher">
-                            by ${level.publisher}
-                        </div>
-
-                    </div>
-
-                    <div class="arrow">
-                        ▼
+                    <div class="publisher">
+                        by ${level.publisher}
                     </div>
 
                 </div>
 
+                <div class="arrow">
+                    ▼
+                </div>
 
-                <div class="level-details">
-
-                    <div class="details-content">
-
-
-                        <div class="details-grid">
+            </div>
 
 
-                            <div class="detail">
+            <div class="level-details">
 
-                                <div class="detail-label">
-                                    position
-                                </div>
+                <div class="details-content">
 
-                                <div class="detail-value">
-                                    #${rank}
-                                </div>
+                    <div class="details-grid">
 
+                        <div class="detail">
+
+                            <div class="detail-label">
+                                position
                             </div>
 
-
-                            <div class="detail">
-
-                                <div class="detail-label">
-                                    attempts
-                                </div>
-
-                                <div class="detail-value">
-                                    ${level.attempts.toLocaleString()}
-                                </div>
-
+                            <div class="detail-value">
+                                #${rank}
                             </div>
-
-
-                            <div class="detail">
-
-                                <div class="detail-label">
-                                    enjoyment
-                                </div>
-
-                                <div class="detail-value">
-                                    ${level.enjoyment}
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail">
-
-                                <div class="detail-label">
-                                    completion date
-                                </div>
-
-                                <div class="detail-value">
-                                    ${level.date}
-                                </div>
-
-                            </div>
-
-                            <div class="detail">
-
-                                <div class="detail-label">
-                                    furthest death
-                                </div>
-
-                                <div class="detail-value">
-                                    ${level.furthestDeath}
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail notes">
-
-                                <div class="detail-label">
-                                    notes
-                                </div>
-
-                                <div class="detail-value">
-                                    ${level.notes}
-                                </div>
-
-                            </div>
-
 
                         </div>
 
 
-                        ${
-                            videoEmbed
-                            ?
-                            `
-                            <div class="video-container">
+                        <div class="detail">
 
-                                <iframe
-                                    src="${videoEmbed}"
-                                    title="${level.name} completion video"
-                                    loading="lazy"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen>
-                                </iframe>
-
+                            <div class="detail-label">
+                                attempts
                             </div>
-                            `
-                            :
-                            ""
-                        }
 
+                            <div class="detail-value">
+                                ${level.attempts.toLocaleString()}
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <div class="detail-label">
+                                enjoyment
+                            </div>
+
+                            <div class="detail-value">
+                                ${level.enjoyment}
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <div class="detail-label">
+                                completion date
+                            </div>
+
+                            <div class="detail-value">
+                                ${level.date}
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <div class="detail-label">
+                                furthest death
+                            </div>
+
+                            <div class="detail-value">
+                                ${level.furthestDeath}
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail notes">
+
+                            <div class="detail-label">
+                                notes
+                            </div>
+
+                            <div class="detail-value">
+                                ${level.notes}
+                            </div>
+
+                        </div>
 
                     </div>
 
+
+                    ${
+                        videoEmbed
+                        ?
+                        `
+                        <div class="video-container">
+
+                            <iframe
+                                src="${videoEmbed}"
+                                title="${level.name} completion video"
+                                loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
                 </div>
 
-            `;
+            </div>
+
+        `;
+
+        levelList.appendChild(levelElement);
+
+    });
+
+}
+
+        displayLevels(levels);
 
 
-            levelList.appendChild(levelElement);
+document.getElementById("levelSearch")
+    .addEventListener("input", function () {
 
-        });
+        const searchTerm =
+            this.value.toLowerCase().trim();
+
+        const filteredLevels =
+            levels.filter(level =>
+                level.name
+                    .toLowerCase()
+                    .includes(searchTerm)
+            );
+
+        displayLevels(filteredLevels);
+
+    });
 
         function toggleLevel(header) {
 
