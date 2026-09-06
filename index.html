@@ -58,84 +58,95 @@
         ========================================== */
 
         .topbar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-
             height: 72px;
-
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            padding: 0 35px;
-
+            padding: 0 55px;
+            position: relative;
             z-index: 10;
         }
 
         .brand {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
             display: flex;
             align-items: center;
-            gap: 10px;
-
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-
-            color: #d9cbd9;
+            gap: 9px;
         }
 
         .brand-dot {
             width: 8px;
             height: 8px;
-
             border-radius: 50%;
-
             background: var(--pink);
-
-            box-shadow:
-                0 0 12px rgba(255, 101, 247, 0.8);
+            box-shadow: 0 0 14px rgba(255, 101, 247, 0.8);
         }
 
-        .social-links {
+        .topbar-right {
             display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .page-links {
+            display: flex;
+            align-items: center;
             gap: 10px;
         }
 
-        .social-links a {
-            width: 38px;
-            height: 38px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 1px solid var(--border);
-            border-radius: 10px;
-
-            background: rgba(17, 12, 18, 0.7);
-
+        .page-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 9px 13px;
+            border-radius: 8px;
+            border: 1px solid transparent;
             transition: 0.2s ease;
         }
 
-        .social-links a:hover {
-            transform: translateY(-2px);
-
-            border-color: var(--border-hover);
-
-            background: rgba(255, 101, 247, 0.08);
-
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.3),
-                0 0 18px rgba(255, 101, 247, 0.08);
+        .page-link:hover {
+            color: var(--text);
+            border-color: var(--border);
+            background: rgba(255, 101, 247, 0.05);
         }
 
-        .social-links img {
-            width: 20px;
-            height: 20px;
+        .page-link.active {
+            color: var(--pink);
+            background: rgba(255, 101, 247, 0.07);
+            border-color: var(--border);
+        }
 
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .social-link {
+            width: 37px;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: rgba(255, 101, 247, 0.025);
+            transition: 0.2s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--border-bright);
+            background: rgba(255, 101, 247, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .social-link img {
+            width: 21px;
+            height: 21px;
             object-fit: contain;
         }
 
@@ -144,144 +155,40 @@
            HERO
         ========================================== */
 
-        header {
-            position: relative;
+.hero {
+    max-width: 1200px;
+    margin: 75px auto 55px;
+    padding: 0 30px;
+}
 
-            min-height: 410px;
+.hero-label {
+    color: var(--pink);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.hero h1 {
+    font-size: clamp(45px, 7vw, 82px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
 
-            text-align: center;
+.hero h1 span {
+    color: var(--pink);
+    text-shadow: 0 0 30px rgba(255, 101, 247, 0.15);
+}
 
-            padding: 110px 20px 80px;
-
-            overflow: hidden;
-
-            border-bottom: 1px solid var(--border);
-        }
-
-        header::before {
-            content: "";
-
-            position: absolute;
-
-            width: 650px;
-            height: 650px;
-
-            top: -390px;
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(255, 82, 243, 0.2),
-                    transparent 65%
-                );
-
-            pointer-events: none;
-        }
-
-        header::after {
-            content: "";
-
-            position: absolute;
-
-            left: 50%;
-            bottom: -140px;
-
-            width: 700px;
-            height: 250px;
-
-            transform: translateX(-50%);
-
-            background:
-                radial-gradient(
-                    ellipse,
-                    rgba(255, 70, 240, 0.08),
-                    transparent 70%
-                );
-
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-
-            max-width: 850px;
-        }
-
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            padding: 7px 12px;
-
-            margin-bottom: 20px;
-
-            border: 1px solid rgba(255, 101, 247, 0.2);
-            border-radius: 999px;
-
-            background: rgba(255, 101, 247, 0.05);
-
-            color: var(--pink);
-
-            font-size: 11px;
-            font-weight: 800;
-
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .hero-label::before {
-            content: "";
-
-            width: 6px;
-            height: 6px;
-
-            border-radius: 50%;
-
-            background: var(--pink);
-
-            box-shadow:
-                0 0 9px rgba(255, 101, 247, 0.8);
-        }
-
-        header h1 {
-            font-size: clamp(42px, 7vw, 76px);
-
-            line-height: 0.95;
-
-            font-weight: 900;
-
-            letter-spacing: -4px;
-
-            color: #fff7ff;
-        }
-
-        header h1 span {
-            display: block;
-
-            color: var(--pink);
-
-            text-shadow:
-                0 0 30px rgba(255, 101, 247, 0.2);
-        }
-
-        header p {
-            margin-top: 24px;
-
-            color: var(--muted);
-
-            font-size: 14px;
-
-            letter-spacing: 0.3px;
-        }
+.hero p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 600px;
+    line-height: 1.6;
+}
 
 
         /* ==========================================
@@ -1117,6 +1024,14 @@
                 padding-left: 20px;
             }
 
+            .topbar-right {
+                gap: 10px;
+            }
+
+            .page-links {
+                display: none;
+            }
+
         }
 
 
@@ -1137,21 +1052,14 @@
                 height: 34px;
             }
 
-            header {
-                min-height: 350px;
+.hero {
+        margin-top: 50px;
+    }
 
-                padding: 100px 20px 65px;
-            }
-
-            header h1 {
-                font-size: 43px;
-
-                letter-spacing: -2.5px;
-            }
-
-            header p {
-                font-size: 12px;
-            }
+    .hero h1 {
+        font-size: 52px;
+        letter-spacing: -3px;
+    }
 
             .main {
                 padding: 25px 12px 60px;
@@ -1244,10 +1152,9 @@
                 grid-template-columns: 1fr;
             }
 
-            header h1 {
-                font-size: 37px;
-            }
-
+.hero h1 {
+    font-size: 44px;
+}
             .details-grid {
                 grid-template-columns: 1fr;
             }
@@ -1266,66 +1173,56 @@
          TOP BAR
     ========================================== -->
 
-    <div class="topbar">
+  <header class="topbar">
 
-        <div class="brand">
-            <div class="brand-dot"></div>
-            nwnye
+    <div class="brand">
+        nWnye
+        <div class="brand-dot"></div>
+    </div>
+
+    <div class="topbar-right">
+
+        <div class="page-links">
+            <a href="index.html" class="page-link active">completed</a>
+            <a href="todo.html" class="page-link">to-do</a>
         </div>
 
-        <div class="social-links">
+        <div class="socials">
 
-            <a
-                href="https://www.youtube.com/@nWnye"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <img
-                    src="images/youtube.png"
-                    alt="YouTube"
-                >
+            <a href="https://www.youtube.com/@nWnye" class="social-link" target="https://www.youtube.com/@nWnye">
+                <img src="images/youtube.png" alt="youtube">
             </a>
 
-            <a
-                href="https://www.twitch.tv/nwnye"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <img
-                    src="images/twitch.png"
-                    alt="Twitch"
-                >
+            <a href="https://www.twitch.tv/nwnye" class="social-link" target="https://www.twitch.tv/nwnye">
+                <img src="images/twitch.png" alt="twitch">
             </a>
 
         </div>
 
     </div>
 
+</header>
+
 
     <!-- ==========================================
          HERO
     ========================================== -->
 
-    <header>
+    <section class="hero">
 
-        <div class="hero-content">
+    <div class="hero-label">
+        geometry dash progression
+    </div>
 
-            <div class="hero-label">
-                geometry dash progression
-            </div>
+    <h1>
+        my <span>extreme demons</span>
+    </h1>
 
-            <h1>
-                my
-                <span>extreme demons</span>
-            </h1>
+    <p>
+        every extreme demon I've completed
+    </p>
 
-            <p>
-                every extreme demon I've completed
-            </p>
-
-        </div>
-
-    </header>
+</section>
 
 
     <!-- ==========================================
@@ -1628,7 +1525,7 @@
 
         const levels = [
 
-            {
+              {
                 name: "SUPERHATEMEWORLD",
 
                 publisher: "IcEDCave",
