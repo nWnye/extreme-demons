@@ -4,475 +4,1255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicono.png">
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <title>My Extreme Demons</title>
 
     <style>
 
-      * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #080609;
+            --bg-soft: #0d090e;
+            --panel: #110c12;
+            --panel-light: #171019;
+
+            --pink: #ff65f7;
+            --pink-bright: #ff8afa;
+            --pink-dark: #b936b8;
+
+            --text: #f8eef8;
+            --muted: #887c88;
+            --muted-dark: #5c525d;
+
+            --border: rgba(255, 101, 247, 0.14);
+            --border-hover: rgba(255, 101, 247, 0.32);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 50% -15%,
+                    rgba(255, 75, 241, 0.12),
+                    transparent 40%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+
+        /* ==========================================
+           TOP NAV
+        ========================================== */
+
+        .topbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+
+            color: #d9cbd9;
+        }
+
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--pink);
+
+            box-shadow:
+                0 0 12px rgba(255, 101, 247, 0.8);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            background: rgba(17, 12, 18, 0.7);
+
+            transition: 0.2s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-2px);
+
+            border-color: var(--border-hover);
+
+            background: rgba(255, 101, 247, 0.08);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                0 0 18px rgba(255, 101, 247, 0.08);
+        }
+
+        .social-links img {
+            width: 20px;
+            height: 20px;
+
+            object-fit: contain;
+        }
+
+
+        /* ==========================================
+           HERO
+        ========================================== */
+
+        header {
+            position: relative;
+
+            min-height: 410px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 110px 20px 80px;
+
+            overflow: hidden;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            top: -390px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 82, 243, 0.2),
+                    transparent 65%
+                );
+
+            pointer-events: none;
+        }
+
+        header::after {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -140px;
+
+            width: 700px;
+            height: 250px;
+
+            transform: translateX(-50%);
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(255, 70, 240, 0.08),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 850px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 12px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid rgba(255, 101, 247, 0.2);
+            border-radius: 999px;
+
+            background: rgba(255, 101, 247, 0.05);
+
+            color: var(--pink);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-label::before {
+            content: "";
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--pink);
+
+            box-shadow:
+                0 0 9px rgba(255, 101, 247, 0.8);
+        }
+
+        header h1 {
+            font-size: clamp(42px, 7vw, 76px);
+
+            line-height: 0.95;
+
+            font-weight: 900;
+
+            letter-spacing: -4px;
+
+            color: #fff7ff;
+        }
+
+        header h1 span {
+            display: block;
+
+            color: var(--pink);
+
+            text-shadow:
+                0 0 30px rgba(255, 101, 247, 0.2);
+        }
+
+        header p {
+            margin-top: 24px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
+        .main {
+            max-width: 1180px;
+
+            margin: 0 auto;
+
+            padding: 35px 20px 80px;
+        }
+
+
+        /* ==========================================
+           FEATURED / OVERVIEW
+        ========================================== */
+
+        .overview {
+            display: grid;
+
+            grid-template-columns: 1.3fr 1fr;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+        }
+
+        .featured {
+            position: relative;
+
+            min-height: 210px;
+
+            padding: 28px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 101, 247, 0.2);
+            border-radius: 18px;
+
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(255, 101, 247, 0.14),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    135deg,
+                    rgba(255, 101, 247, 0.08),
+                    rgba(17, 12, 18, 0.95) 65%
+                );
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .featured::after {
+            content: "";
+
+            position: absolute;
+
+            right: -100px;
+            bottom: -150px;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 101, 247, 0.1),
+                    transparent 70%
+                );
+        }
+
+        .featured-label {
+            color: var(--pink);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+        .featured h2 {
+            margin-top: 15px;
+
+            font-size: clamp(24px, 4vw, 36px);
+
+            line-height: 1;
+
+            letter-spacing: -1.5px;
+        }
+
+        .featured-publisher {
+            margin-top: 8px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+        .featured-rank {
+            position: absolute;
+
+            right: 28px;
+            top: 28px;
+
+            font-size: 52px;
+            font-weight: 900;
+
+            line-height: 1;
+
+            color: var(--pink);
+
+            letter-spacing: -3px;
+        }
+
+        .featured-bottom {
+            position: absolute;
+
+            left: 28px;
+            bottom: 25px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .featured-stat {
+            padding-right: 12px;
+
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .featured-stat:last-child {
+            border-right: none;
+        }
+
+        .featured-stat strong {
+            display: block;
+
+            font-size: 14px;
+        }
+
+        .featured-stat span {
+            color: var(--muted);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+
+        /* ==========================================
+           STATS
+        ========================================== */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 10px;
+        }
+
+        .stat {
+            position: relative;
+
+            padding: 20px;
+
+            min-height: 100px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.025),
+                    rgba(17,12,18,0.95)
+                );
+
+            overflow: hidden;
+
+            transition: 0.2s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-2px);
+
+            border-color: var(--border-hover);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,101,247,0.06),
+                    rgba(17,12,18,0.95)
+                );
+        }
+
+        .stat::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 2px;
+
+            background: var(--pink);
+
+            opacity: 0.5;
+        }
+
+        .stat-number {
+            font-size: 25px;
+
+            font-weight: 900;
+
+            letter-spacing: -0.7px;
+
+            color: #fff4ff;
+
+            line-height: 1.15;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+        .stat-label {
+            margin-top: 6px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* ==========================================
+           SECTION HEADER
+        ========================================== */
+
+        .levels-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+            margin-top: 45px;
+            margin-bottom: 15px;
+        }
+
+        .levels-heading h2 {
+            font-size: 22px;
+
+            letter-spacing: -0.7px;
+        }
+
+        .levels-heading p {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* ==========================================
+           SEARCH
+        ========================================== */
+
+        .search-controls {
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            position: relative;
+
+            flex: 1;
+        }
+
+        .search-icon {
+            position: absolute;
+
+            left: 16px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--muted-dark);
+
+            font-size: 15px;
+
+            pointer-events: none;
+        }
+
+        #levelSearch,
+        #levelSort {
+            width: 100%;
+
+            background: #0e0a0f;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            color: var(--text);
+
+            font-family: inherit;
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        #levelSearch {
+            padding: 14px 16px 14px 42px;
+        }
+
+        #levelSort {
+            width: 250px;
+
+            padding: 14px 38px 14px 15px;
+
+            cursor: pointer;
+        }
+
+        #levelSearch::placeholder {
+            color: var(--muted-dark);
+        }
+
+        #levelSearch:focus,
+        #levelSort:focus {
+            border-color: rgba(255, 101, 247, 0.45);
+
+            box-shadow:
+                0 0 0 3px rgba(255, 101, 247, 0.05);
+        }
+
+        #levelSort option {
+            background: #100b11;
+            color: var(--text);
+        }
+
+
+        /* ==========================================
+           LEVEL CARD
+        ========================================== */
+
+        #levelList {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .level {
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    rgba(255, 101, 247, 0.055),
+                    rgba(14, 10, 15, 0.98) 38%
+                );
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .level::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 3px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--pink-bright),
+                    var(--pink-dark),
+                    transparent
+                );
+
+            opacity: 0.65;
+
+            box-shadow:
+                0 0 15px rgba(255, 101, 247, 0.35);
+        }
+
+        .level:hover {
+            transform: translateY(-2px);
+
+            border-color: var(--border-hover);
+
+            background:
+                linear-gradient(
+                    100deg,
+                    rgba(255, 101, 247, 0.09),
+                    rgba(14, 10, 15, 1) 42%
+                );
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.28),
+                0 0 20px rgba(255, 101, 247, 0.04);
+        }
+
+        .level-header {
+            min-height: 76px;
+
+            padding: 12px 18px;
+
+            display: flex;
+            align-items: center;
+
+            cursor: pointer;
+
+            user-select: none;
+        }
+
+
+        /* ==========================================
+           RANK
+        ========================================== */
+
+        .rank {
+            width: 70px;
+
+            flex-shrink: 0;
+
+            font-size: 22px;
+            font-weight: 900;
+
+            letter-spacing: -1px;
+
+            color: rgba(255, 101, 247, 0.45);
+        }
+
+        .level .rank {
+    color: var(--pink);
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0d080d;
-    color: #f2f2f2;
-    min-height: 100vh;
-}
 
+        /* ==========================================
+           LEVEL INFO
+        ========================================== */
 
-/* =========================
-   HEADER
-========================= */
+        .level-info {
+            flex: 1;
 
-header {
-    position: relative;
+            min-width: 0;
+        }
 
-    padding: 55px 20px 40px;
-    text-align: center;
+        .level-name-row {
+            display: flex;
+            align-items: center;
 
-    background:
-        radial-gradient(
-            circle at top,
-            #2d102e 0%,
-            #0d080d 60%
-        );
+            gap: 9px;
 
-    border-bottom: 1px solid #241824;
-}
+            min-width: 0;
+        }
 
-header h1 {
-    font-size: 44px;
-    font-weight: 800;
-    letter-spacing: -2px;
-}
+        .level-name {
+            font-size: 15px;
+            font-weight: 800;
 
-header h1 span {
-    color: #fa6fff;
-}
+            color: #f5edf5;
 
-header p {
-    margin-top: 10px;
-    color: #827782;
-}
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
+            letter-spacing: -0.2px;
 
-/* =========================
-   SOCIAL LINKS
-========================= */
+            transition: 0.2s;
+        }
 
-.social-links {
-    position: absolute;
+        .level:hover .level-name {
+            color: white;
+        }
 
-    top: 20px;
-    right: 25px;
+        .level-extra {
+            flex-shrink: 0;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+            padding: 4px 7px;
 
-    gap: 14px;
-}
+            border-radius: 6px;
 
-.social-links a {
-    display: flex;
+            background: rgba(255, 101, 247, 0.08);
 
-    width: 38px;
-    height: 38px;
+            border: 1px solid rgba(255, 101, 247, 0.16);
 
-    transition: 0.2s;
-}
+            color: var(--pink);
 
-.social-links a:hover {
-    transform: translateY(-2px) scale(1.08);
-}
+            font-size: 10px;
+            font-weight: 700;
 
-.social-links img {
-    width: 100%;
-    height: 100%;
+            white-space: nowrap;
+        }
 
-    object-fit: contain;
-}
+        .publisher {
+            margin-top: 4px;
 
+            color: var(--muted);
 
-/* =========================
-   STATS
-========================= */
+            font-size: 11px;
+        }
 
-.stats {
-    max-width: 1100px;
 
-    margin: 30px auto;
+        /* ==========================================
+           LEVEL META
+        ========================================== */
 
-    padding: 0 20px;
+        .level-meta {
+            display: flex;
+            align-items: center;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
 
-    gap: 15px;
-}
+            margin-left: 25px;
+        }
 
-.stat {
-    background: #131014;
+        .meta-item {
+            min-width: 62px;
+        }
 
-    border: 1px solid #231b24;
-    border-radius: 14px;
+        .meta-label {
+            color: var(--muted-dark);
 
-    padding: 22px;
+            font-size: 8px;
+            font-weight: 700;
 
-    text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
 
-    transition: 0.2s;
-}
+        .meta-value {
+            margin-top: 3px;
 
-.stat:hover {
-    border-color: #3d283d;
-    transform: translateY(-1px);
-}
+            color: #dcd0dc;
 
-.stat-number {
-    font-size: 28px;
-    font-weight: 800;
+            font-size: 12px;
+            font-weight: 700;
+        }
 
-    color: #f47bff;
-}
 
-.stat-label {
-    margin-top: 5px;
+        /* ==========================================
+           ENJOYMENT BAR
+        ========================================== */
 
-    color: #827782;
+        .enjoyment {
+            width: 100px;
+        }
 
-    font-size: 13px;
-}
+        .enjoyment-number {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
+            margin-bottom: 5px;
+        }
 
-/* =========================
-   MAIN CONTAINER
-========================= */
+        .enjoyment-number span:first-child {
+            color: var(--muted-dark);
 
-.container {
-    max-width: 1100px;
+            font-size: 8px;
+            font-weight: 700;
 
-    margin: auto;
+            text-transform: uppercase;
+        }
 
-    padding: 10px 20px 60px;
-}
+        .enjoyment-number span:last-child {
+            color: var(--pink);
 
-.section-title {
-    color: #827782;
+            font-size: 10px;
+            font-weight: 800;
+        }
 
-    font-size: 13px;
+        .bar {
+            width: 100%;
+            height: 4px;
 
-    text-transform: uppercase;
+            border-radius: 999px;
 
-    letter-spacing: 1px;
+            background: rgba(255,255,255,0.05);
 
-    margin-bottom: 15px;
-}
+            overflow: hidden;
+        }
 
+        .bar-fill {
+            height: 100%;
 
-/* =========================
-   SEARCH / SORT
-========================= */
+            border-radius: inherit;
 
-.search-controls {
-    display: flex;
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--pink-dark),
+                    var(--pink-bright)
+                );
 
-    gap: 12px;
+            box-shadow:
+                0 0 8px rgba(255,101,247,0.3);
+        }
 
-    margin-bottom: 25px;
-}
 
-#levelSearch,
-#levelSort {
-    background: #120e12;
+        /* ==========================================
+           ARROW
+        ========================================== */
 
-    border: 1px solid #29202a;
+        .arrow {
+            width: 30px;
 
-    border-radius: 12px;
+            margin-left: 20px;
 
-    color: #f2f2f2;
+            color: var(--muted-dark);
 
-    font-size: 14px;
+            font-size: 12px;
 
-    outline: none;
+            text-align: center;
 
-    transition: 0.2s;
-}
+            transition: 0.25s ease;
+        }
 
-#levelSearch {
-    flex: 1;
+        .level.open .arrow {
+            transform: rotate(180deg);
 
-    padding: 14px 16px;
-}
+            color: var(--pink);
+        }
 
-#levelSort {
-    padding: 14px 42px 14px 16px;
 
-    cursor: pointer;
-}
+        /* ==========================================
+           DETAILS
+        ========================================== */
 
-#levelSearch::placeholder {
-    color: #776b76;
-}
+        .level-details {
+            max-height: 0;
 
-#levelSearch:focus,
-#levelSort:focus {
-    border-color: #663b67;
-}
+            overflow: hidden;
 
-#levelSort option {
-    background: #120e12;
-    color: #f2f2f2;
-}
+            transition: max-height 0.4s ease;
+        }
 
+        .details-content {
+            padding: 0 18px 20px 88px;
+        }
 
-/* =========================
-   LEVEL
-========================= */
+        .details-inner {
+            padding-top: 18px;
 
-.level {
-    background: #141014;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
 
-    border: 1px solid #231b24;
+        .details-grid {
+            display: grid;
 
-    border-radius: 14px;
+            grid-template-columns: repeat(5, 1fr);
 
-    margin-bottom: 10px;
+            gap: 8px;
 
-    overflow: hidden;
+            margin-bottom: 15px;
+        }
 
-    transition: 0.2s;
-}
+        .detail {
+            padding: 13px;
 
-.level:hover {
-    border-color: #433044;
+            min-width: 0;
 
-    transform: translateY(-1px);
-}
+            border: 1px solid rgba(255,255,255,0.055);
 
-.level-header {
-    display: flex;
+            border-radius: 10px;
 
-    align-items: center;
+            background: rgba(0,0,0,0.18);
+        }
 
-    padding: 17px 18px;
+        .detail-label {
+            color: var(--muted-dark);
 
-    cursor: pointer;
+            font-size: 8px;
+            font-weight: 700;
 
-    user-select: none;
-}
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
 
-.rank {
-    width: 55px;
+        .detail-value {
+            margin-top: 6px;
 
-    color: #6a616a;
+            color: #e9dfea;
 
-    font-size: 13px;
+            font-size: 13px;
+            font-weight: 700;
 
-    font-weight: bold;
-}
+            word-break: break-word;
+        }
 
-.level-info {
-    flex: 1;
-}
+        .notes {
+            grid-column: 1 / -1;
+        }
 
-.level-name {
-    font-size: 16px;
+        .notes .detail-value {
+            color: #aaa0aa;
 
-    font-weight: 700;
-}
+            font-size: 12px;
+            font-weight: 400;
 
-.publisher {
-    color: #746c75;
+            line-height: 1.55;
+        }
 
-    font-size: 12px;
 
-    margin-top: 4px;
-}
+        /* ==========================================
+           VIDEO
+        ========================================== */
 
-.arrow {
-    color: #746c75;
+        .video-container {
+            width: 100%;
 
-    transition: 0.25s;
+            max-width: 780px;
 
-    font-size: 13px;
-}
+            aspect-ratio: 16 / 9;
 
-.level.open .arrow {
-    transform: rotate(180deg);
-}
+            background: #080609;
 
+            border: 1px solid rgba(255,255,255,0.06);
 
-/* =========================
-   LEVEL DETAILS
-========================= */
+            border-radius: 12px;
 
-.level-details {
-    max-height: 0;
+            overflow: hidden;
 
-    overflow: hidden;
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.3);
+        }
 
-    transition: max-height 0.35s ease;
-}
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
 
-.details-content {
-    border-top: 1px solid #241b24;
+            border: none;
+        }
 
-    padding: 20px;
 
-    display: grid;
+        /* ==========================================
+           NO RESULTS
+        ========================================== */
 
-    grid-template-columns: 1fr;
+        .no-results {
+            padding: 60px 20px;
 
-    gap: 20px;
-}
+            text-align: center;
 
-.details-grid {
-    display: grid;
+            border: 1px dashed rgba(255,255,255,0.08);
 
-    grid-template-columns: repeat(3, 1fr);
+            border-radius: 14px;
 
-    gap: 12px;
-}
+            color: var(--muted);
 
-.detail {
-    background: #0e0b0e;
+            font-size: 13px;
+        }
 
-    border: 1px solid #211a21;
 
-    border-radius: 10px;
+        /* ==========================================
+           FOOTER
+        ========================================== */
 
-    padding: 12px;
-}
+        footer {
+            padding: 25px 20px 35px;
 
-.detail-label {
-    color: #6e666f;
+            border-top: 1px solid rgba(255,255,255,0.05);
 
-    font-size: 10px;
+            text-align: center;
 
-    text-transform: uppercase;
+            color: var(--muted-dark);
 
-    letter-spacing: 0.5px;
-}
+            font-size: 10px;
 
-.detail-value {
-    margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
 
-    font-size: 14px;
 
-    font-weight: 600;
-}
+        /* ==========================================
+           MOBILE
+        ========================================== */
 
-.notes {
-    grid-column: 1 / -1;
-}
+        @media (max-width: 850px) {
 
-.notes .detail-value {
-    color: #aaa3aa;
+            .overview {
+                grid-template-columns: 1fr;
+            }
 
-    font-weight: normal;
+            .level-meta {
+                gap: 12px;
+            }
 
-    line-height: 1.5;
-}
+            .details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
+            .details-content {
+                padding-left: 20px;
+            }
 
-/* =========================
-   VIDEO
-========================= */
+        }
 
-.video-container {
-    width: 100%;
 
-    max-width: 750px;
+        @media (max-width: 650px) {
 
-    aspect-ratio: 16 / 9;
+            .topbar {
+                height: 60px;
 
-    background: #0e0b0e;
+                padding: 0 15px;
+            }
 
-    border: 1px solid #211a21;
+            .brand {
+                font-size: 10px;
+            }
 
-    border-radius: 12px;
+            .social-links a {
+                width: 34px;
+                height: 34px;
+            }
 
-    overflow: hidden;
+            header {
+                min-height: 350px;
 
-    margin-top: 5px;
-}
+                padding: 100px 20px 65px;
+            }
 
-.video-container iframe {
-    width: 100%;
-    height: 100%;
+            header h1 {
+                font-size: 43px;
 
-    border: none;
-}
+                letter-spacing: -2.5px;
+            }
 
+            header p {
+                font-size: 12px;
+            }
 
-/* =========================
-   NO RESULTS
-========================= */
+            .main {
+                padding: 25px 12px 60px;
+            }
 
-.no-results {
-    text-align: center;
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
 
-    padding: 40px 20px;
+            .stat {
+                min-height: 90px;
 
-    color: #6f666f;
+                padding: 15px;
+            }
 
-    font-size: 14px;
-}
+            .stat-number {
+                font-size: 19px;
+            }
 
+            .levels-heading {
+                margin-top: 32px;
+            }
 
-/* =========================
-   MOBILE
-========================= */
+            .levels-heading p {
+                display: none;
+            }
 
-@media (max-width: 700px) {
+            .search-controls {
+                flex-direction: column;
+            }
 
-    header h1 {
-        font-size: 32px;
-    }
+            #levelSort {
+                width: 100%;
+            }
 
-    .social-links {
-        top: 15px;
-        right: 15px;
-    }
+            .level-header {
+                padding: 12px 13px;
+            }
 
-    .social-links a {
-        width: 32px;
-        height: 32px;
-    }
+            .rank {
+                width: 48px;
 
-    .stats {
-        grid-template-columns: 1fr;
-    }
+                font-size: 17px;
+            }
 
-    .search-controls {
-        flex-direction: column;
-    }
+            .level-name {
+                font-size: 13px;
+            }
 
-    #levelSort {
-        width: 100%;
-    }
+            .level-meta {
+                display: none;
+            }
 
-    .details-content {
-        grid-template-columns: 1fr;
-    }
+            .arrow {
+                margin-left: 10px;
+            }
 
-    .details-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+            .details-content {
+                padding: 0 13px 15px;
+            }
 
-    .video-container {
-        max-width: 100%;
-    }
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
 
-    .rank {
-        width: 45px;
-    }
-}
+            .featured {
+                min-height: 200px;
+
+                padding: 22px;
+            }
+
+            .featured-rank {
+                right: 20px;
+                top: 20px;
+
+                font-size: 40px;
+            }
+
+            .featured-bottom {
+                left: 22px;
+                bottom: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 400px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 37px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
 
     </style>
 
@@ -481,15 +1261,19 @@ header p {
 
 <body>
 
-    <!-- =========================
-         HEADER
-    ========================= -->
 
-    <header>
+    <!-- ==========================================
+         TOP BAR
+    ========================================== -->
+
+    <div class="topbar">
+
+        <div class="brand">
+            <div class="brand-dot"></div>
+            nwnye
+        </div>
 
         <div class="social-links">
-
-            <!-- Replace these with your own images if needed -->
 
             <a
                 href="https://www.youtube.com/@nWnye"
@@ -515,97 +1299,263 @@ header p {
 
         </div>
 
+    </div>
 
-        <h1>
-            My <span>EXTREME DEMONS</span>
-        </h1>
 
-        <p>
-            All My Completed Extreme Demons
-        </p>
+    <!-- ==========================================
+         HERO
+    ========================================== -->
+
+    <header>
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                geometry dash progression
+            </div>
+
+            <h1>
+                my
+                <span>extreme demons</span>
+            </h1>
+
+            <p>
+                every extreme demon I've completed
+            </p>
+
+        </div>
 
     </header>
 
 
-    <!-- =========================
-         STATS
-    ========================= -->
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <div
-                class="stat-number"
-                id="totalLevels"
-            >
-                0
-            </div>
-
-            <div class="stat-label">
-                EXTREME DEMONS COMPLETED
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div
-                class="stat-number"
-                id="averageEnjoyment"
-            >
-                0/100
-            </div>
-
-            <div class="stat-label">
-                AVERAGE ENJOYMENT
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div
-                class="stat-number"
-                id="totalAttempts"
-            >
-                0
-            </div>
-
-            <div class="stat-label">
-                TOTAL ATTEMPTS
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
+    <!-- ==========================================
          MAIN
-    ========================= -->
+    ========================================== -->
 
-    <div class="container">
+    <main class="main">
 
-        <div class="section-title">
-            completed levels
+
+        <!-- ==========================================
+             OVERVIEW
+        ========================================== -->
+
+        <section class="overview">
+
+
+            <!-- FEATURED HARDEST -->
+
+            <div class="featured">
+
+                <div class="featured-label">
+                    current hardest
+                </div>
+
+                <h2 id="featuredLevel">
+                    -
+                </h2>
+
+                <div
+                    class="featured-publisher"
+                    id="featuredPublisher"
+                >
+                    -
+                </div>
+
+                <div
+                    class="featured-rank"
+                    id="featuredRank"
+                >
+                    #1
+                </div>
+
+                <div class="featured-bottom">
+
+                    <div class="featured-stat">
+
+                        <strong id="featuredAttempts">
+                            -
+                        </strong>
+
+                        <span>
+                            attempts
+                        </span>
+
+                    </div>
+
+                    <div class="featured-stat">
+
+                        <strong id="featuredEnjoyment">
+                            -
+                        </strong>
+
+                        <span>
+                            enjoyment
+                        </span>
+
+                    </div>
+
+                    <div class="featured-stat">
+
+                        <strong id="featuredDeath">
+                            -
+                        </strong>
+
+                        <span>
+                            furthest death
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="totalLevels"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        extreme demons completed
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="averageEnjoyment"
+                    >
+                        0/100
+                    </div>
+
+                    <div class="stat-label">
+                        average enjoyment
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="totalAttempts"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        total attempts
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="averageAttempts"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        average attempts
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="easiestLevel"
+                    >
+                        -
+                    </div>
+
+                    <div class="stat-label">
+                        easiest level
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div
+                        class="stat-number"
+                        id="completionYears"
+                    >
+                        -
+                    </div>
+
+                    <div class="stat-label">
+                        progression span
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             LEVEL HEADER
+        ========================================== -->
+
+        <div class="levels-heading">
+
+            <div>
+
+                <h2>
+                    completed levels
+                </h2>
+
+            </div>
+
+            <p id="levelCount">
+                0 levels
+            </p>
+
         </div>
 
 
-        <!-- =========================
+        <!-- ==========================================
              SEARCH + SORT
-        ========================= -->
+        ========================================== -->
 
         <div class="search-controls">
 
-            <input
-                type="text"
-                id="levelSearch"
-                placeholder="Search level by name..."
-                autocomplete="off"
-            >
+            <div class="search-box">
+
+                <div class="search-icon">
+                    ⌕
+                </div>
+
+                <input
+                    type="text"
+                    id="levelSearch"
+                    placeholder="Search by level or creator..."
+                    autocomplete="off"
+                >
+
+            </div>
 
 
             <select id="levelSort">
@@ -655,21 +1605,26 @@ header p {
         </div>
 
 
+        <!-- ==========================================
+             LEVEL LIST
+        ========================================== -->
+
         <div id="levelList"></div>
 
-    </div>
+    </main>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
+    <footer>
+        nWnye · geometry dash extreme demon progression
+    </footer>
+
 
     <script>
 
 
-        /* ============================================
+        /* ==========================================
            YOUR LEVELS
-        ============================================ */
+        ========================================== */
 
         const levels = [
 
@@ -2690,31 +3645,25 @@ header p {
         ];
 
 
-        /* ============================================
-           DATE PARSER
-
-           Handles:
-           Jan 29th, 2024
-           Jul 13th, 2024
-           Feb 23rd, 2026
-           etc.
-        ============================================ */
+        /* ==========================================
+           DATE
+        ========================================== */
 
         function parseDate(dateString) {
 
-            const cleanedDate =
+            const cleaned =
                 dateString.replace(
                     /(\d+)(st|nd|rd|th)/i,
                     "$1"
                 );
 
-            return new Date(cleanedDate);
+            return new Date(cleaned);
         }
 
 
-        /* ============================================
-           YOUTUBE EMBED
-        ============================================ */
+        /* ==========================================
+           YOUTUBE
+        ========================================== */
 
         function getYoutubeEmbed(url) {
 
@@ -2739,7 +3688,6 @@ header p {
 
                 }
 
-
                 else if (
                     parsedUrl.hostname === "youtu.be"
                 ) {
@@ -2748,7 +3696,6 @@ header p {
                         parsedUrl.pathname.substring(1);
 
                 }
-
 
                 else if (
                     parsedUrl.hostname.includes("youtube.com") &&
@@ -2781,11 +3728,11 @@ header p {
         }
 
 
-        /* ============================================
-           DISPLAY LEVELS
-        ============================================ */
+        /* ==========================================
+           DISPLAY
+        ========================================== */
 
-        function displayLevels(levelArray) {
+        function displayLevels(levelArray, sortType) {
 
             const levelList =
                 document.getElementById("levelList");
@@ -2794,27 +3741,23 @@ header p {
             levelList.innerHTML = "";
 
 
+            document.getElementById("levelCount").textContent =
+                `${levelArray.length} ${levelArray.length === 1 ? "level" : "levels"}`;
+
+
             if (levelArray.length === 0) {
 
                 levelList.innerHTML = `
                     <div class="no-results">
-                        No levels found.
+                        no levels found.
                     </div>
                 `;
 
                 return;
-
             }
 
 
             levelArray.forEach(level => {
-
-                /*
-                    Find the original ranking.
-
-                    This means sorting by enjoyment/date/etc.
-                    does NOT change the actual difficulty rank.
-                */
 
                 const rank =
                     levels.indexOf(level) + 1;
@@ -2823,12 +3766,63 @@ header p {
                 const levelElement =
                     document.createElement("div");
 
-
                 levelElement.className = "level";
 
 
                 const videoEmbed =
                     getYoutubeEmbed(level.video);
+
+
+                let extraInfo = "";
+
+
+                if (
+                    sortType === "high" ||
+                    sortType === "low"
+                ) {
+
+                    extraInfo =
+                        `${level.enjoyment} enjoyment`;
+
+                }
+
+                else if (
+                    sortType === "attempts-high" ||
+                    sortType === "attempts-low"
+                ) {
+
+                    extraInfo =
+                        `${level.attempts.toLocaleString()} attempts`;
+
+                }
+
+                else if (
+                    sortType === "death-high" ||
+                    sortType === "death-low"
+                ) {
+
+                    extraInfo =
+                        `${level.furthestDeath} death`;
+
+                }
+
+                else if (
+                    sortType === "date-old" ||
+                    sortType === "date-new"
+                ) {
+
+                    extraInfo =
+                        level.date;
+
+                }
+
+
+                const enjoyment =
+                    parseInt(level.enjoyment);
+
+
+                const death =
+                    parseInt(level.furthestDeath);
 
 
                 levelElement.innerHTML = `
@@ -2845,12 +3839,85 @@ header p {
 
                         <div class="level-info">
 
-                            <div class="level-name">
-                                ${level.name}
+                            <div class="level-name-row">
+
+                                <div class="level-name">
+                                    ${level.name}
+                                </div>
+
+                                ${
+                                    extraInfo
+                                    ?
+                                    `
+                                    <span class="level-extra">
+                                        ${extraInfo}
+                                    </span>
+                                    `
+                                    :
+                                    ""
+                                }
+
                             </div>
+
 
                             <div class="publisher">
                                 by ${level.publisher}
+                            </div>
+
+                        </div>
+
+
+                        <div class="level-meta">
+
+                            <div class="meta-item">
+
+                                <div class="meta-label">
+                                    attempts
+                                </div>
+
+                                <div class="meta-value">
+                                    ${level.attempts.toLocaleString()}
+                                </div>
+
+                            </div>
+
+
+                            <div class="meta-item">
+
+                                <div class="meta-label">
+                                    death
+                                </div>
+
+                                <div class="meta-value">
+                                    ${level.furthestDeath}
+                                </div>
+
+                            </div>
+
+
+                            <div class="enjoyment">
+
+                                <div class="enjoyment-number">
+
+                                    <span>
+                                        enjoyment
+                                    </span>
+
+                                    <span>
+                                        ${level.enjoyment}
+                                    </span>
+
+                                </div>
+
+                                <div class="bar">
+
+                                    <div
+                                        class="bar-fill"
+                                        style="width:${enjoyment}%"
+                                    ></div>
+
+                                </div>
+
                             </div>
 
                         </div>
@@ -2867,111 +3934,113 @@ header p {
 
                         <div class="details-content">
 
-                            <div class="details-grid">
+                            <div class="details-inner">
+
+                                <div class="details-grid">
 
 
-                                <div class="detail">
+                                    <div class="detail">
 
-                                    <div class="detail-label">
-                                        position
+                                        <div class="detail-label">
+                                            position
+                                        </div>
+
+                                        <div class="detail-value">
+                                            #${rank}
+                                        </div>
+
                                     </div>
 
-                                    <div class="detail-value">
-                                        #${rank}
+
+                                    <div class="detail">
+
+                                        <div class="detail-label">
+                                            attempts
+                                        </div>
+
+                                        <div class="detail-value">
+                                            ${level.attempts.toLocaleString()}
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="detail">
+
+                                        <div class="detail-label">
+                                            enjoyment
+                                        </div>
+
+                                        <div class="detail-value">
+                                            ${level.enjoyment}
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="detail">
+
+                                        <div class="detail-label">
+                                            furthest death
+                                        </div>
+
+                                        <div class="detail-value">
+                                            ${level.furthestDeath}
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="detail">
+
+                                        <div class="detail-label">
+                                            completed
+                                        </div>
+
+                                        <div class="detail-value">
+                                            ${level.date}
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="detail notes">
+
+                                        <div class="detail-label">
+                                            notes
+                                        </div>
+
+                                        <div class="detail-value">
+                                            ${level.notes}
+                                        </div>
+
                                     </div>
 
                                 </div>
 
 
-                                <div class="detail">
+                                ${
+                                    videoEmbed
+                                    ?
+                                    `
+                                    <div class="video-container">
 
-                                    <div class="detail-label">
-                                        attempts
+                                        <iframe
+                                            src="${videoEmbed}"
+                                            title="${level.name} completion video"
+                                            loading="lazy"
+                                            referrerpolicy="strict-origin-when-cross-origin"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowfullscreen>
+                                        </iframe>
+
                                     </div>
-
-                                    <div class="detail-value">
-                                        ${level.attempts.toLocaleString()}
-                                    </div>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <div class="detail-label">
-                                        enjoyment
-                                    </div>
-
-                                    <div class="detail-value">
-                                        ${level.enjoyment}
-                                    </div>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <div class="detail-label">
-                                        completion date
-                                    </div>
-
-                                    <div class="detail-value">
-                                        ${level.date}
-                                    </div>
-
-                                </div>
-
-
-                                <div class="detail">
-
-                                    <div class="detail-label">
-                                        furthest death
-                                    </div>
-
-                                    <div class="detail-value">
-                                        ${level.furthestDeath}
-                                    </div>
-
-                                </div>
-
-
-                                <div class="detail notes">
-
-                                    <div class="detail-label">
-                                        notes
-                                    </div>
-
-                                    <div class="detail-value">
-                                        ${level.notes}
-                                    </div>
-
-                                </div>
-
+                                    `
+                                    :
+                                    ""
+                                }
 
                             </div>
-
-
-                            ${
-                                videoEmbed
-                                ?
-                                `
-                                <div class="video-container">
-
-                                    <iframe
-                                        src="${videoEmbed}"
-                                        title="${level.name} completion video"
-                                        loading="lazy"
-                                        referrerpolicy="strict-origin-when-cross-origin"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowfullscreen>
-                                    </iframe>
-
-                                </div>
-                                `
-                                :
-                                ""
-                            }
-
 
                         </div>
 
@@ -2987,9 +4056,9 @@ header p {
         }
 
 
-        /* ============================================
+        /* ==========================================
            SEARCH + SORT
-        ============================================ */
+        ========================================== */
 
         function updateLevelList() {
 
@@ -3007,25 +4076,21 @@ header p {
                     .value;
 
 
-            /*
-                IMPORTANT:
-
-                Create a new array using filter().
-                This prevents sorting from permanently
-                changing the original levels array.
-            */
-
             let filteredLevels =
                 levels.filter(level =>
+
                     level.name
                         .toLowerCase()
                         .includes(searchTerm)
+
+                    ||
+
+                    level.publisher
+                        .toLowerCase()
+                        .includes(searchTerm)
+
                 );
 
-
-            /* =========================
-               HARDEST → EASIEST
-            ========================= */
 
             if (sortType === "default") {
 
@@ -3038,10 +4103,6 @@ header p {
             }
 
 
-            /* =========================
-               EASIEST → HARDEST
-            ========================= */
-
             else if (sortType === "easy") {
 
                 filteredLevels.sort(
@@ -3052,10 +4113,6 @@ header p {
 
             }
 
-
-            /* =========================
-               ENJOYMENT HIGH → LOW
-            ========================= */
 
             else if (sortType === "high") {
 
@@ -3068,10 +4125,6 @@ header p {
             }
 
 
-            /* =========================
-               ENJOYMENT LOW → HIGH
-            ========================= */
-
             else if (sortType === "low") {
 
                 filteredLevels.sort(
@@ -3082,10 +4135,6 @@ header p {
 
             }
 
-
-            /* =========================
-               ATTEMPTS HIGH → LOW
-            ========================= */
 
             else if (sortType === "attempts-high") {
 
@@ -3098,10 +4147,6 @@ header p {
             }
 
 
-            /* =========================
-               ATTEMPTS LOW → HIGH
-            ========================= */
-
             else if (sortType === "attempts-low") {
 
                 filteredLevels.sort(
@@ -3112,10 +4157,6 @@ header p {
 
             }
 
-
-            /* =========================
-               FURTHEST DEATH HIGH → LOW
-            ========================= */
 
             else if (sortType === "death-high") {
 
@@ -3128,10 +4169,6 @@ header p {
             }
 
 
-            /* =========================
-               FURTHEST DEATH LOW → HIGH
-            ========================= */
-
             else if (sortType === "death-low") {
 
                 filteredLevels.sort(
@@ -3142,10 +4179,6 @@ header p {
 
             }
 
-
-            /* =========================
-               DATE OLDEST → LATEST
-            ========================= */
 
             else if (sortType === "date-old") {
 
@@ -3158,10 +4191,6 @@ header p {
             }
 
 
-            /* =========================
-               DATE LATEST → OLDEST
-            ========================= */
-
             else if (sortType === "date-new") {
 
                 filteredLevels.sort(
@@ -3173,14 +4202,17 @@ header p {
             }
 
 
-            displayLevels(filteredLevels);
+            displayLevels(
+                filteredLevels,
+                sortType
+            );
 
         }
 
 
-        /* ============================================
-           EXPAND / COLLAPSE LEVEL
-        ============================================ */
+        /* ==========================================
+           TOGGLE
+        ========================================== */
 
         function toggleLevel(header) {
 
@@ -3191,10 +4223,6 @@ header p {
             const details =
                 level.querySelector(".level-details");
 
-
-            /*
-                Close every other open level.
-            */
 
             document
                 .querySelectorAll(".level.open")
@@ -3232,33 +4260,9 @@ header p {
         }
 
 
-        /* ============================================
-           SEARCH EVENT
-        ============================================ */
-
-        document
-            .getElementById("levelSearch")
-            .addEventListener(
-                "input",
-                updateLevelList
-            );
-
-
-        /* ============================================
-           SORT EVENT
-        ============================================ */
-
-        document
-            .getElementById("levelSort")
-            .addEventListener(
-                "change",
-                updateLevelList
-            );
-
-
-        /* ============================================
+        /* ==========================================
            STATS
-        ============================================ */
+        ========================================== */
 
         document
             .getElementById("totalLevels")
@@ -3267,18 +4271,20 @@ header p {
 
 
         const averageEnjoyment =
-            levels.length > 0
+            levels.length
 
-                ? levels.reduce(
-                    (total, level) =>
-                        total +
-                        parseInt(level.enjoyment),
+            ?
 
-                    0
+            levels.reduce(
+                (total, level) =>
+                    total +
+                    parseInt(level.enjoyment),
+                0
+            ) / levels.length
 
-                ) / levels.length
+            :
 
-                : 0;
+            0;
 
 
         document
@@ -3291,7 +4297,6 @@ header p {
             levels.reduce(
                 (total, level) =>
                     total + level.attempts,
-
                 0
             );
 
@@ -3302,12 +4307,142 @@ header p {
             totalAttempts.toLocaleString();
 
 
-        /* ============================================
+        const averageAttempts =
+            levels.length
+            ?
+            totalAttempts / levels.length
+            :
+            0;
+
+
+        document
+            .getElementById("averageAttempts")
+            .textContent =
+            Math.round(
+                averageAttempts
+            ).toLocaleString();
+
+
+        const hardest =
+            levels.length
+            ?
+            levels[0]
+            :
+            null;
+
+
+        const easiest =
+            levels.length
+            ?
+            levels[levels.length - 1]
+            :
+            null;
+
+
+        document
+            .getElementById("easiestLevel")
+            .textContent =
+            easiest
+            ?
+            easiest.name
+            :
+            "-";
+
+
+        if (hardest) {
+
+            document
+                .getElementById("featuredLevel")
+                .textContent =
+                hardest.name;
+
+
+            document
+                .getElementById("featuredPublisher")
+                .textContent =
+                `by ${hardest.publisher}`;
+
+
+            document
+                .getElementById("featuredAttempts")
+                .textContent =
+                hardest.attempts.toLocaleString();
+
+
+            document
+                .getElementById("featuredEnjoyment")
+                .textContent =
+                hardest.enjoyment;
+
+
+            document
+                .getElementById("featuredDeath")
+                .textContent =
+                hardest.furthestDeath;
+
+        }
+
+
+        /* ==========================================
+           PROGRESSION SPAN
+        ========================================== */
+
+        if (levels.length > 0) {
+
+            const dates =
+                levels.map(
+                    level =>
+                        parseDate(level.date)
+                            .getFullYear()
+                );
+
+            const oldestYear =
+                Math.min(...dates);
+
+            const newestYear =
+                Math.max(...dates);
+
+            const span =
+                newestYear - oldestYear;
+
+
+            document
+                .getElementById("completionYears")
+                .textContent =
+                span === 0
+                ?
+                `${span} years`
+                :
+                `${span} years`;
+
+        }
+
+
+        /* ==========================================
+           EVENTS
+        ========================================== */
+
+        document
+            .getElementById("levelSearch")
+            .addEventListener(
+                "input",
+                updateLevelList
+            );
+
+
+        document
+            .getElementById("levelSort")
+            .addEventListener(
+                "change",
+                updateLevelList
+            );
+
+
+        /* ==========================================
            INITIAL DISPLAY
-        ============================================ */
+        ========================================== */
 
         updateLevelList();
-
 
     </script>
 
