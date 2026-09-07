@@ -1,214 +1,345 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <title>My Extreme Demons</title>
+        <title>nWnye's Extremes | Completed</title>
 
     <style>
 
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
         }
 
         :root {
+
             --bg: #080609;
+
             --bg-soft: #0d090e;
+
             --panel: #110c12;
+
             --panel-light: #171019;
 
             --pink: #ff65f7;
+
             --pink-bright: #ff8afa;
+
             --pink-dark: #b936b8;
 
             --text: #f8eef8;
+
             --muted: #887c88;
+
             --muted-dark: #5c525d;
 
             --border: rgba(255, 101, 247, 0.14);
+
             --border-hover: rgba(255, 101, 247, 0.32);
+
         }
 
         html {
+
             scroll-behavior: smooth;
+
         }
 
         body {
+
             font-family: Arial, Helvetica, sans-serif;
+
             background:
+
                 radial-gradient(
+
                     circle at 50% -15%,
+
                     rgba(255, 75, 241, 0.12),
+
                     transparent 40%
+
                 ),
+
                 var(--bg);
 
             color: var(--text);
+
             min-height: 100vh;
+
         }
 
-
         /* ==========================================
+
            TOP NAV
+
         ========================================== */
 
         .topbar {
+
             height: 72px;
+
             width: 100%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             padding: 0 55px;
+
             position: relative;
+
             z-index: 10;
+
         }
 
         .brand {
+
             font-size: 24px;
+
             font-weight: 800;
+
             letter-spacing: -1px;
+
             display: flex;
+
             align-items: center;
+
             gap: 9px;
+
         }
 
         .brand-dot {
+
             width: 8px;
+
             height: 8px;
+
             border-radius: 50%;
+
             background: var(--pink);
+
             box-shadow: 0 0 14px rgba(255, 101, 247, 0.8);
+
         }
 
         .topbar-right {
+
             display: flex;
+
             align-items: center;
+
             gap: 28px;
+
         }
 
         .page-links {
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
         }
 
         .page-link {
+
             color: var(--muted);
+
             text-decoration: none;
+
             font-size: 13px;
+
             font-weight: 700;
+
             padding: 9px 13px;
+
             border-radius: 8px;
+
             border: 1px solid transparent;
+
             transition: 0.2s ease;
+
         }
 
         .page-link:hover {
+
             color: var(--text);
+
             border-color: var(--border);
+
             background: rgba(255, 101, 247, 0.05);
+
         }
 
         .page-link.active {
+
             color: var(--pink);
+
             background: rgba(255, 101, 247, 0.07);
+
             border-color: var(--border);
+
         }
 
         .socials {
+
             display: flex;
+
             align-items: center;
+
             gap: 13px;
+
         }
 
         .social-link {
+
             width: 37px;
+
             height: 37px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             border-radius: 9px;
+
             border: 1px solid var(--border);
+
             background: rgba(255, 101, 247, 0.025);
+
             transition: 0.2s ease;
+
         }
 
         .social-link:hover {
+
             border-color: var(--border-bright);
+
             background: rgba(255, 101, 247, 0.08);
+
             transform: translateY(-2px);
+
         }
 
         .social-link img {
+
             width: 21px;
+
             height: 21px;
+
             object-fit: contain;
+
         }
 
-
         /* ==========================================
+
            HERO
+
         ========================================== */
 
 .hero {
+
     max-width: 1200px;
+
     margin: 75px auto 55px;
+
     padding: 0 30px;
+
 }
 
 .hero-label {
+
     color: var(--pink);
+
     text-transform: uppercase;
+
     letter-spacing: 3px;
+
     font-size: 11px;
+
     font-weight: 800;
+
     margin-bottom: 15px;
+
 }
 
 .hero h1 {
+
     font-size: clamp(45px, 7vw, 82px);
+
     line-height: 0.95;
+
     letter-spacing: -5px;
+
     font-weight: 900;
+
     margin-bottom: 20px;
+
 }
 
 .hero h1 span {
+
     color: var(--pink);
+
     text-shadow: 0 0 30px rgba(255, 101, 247, 0.15);
+
 }
 
 .hero p {
+
     color: var(--muted);
+
     font-size: 15px;
+
     max-width: 600px;
+
     line-height: 1.6;
+
 }
 
-
         /* ==========================================
+
            MAIN
+
         ========================================== */
 
         .main {
+
             max-width: 1180px;
 
             margin: 0 auto;
 
             padding: 35px 20px 80px;
+
         }
 
-
         /* ==========================================
+
            FEATURED / OVERVIEW
+
         ========================================== */
 
         .overview {
+
             display: grid;
 
             grid-template-columns: 1.3fr 1fr;
@@ -216,9 +347,11 @@
             gap: 15px;
 
             margin-bottom: 15px;
+
         }
 
         .featured {
+
             position: relative;
 
             min-height: 210px;
@@ -228,57 +361,83 @@
             overflow: hidden;
 
             border: 1px solid rgba(255, 101, 247, 0.2);
+
             border-radius: 18px;
 
             background:
+
                 radial-gradient(
+
                     circle at 90% 10%,
+
                     rgba(255, 101, 247, 0.14),
+
                     transparent 45%
+
                 ),
+
                 linear-gradient(
+
                     135deg,
+
                     rgba(255, 101, 247, 0.08),
+
                     rgba(17, 12, 18, 0.95) 65%
+
                 );
 
             box-shadow:
+
                 0 15px 45px rgba(0, 0, 0, 0.25);
+
         }
 
         .featured::after {
+
             content: "";
 
             position: absolute;
 
             right: -100px;
+
             bottom: -150px;
 
             width: 300px;
+
             height: 300px;
 
             border-radius: 50%;
 
             background:
+
                 radial-gradient(
+
                     circle,
+
                     rgba(255, 101, 247, 0.1),
+
                     transparent 70%
+
                 );
+
         }
 
         .featured-label {
+
             color: var(--pink);
 
             font-size: 10px;
+
             font-weight: 800;
 
             letter-spacing: 1.5px;
 
             text-transform: uppercase;
+
         }
 
         .featured h2 {
+
             margin-top: 15px;
 
             font-size: clamp(24px, 4vw, 36px);
@@ -286,23 +445,29 @@
             line-height: 1;
 
             letter-spacing: -1.5px;
+
         }
 
         .featured-publisher {
+
             margin-top: 8px;
 
             color: var(--muted);
 
             font-size: 13px;
+
         }
 
         .featured-rank {
+
             position: absolute;
 
             right: 28px;
+
             top: 28px;
 
             font-size: 52px;
+
             font-weight: 900;
 
             line-height: 1;
@@ -310,59 +475,77 @@
             color: var(--pink);
 
             letter-spacing: -3px;
+
         }
 
         .featured-bottom {
+
             position: absolute;
 
             left: 28px;
+
             bottom: 25px;
 
             display: flex;
+
             align-items: center;
 
             gap: 12px;
+
         }
 
         .featured-stat {
+
             padding-right: 12px;
 
             border-right: 1px solid rgba(255,255,255,0.08);
+
         }
 
         .featured-stat:last-child {
+
             border-right: none;
+
         }
 
         .featured-stat strong {
+
             display: block;
 
             font-size: 14px;
+
         }
 
         .featured-stat span {
+
             color: var(--muted);
 
             font-size: 10px;
 
             text-transform: uppercase;
+
             letter-spacing: 0.6px;
+
         }
 
-
         /* ==========================================
+
            STATS
+
         ========================================== */
 
         .stats {
+
             display: grid;
 
             grid-template-columns: repeat(2, 1fr);
 
             gap: 10px;
+
         }
 
         .stat {
+
             position: relative;
 
             padding: 20px;
@@ -370,44 +553,63 @@
             min-height: 100px;
 
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
 
             border: 1px solid var(--border);
+
             border-radius: 14px;
 
             background:
+
                 linear-gradient(
+
                     145deg,
+
                     rgba(255,255,255,0.025),
+
                     rgba(17,12,18,0.95)
+
                 );
 
             overflow: hidden;
 
             transition: 0.2s ease;
+
         }
 
         .stat:hover {
+
             transform: translateY(-2px);
 
             border-color: var(--border-hover);
 
             background:
+
                 linear-gradient(
+
                     145deg,
+
                     rgba(255,101,247,0.06),
+
                     rgba(17,12,18,0.95)
+
                 );
+
         }
 
         .stat::before {
+
             content: "";
 
             position: absolute;
 
             left: 0;
+
             top: 0;
+
             bottom: 0;
 
             width: 2px;
@@ -415,9 +617,11 @@
             background: var(--pink);
 
             opacity: 0.5;
+
         }
 
         .stat-number {
+
             font-size: 25px;
 
             font-weight: 900;
@@ -431,115 +635,161 @@
             overflow: hidden;
 
             text-overflow: ellipsis;
+
         }
 
         .stat-label {
+
             margin-top: 6px;
 
             color: var(--muted);
 
             font-size: 9px;
+
             font-weight: 700;
 
             letter-spacing: 1px;
 
             text-transform: uppercase;
+
         }
 
         /* ==========================================
+
    PROGRESSION GRAPH
+
 ========================================== */
 
 .progression-card {
+
     margin-top: 15px;
 
     padding: 25px;
 
     border: 1px solid var(--border);
+
     border-radius: 18px;
 
     background:
+
         radial-gradient(
+
             circle at 90% 0%,
+
             rgba(255, 101, 247, 0.08),
+
             transparent 45%
+
         ),
+
         linear-gradient(
+
             145deg,
+
             rgba(255,255,255,0.025),
+
             rgba(17,12,18,0.96)
+
         );
 
     box-shadow:
+
         0 15px 45px rgba(0,0,0,0.2);
+
 }
 
 .progression-header {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     margin-bottom: 25px;
+
 }
 
 .progression-label {
+
     color: var(--pink);
 
     font-size: 10px;
+
     font-weight: 800;
 
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
 
     margin-bottom: 7px;
+
 }
 
 .progression-header h2 {
+
     font-size: 22px;
 
     letter-spacing: -0.7px;
+
 }
 
 .progression-total {
+
     text-align: right;
+
 }
 
 .progression-total strong {
+
     display: block;
 
     color: var(--pink);
 
     font-size: 28px;
+
     font-weight: 900;
 
     letter-spacing: -1px;
+
 }
 
 .progression-total span {
+
     color: var(--muted);
 
     font-size: 9px;
+
     font-weight: 700;
 
     text-transform: uppercase;
+
     letter-spacing: 1px;
+
 }
 
 .graph-container {
+
     position: relative;
 
     width: 100%;
+
     height: 300px;
+
 }
 
 #progressionGraph {
+
     width: 100%;
+
     height: 100%;
 
     display: block;
+
 }
 
 .graph-tooltip {
+
     position: absolute;
 
     display: none;
@@ -547,17 +797,21 @@
     padding: 9px 12px;
 
     border: 1px solid var(--border-hover);
+
     border-radius: 9px;
 
     background: rgba(14, 10, 15, 0.96);
 
     box-shadow:
+
         0 8px 25px rgba(0,0,0,0.35),
+
         0 0 15px rgba(255,101,247,0.08);
 
     color: var(--text);
 
     font-size: 11px;
+
     font-weight: 700;
 
     pointer-events: none;
@@ -567,9 +821,11 @@
     z-index: 10;
 
     transform: translate(-50%, -115%);
+
 }
 
 .graph-tooltip strong {
+
     display: block;
 
     color: var(--pink);
@@ -577,90 +833,119 @@
     font-size: 12px;
 
     margin-bottom: 3px;
+
 }
 
 .graph-tooltip span {
+
     color: var(--muted);
 
     font-size: 9px;
+
 }
 
 .graph-container {
-    cursor: pointer;
-}
 
+    cursor: pointer;
+
+}
 
 /* mobile */
 
 @media (max-width: 650px) {
 
     .progression-card {
+
         padding: 18px;
+
     }
 
     .progression-header h2 {
+
         font-size: 18px;
+
     }
 
     .progression-total strong {
+
         font-size: 23px;
+
     }
 
     .graph-container {
+
         height: 230px;
+
     }
 
 }
 
-
         /* ==========================================
+
            SECTION HEADER
+
         ========================================== */
 
         .levels-heading {
+
             display: flex;
+
             align-items: end;
+
             justify-content: space-between;
 
             margin-top: 45px;
+
             margin-bottom: 15px;
+
         }
 
         .levels-heading h2 {
+
             font-size: 22px;
 
             letter-spacing: -0.7px;
+
         }
 
         .levels-heading p {
+
             color: var(--muted);
 
             font-size: 12px;
+
         }
 
-
         /* ==========================================
+
            SEARCH
+
         ========================================== */
 
         .search-controls {
+
             display: flex;
 
             gap: 10px;
 
             margin-bottom: 15px;
+
         }
 
         .search-box {
+
             position: relative;
 
             flex: 1;
+
         }
 
         .search-icon {
+
             position: absolute;
 
             left: 16px;
+
             top: 50%;
 
             transform: translateY(-50%);
@@ -670,10 +955,13 @@
             font-size: 15px;
 
             pointer-events: none;
+
         }
 
         #levelSearch,
+
         #levelSort {
+
             width: 100%;
 
             background: #0e0a0f;
@@ -685,192 +973,267 @@
             color: var(--text);
 
             font-family: inherit;
+
             font-size: 13px;
 
             outline: none;
 
             transition: 0.2s;
+
         }
 
         #levelSearch {
+
             padding: 14px 16px 14px 42px;
+
         }
 
         #levelSort {
+
             width: 250px;
 
             padding: 14px 38px 14px 15px;
 
             cursor: pointer;
+
         }
 
         #levelSearch::placeholder {
+
             color: var(--muted-dark);
+
         }
 
         #levelSearch:focus,
+
         #levelSort:focus {
+
             border-color: rgba(255, 101, 247, 0.45);
 
             box-shadow:
+
                 0 0 0 3px rgba(255, 101, 247, 0.05);
+
         }
 
         #levelSort option {
+
             background: #100b11;
+
             color: var(--text);
+
         }
 
-
         /* ==========================================
+
            LEVEL CARD
+
         ========================================== */
 
         #levelList {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 8px;
+
         }
 
         .level {
+
             position: relative;
 
             overflow: hidden;
 
             border: 1px solid var(--border);
+
             border-radius: 14px;
 
             background:
+
                 linear-gradient(
+
                     100deg,
+
                     rgba(255, 101, 247, 0.055),
+
                     rgba(14, 10, 15, 0.98) 38%
+
                 );
 
             transition:
+
                 transform 0.2s ease,
+
                 border-color 0.2s ease,
+
                 background 0.2s ease,
+
                 box-shadow 0.2s ease;
+
         }
 
         .level::before {
+
             content: "";
 
             position: absolute;
 
             left: 0;
+
             top: 0;
+
             bottom: 0;
 
             width: 3px;
 
             background:
+
                 linear-gradient(
+
                     to bottom,
+
                     var(--pink-bright),
+
                     var(--pink-dark),
+
                     transparent
+
                 );
 
             opacity: 0.65;
 
             box-shadow:
+
                 0 0 15px rgba(255, 101, 247, 0.35);
+
         }
 
         .level:hover {
+
             transform: translateY(-2px);
 
             border-color: var(--border-hover);
 
             background:
+
                 linear-gradient(
+
                     100deg,
+
                     rgba(255, 101, 247, 0.09),
+
                     rgba(14, 10, 15, 1) 42%
+
                 );
 
             box-shadow:
+
                 0 10px 30px rgba(0, 0, 0, 0.28),
+
                 0 0 20px rgba(255, 101, 247, 0.04);
+
         }
 
         .level-header {
+
             min-height: 76px;
 
             padding: 12px 18px;
 
             display: flex;
+
             align-items: center;
 
             cursor: pointer;
 
             user-select: none;
+
         }
 
-
         /* ==========================================
+
            RANK
+
         ========================================== */
 
         .rank {
+
             width: 70px;
 
             flex-shrink: 0;
 
             font-size: 22px;
+
             font-weight: 900;
 
             letter-spacing: -1px;
 
             color: rgba(255, 101, 247, 0.45);
+
         }
 
         .level .rank {
+
     color: var(--pink);
+
 }
 
-
         /* ==========================================
+
            LEVEL INFO
+
         ========================================== */
 
         .level-info {
+
             flex: 1;
 
             min-width: 0;
+
         }
 
         .level-name-row {
+
             display: flex;
+
             align-items: center;
 
             gap: 9px;
 
             min-width: 0;
+
         }
 
         .level-name {
+
             font-size: 15px;
+
             font-weight: 800;
 
             color: #f5edf5;
 
             white-space: nowrap;
+
             overflow: hidden;
+
             text-overflow: ellipsis;
 
             letter-spacing: -0.2px;
 
             transition: 0.2s;
+
         }
 
         .level:hover .level-name {
+
             color: white;
+
         }
 
         .level-extra {
+
             flex-shrink: 0;
 
             padding: 4px 7px;
@@ -884,91 +1247,123 @@
             color: var(--pink);
 
             font-size: 10px;
+
             font-weight: 700;
 
             white-space: nowrap;
+
         }
 
         .publisher {
+
             margin-top: 4px;
 
             color: var(--muted);
 
             font-size: 11px;
+
         }
 
-
         /* ==========================================
+
            LEVEL META
+
         ========================================== */
 
         .level-meta {
+
             display: flex;
+
             align-items: center;
 
             gap: 24px;
 
             margin-left: 25px;
+
         }
 
         .meta-item {
+
             min-width: 62px;
+
         }
 
         .meta-label {
+
             color: var(--muted-dark);
 
             font-size: 8px;
+
             font-weight: 700;
 
             text-transform: uppercase;
+
             letter-spacing: 0.8px;
+
         }
 
         .meta-value {
+
             margin-top: 3px;
 
             color: #dcd0dc;
 
             font-size: 12px;
+
             font-weight: 700;
+
         }
 
-
         /* ==========================================
+
            ENJOYMENT BAR
+
         ========================================== */
 
         .enjoyment {
+
             width: 100px;
+
         }
 
         .enjoyment-number {
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
             margin-bottom: 5px;
+
         }
 
         .enjoyment-number span:first-child {
+
             color: var(--muted-dark);
 
             font-size: 8px;
+
             font-weight: 700;
 
             text-transform: uppercase;
+
         }
 
         .enjoyment-number span:last-child {
+
             color: var(--pink);
 
             font-size: 10px;
+
             font-weight: 800;
+
         }
 
         .bar {
+
             width: 100%;
+
             height: 4px;
 
             border-radius: 999px;
@@ -976,30 +1371,41 @@
             background: rgba(255,255,255,0.05);
 
             overflow: hidden;
+
         }
 
         .bar-fill {
+
             height: 100%;
 
             border-radius: inherit;
 
             background:
+
                 linear-gradient(
+
                     90deg,
+
                     var(--pink-dark),
+
                     var(--pink-bright)
+
                 );
 
             box-shadow:
+
                 0 0 8px rgba(255,101,247,0.3);
+
         }
 
-
         /* ==========================================
+
            ARROW
+
         ========================================== */
 
         .arrow {
+
             width: 30px;
 
             margin-left: 20px;
@@ -1011,38 +1417,49 @@
             text-align: center;
 
             transition: 0.25s ease;
+
         }
 
         .level.open .arrow {
+
             transform: rotate(180deg);
 
             color: var(--pink);
+
         }
 
-
         /* ==========================================
+
            DETAILS
+
         ========================================== */
 
         .level-details {
+
             max-height: 0;
 
             overflow: hidden;
 
             transition: max-height 0.4s ease;
+
         }
 
         .details-content {
+
             padding: 0 18px 20px 88px;
+
         }
 
         .details-inner {
+
             padding-top: 18px;
 
             border-top: 1px solid rgba(255,255,255,0.06);
+
         }
 
         .details-grid {
+
             display: grid;
 
             grid-template-columns: repeat(5, 1fr);
@@ -1050,9 +1467,11 @@
             gap: 8px;
 
             margin-bottom: 15px;
+
         }
 
         .detail {
+
             padding: 13px;
 
             min-width: 0;
@@ -1062,48 +1481,63 @@
             border-radius: 10px;
 
             background: rgba(0,0,0,0.18);
+
         }
 
         .detail-label {
+
             color: var(--muted-dark);
 
             font-size: 8px;
+
             font-weight: 700;
 
             text-transform: uppercase;
+
             letter-spacing: 0.7px;
+
         }
 
         .detail-value {
+
             margin-top: 6px;
 
             color: #e9dfea;
 
             font-size: 13px;
+
             font-weight: 700;
 
             word-break: break-word;
+
         }
 
         .notes {
+
             grid-column: 1 / -1;
+
         }
 
         .notes .detail-value {
+
             color: #aaa0aa;
 
             font-size: 12px;
+
             font-weight: 400;
 
             line-height: 1.55;
+
         }
 
-
         /* ==========================================
+
            VIDEO
+
         ========================================== */
 
         .video-container {
+
             width: 100%;
 
             max-width: 780px;
@@ -1119,22 +1553,29 @@
             overflow: hidden;
 
             box-shadow:
+
                 0 15px 35px rgba(0,0,0,0.3);
+
         }
 
         .video-container iframe {
+
             width: 100%;
+
             height: 100%;
 
             border: none;
+
         }
 
-
         /* ==========================================
+
            NO RESULTS
+
         ========================================== */
 
         .no-results {
+
             padding: 60px 20px;
 
             text-align: center;
@@ -1146,14 +1587,17 @@
             color: var(--muted);
 
             font-size: 13px;
+
         }
 
-
         /* ==========================================
+
            FOOTER
+
         ========================================== */
 
         footer {
+
             padding: 25px 20px 35px;
 
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -1165,164 +1609,232 @@
             font-size: 10px;
 
             letter-spacing: 0.5px;
+
         }
 
-
         /* ==========================================
+
            MOBILE
+
         ========================================== */
 
         @media (max-width: 850px) {
+    .overview {
+        grid-template-columns: 1fr;
+    }
 
-            .overview {
-                grid-template-columns: 1fr;
-            }
+    .level-meta {
+        gap: 12px;
+    }
 
-            .level-meta {
-                gap: 12px;
-            }
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-            .details-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+    .details-content {
+        padding-left: 20px;
+    }
 
-            .details-content {
-                padding-left: 20px;
-            }
+    .topbar {
+        padding: 0 15px;
+    }
 
-            .topbar-right {
-                gap: 10px;
-            }
+    .topbar-right {
+        gap: 8px;
+    }
 
-            .page-links {
-                display: none;
-            }
+    .page-links {
+        gap: 3px;
+    }
 
-        }
+    .page-link {
+        font-size: 11px;
+        padding: 7px 8px;
+    }
 
+    .socials {
+        gap: 6px;
+    }
+}
 
         @media (max-width: 650px) {
 
             .topbar {
+
                 height: 60px;
 
                 padding: 0 15px;
+
             }
 
             .brand {
+
                 font-size: 10px;
+
             }
 
             .social-links a {
+
                 width: 34px;
+
                 height: 34px;
+
             }
 
 .hero {
+
         margin-top: 50px;
+
     }
 
     .hero h1 {
+
         font-size: 52px;
+
         letter-spacing: -3px;
+
     }
 
             .main {
+
                 padding: 25px 12px 60px;
+
             }
 
             .stats {
+
                 grid-template-columns: 1fr 1fr;
+
             }
 
             .stat {
+
                 min-height: 90px;
 
                 padding: 15px;
+
             }
 
             .stat-number {
+
                 font-size: 19px;
+
             }
 
             .levels-heading {
+
                 margin-top: 32px;
+
             }
 
             .levels-heading p {
+
                 display: none;
+
             }
 
             .search-controls {
+
                 flex-direction: column;
+
             }
 
             #levelSort {
+
                 width: 100%;
+
             }
 
             .level-header {
+
                 padding: 12px 13px;
+
             }
 
             .rank {
+
                 width: 48px;
 
                 font-size: 17px;
+
             }
 
             .level-name {
+
                 font-size: 13px;
+
             }
 
             .level-meta {
+
                 display: none;
+
             }
 
             .arrow {
+
                 margin-left: 10px;
+
             }
 
             .details-content {
+
                 padding: 0 13px 15px;
+
             }
 
             .details-grid {
+
                 grid-template-columns: 1fr 1fr;
+
             }
 
             .featured {
+
                 min-height: 200px;
 
                 padding: 22px;
+
             }
 
             .featured-rank {
+
                 right: 20px;
+
                 top: 20px;
 
                 font-size: 40px;
+
             }
 
             .featured-bottom {
+
                 left: 22px;
+
                 bottom: 20px;
+
             }
 
         }
 
-
         @media (max-width: 400px) {
 
             .stats {
+
                 grid-template-columns: 1fr;
+
             }
 
 .hero h1 {
+
     font-size: 44px;
+
 }
+
             .details-grid {
+
                 grid-template-columns: 1fr;
+
             }
 
         }
@@ -1331,36 +1843,48 @@
 
 </head>
 
-
 <body>
 
-
     <!-- ==========================================
+
          TOP BAR
+
     ========================================== -->
 
   <header class="topbar">
 
     <div class="brand">
+
         nWnye
+
         <div class="brand-dot"></div>
+
     </div>
 
     <div class="topbar-right">
 
         <div class="page-links">
+
             <a href="index.html" class="page-link active">completed</a>
+
             <a href="todo.html" class="page-link">to-do</a>
+
+            <a href="admin.html" class="page-link">admin</a>
+
         </div>
 
         <div class="socials">
 
             <a href="https://www.youtube.com/@nWnye" class="social-link" target="https://www.youtube.com/@nWnye">
+
                 <img src="images/youtube.png" alt="youtube">
+
             </a>
 
             <a href="https://www.twitch.tv/nwnye" class="social-link" target="https://www.twitch.tv/nwnye">
+
                 <img src="images/twitch.png" alt="twitch">
+
             </a>
 
         </div>
@@ -1369,66 +1893,88 @@
 
 </header>
 
-
     <!-- ==========================================
+
          HERO
+
     ========================================== -->
 
     <section class="hero">
 
     <div class="hero-label">
+
         geometry dash progression
+
     </div>
 
     <h1>
+
         my <span>extreme demons</span>
+
     </h1>
 
     <p>
+
         every extreme demon I've completed
+
     </p>
 
 </section>
 
-
     <!-- ==========================================
+
          MAIN
+
     ========================================== -->
 
     <main class="main">
 
-
         <!-- ==========================================
+
              OVERVIEW
+
         ========================================== -->
 
         <section class="overview">
-
 
             <!-- FEATURED HARDEST -->
 
             <div class="featured">
 
                 <div class="featured-label">
+
                     current hardest
+
                 </div>
 
                 <h2 id="featuredLevel">
+
                     -
+
                 </h2>
 
                 <div
+
                     class="featured-publisher"
+
                     id="featuredPublisher"
+
                 >
+
                     -
+
                 </div>
 
                 <div
+
                     class="featured-rank"
+
                     id="featuredRank"
+
                 >
+
                     #1
+
                 </div>
 
                 <div class="featured-bottom">
@@ -1436,11 +1982,15 @@
                     <div class="featured-stat">
 
                         <strong id="featuredAttempts">
+
                             -
+
                         </strong>
 
                         <span>
+
                             attempts
+
                         </span>
 
                     </div>
@@ -1448,11 +1998,15 @@
                     <div class="featured-stat">
 
                         <strong id="featuredEnjoyment">
+
                             -
+
                         </strong>
 
                         <span>
+
                             enjoyment
+
                         </span>
 
                     </div>
@@ -1460,11 +2014,15 @@
                     <div class="featured-stat">
 
                         <strong id="featuredDeath">
+
                             -
+
                         </strong>
 
                         <span>
+
                             furthest death
+
                         </span>
 
                     </div>
@@ -1473,7 +2031,6 @@
 
             </div>
 
-
             <!-- STATS -->
 
             <div class="stats">
@@ -1481,94 +2038,131 @@
                 <div class="stat">
 
                     <div
+
                         class="stat-number"
+
                         id="totalLevels"
+
                     >
+
                         0
+
                     </div>
 
                     <div class="stat-label">
+
                         extreme demons completed
+
                     </div>
 
                 </div>
 
-
                 <div class="stat">
 
                     <div
+
                         class="stat-number"
+
                         id="averageEnjoyment"
+
                     >
+
                         0/100
+
                     </div>
 
                     <div class="stat-label">
+
                         average enjoyment
+
                     </div>
 
                 </div>
 
-
                 <div class="stat">
 
                     <div
+
                         class="stat-number"
+
                         id="totalAttempts"
+
                     >
+
                         0
+
                     </div>
 
                     <div class="stat-label">
+
                         total attempts
+
                     </div>
 
                 </div>
 
-
                 <div class="stat">
 
                     <div
+
                         class="stat-number"
+
                         id="averageAttempts"
+
                     >
+
                         0
+
                     </div>
 
                     <div class="stat-label">
+
                         average attempts
+
                     </div>
 
                 </div>
 
-
                 <div class="stat">
 
                     <div
+
                         class="stat-number"
+
                         id="easiestLevel"
+
                     >
+
                         -
+
                     </div>
 
                     <div class="stat-label">
+
                         easiest level
+
                     </div>
 
                 </div>
 
-
                 <div class="stat">
 
                     <div
+
                         class="stat-number"
+
                         id="completionYears"
+
                     >
+
                         -
+
                     </div>
 
                     <div class="stat-label">
+
                         progression span
+
                     </div>
 
                 </div>
@@ -1578,7 +2172,9 @@
         </section>
 
         <!-- ==========================================
+
      PROGRESSION GRAPH
+
 ========================================== -->
 
 <section class="progression-card">
@@ -1586,30 +2182,41 @@
     <div class="progression-header">
 
         <div>
+
             <div class="progression-label">
+
                 progression
+
             </div>
 
             <h2>extreme demons completed over time</h2>
+
         </div>
 
         <div class="progression-total">
+
             <strong id="graphTotal">0</strong>
+
             <span>completed</span>
+
         </div>
 
     </div>
 
     <div class="graph-container">
+
         <canvas id="progressionGraph"></canvas>
+
         <div id="graphTooltip" class="graph-tooltip"></div>
+
     </div>
 
 </section>
 
-
         <!-- ==========================================
+
              LEVEL HEADER
+
         ========================================== -->
 
         <div class="levels-heading">
@@ -1617,20 +2224,25 @@
             <div>
 
                 <h2>
+
                     completed levels
+
                 </h2>
 
             </div>
 
             <p id="levelCount">
+
                 0 levels
+
             </p>
 
         </div>
 
-
         <!-- ==========================================
+
              SEARCH + SORT
+
         ========================================== -->
 
         <div class="search-controls">
@@ -1638,77 +2250,105 @@
             <div class="search-box">
 
                 <div class="search-icon">
+
                     ⌕
+
                 </div>
 
                 <input
+
                     type="text"
+
                     id="levelSearch"
-                    placeholder="Search by level or creator..."
+
+                    placeholder="search by level or creator..."
+
                     autocomplete="off"
+
                 >
 
             </div>
 
-
             <select id="levelSort">
 
                 <option value="default">
+
                     Hardest → Easiest
+
                 </option>
 
                 <option value="easy">
+
                     Easiest → Hardest
+
                 </option>
 
                 <option value="high">
+
                     Enjoyment: Highest → Lowest
+
                 </option>
 
                 <option value="low">
+
                     Enjoyment: Lowest → Highest
+
                 </option>
 
                 <option value="attempts-high">
+
                     Attempts: Highest → Lowest
+
                 </option>
 
                 <option value="attempts-low">
+
                     Attempts: Lowest → Highest
+
                 </option>
 
                 <option value="death-high">
+
                     Furthest Death: Highest → Lowest
+
                 </option>
 
                 <option value="death-low">
+
                     Furthest Death: Lowest → Highest
+
                 </option>
 
                 <option value="date-old">
+
                     Date: Oldest → Latest
+
                 </option>
 
                 <option value="date-new">
+
                     Date: Latest → Oldest
+
                 </option>
 
             </select>
 
         </div>
 
-
         <!-- ==========================================
+
              LEVEL LIST
+
         ========================================== -->
 
         <div id="levelList"></div>
 
     </main>
 
-
     <footer>
+
         nWnye · geometry dash extreme demon progression
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

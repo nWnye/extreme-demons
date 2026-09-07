@@ -1,0 +1,3612 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>nWnye's Extremes | Admin</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #080609;
+            --bg-soft: #0d090e;
+            --panel: #110c12;
+            --panel-light: #171019;
+            --pink: #ff65f7;
+            --pink-bright: #ff8afa;
+            --pink-dark: #b936b8;
+            --text: #f8eef8;
+            --muted: #887c88;
+            --muted-dark: #5c525d;
+            --border: rgba(255, 101, 247, 0.14);
+            --border-hover: rgba(255, 101, 247, 0.32);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 50% -15%,
+                    rgba(255, 75, 241, 0.12),
+                    transparent 40%
+                ),
+                var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================================
+           LOGIN
+        ========================================== */
+
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            position: relative;
+            width: min(420px, 100%);
+            padding: 32px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 101, 247, 0.2);
+            border-radius: 18px;
+            background:
+                radial-gradient(
+                    circle at 90% 0%,
+                    rgba(255, 101, 247, 0.12),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    145deg,
+                    rgba(255, 101, 247, 0.055),
+                    rgba(17, 12, 18, 0.96)
+                );
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-box::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--pink-bright),
+                    var(--pink-dark),
+                    transparent
+                );
+            opacity: 0.75;
+            box-shadow:
+                0 0 18px rgba(255, 101, 247, 0.3);
+        }
+
+        .login-box h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+        }
+
+        .subtitle {
+            margin-bottom: 30px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           FORMS
+        ========================================== */
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            margin-bottom: 18px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #0e0a0f;
+            color: var(--text);
+            outline: none;
+            font-family: inherit;
+            font-size: 13px;
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--muted-dark);
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: rgba(255, 101, 247, 0.45);
+            background: #100b11;
+            box-shadow:
+                0 0 0 3px rgba(255, 101, 247, 0.05);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        select option {
+            background: #100b11;
+            color: var(--text);
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================== */
+
+        button {
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-family: inherit;
+            font-weight: 800;
+            cursor: pointer;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease,
+                filter 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.25;
+            cursor: default;
+            transform: none;
+        }
+
+
+        /* =========================================
+           TOPBAR
+        ========================================== */
+
+        .topbar {
+            height: 72px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 55px;
+            position: relative;
+            z-index: 10;
+            border-bottom: none;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--text);
+        }
+
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 14px rgba(255, 101, 247, 0.8);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .page-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 9px 13px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            text-transform: none;
+            letter-spacing: normal;
+            transition: 0.2s ease;
+        }
+
+        .page-link:hover {
+            color: var(--text);
+            border-color: var(--border);
+            background: rgba(255, 101, 247, 0.05);
+        }
+
+        .page-link.active {
+            color: var(--pink);
+            background: rgba(255, 101, 247, 0.07);
+            border-color: var(--border);
+        }
+
+        .page-link.active::after {
+            display: none;
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .social-link {
+            width: 37px;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: rgba(255, 101, 247, 0.025);
+            transition: 0.2s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--border-hover);
+            background: rgba(255, 101, 247, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .social-link img {
+            width: 21px;
+            height: 21px;
+            object-fit: contain;
+            opacity: 1;
+        }
+
+
+        /* =========================================
+           LOGIN BUTTON
+        ========================================== */
+
+        .login-button {
+            width: 100%;
+            padding: 13px 15px;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--pink-bright),
+                    var(--pink)
+                );
+            color: #170d17;
+            box-shadow:
+                0 6px 20px rgba(255, 101, 247, 0.12);
+        }
+
+        .login-button:hover {
+            filter: brightness(1.08);
+            box-shadow:
+                0 8px 25px rgba(255, 101, 247, 0.18);
+        }
+
+        #loginMessage {
+            margin-top: 18px;
+            text-align: center;
+            color: var(--pink-bright);
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           DASHBOARD
+        ========================================== */
+
+        .dashboard {
+            display: none;
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 50px 0 80px;
+        }
+
+
+        /* =========================================
+           DASHBOARD HEADER
+        ========================================== */
+
+        .dashboard-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-title h1 {
+            margin: 0 0 7px;
+            font-size: clamp(32px, 5vw, 46px);
+            line-height: 0.95;
+            font-weight: 900;
+            letter-spacing: -2.5px;
+        }
+
+        .dashboard-title p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .logout-button {
+            padding: 10px 16px;
+            background: rgba(255, 101, 247, 0.025);
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .logout-button:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+            background: rgba(255, 101, 247, 0.07);
+            box-shadow:
+                0 0 18px rgba(255, 101, 247, 0.04);
+        }
+
+
+        /* =========================================
+           MODE SWITCH
+        ========================================== */
+
+        .mode-switch {
+            display: inline-flex;
+            gap: 4px;
+            padding: 4px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: rgba(255, 101, 247, 0.025);
+        }
+
+        .mode-button {
+            padding: 9px 16px;
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid transparent;
+            border-radius: 7px;
+            font-size: 12px;
+        }
+
+        .mode-button:hover {
+            color: var(--text);
+            background: rgba(255, 101, 247, 0.05);
+            transform: none;
+        }
+
+        .mode-button.active {
+            color: var(--pink);
+            background: rgba(255, 101, 247, 0.08);
+            border-color: var(--border);
+        }
+
+
+        /* =========================================
+           STATS
+        ========================================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat {
+            position: relative;
+            min-height: 105px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.025),
+                    rgba(17,12,18,0.95)
+                );
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .stat::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--pink);
+            opacity: 0.5;
+        }
+
+        .stat:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,101,247,0.06),
+                    rgba(17,12,18,0.95)
+                );
+        }
+
+        .stat-label {
+            margin-bottom: 7px;
+            color: var(--muted-dark);
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            max-width: 100%;
+            overflow: hidden;
+            color: #fff4ff;
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: -0.7px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+
+        /* =========================================
+           CONTROLS
+        ========================================== */
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .search {
+            flex: 1;
+            margin: 0;
+            padding: 14px 16px;
+            border-radius: 12px;
+        }
+
+        .add-button {
+            padding: 0 22px;
+            white-space: nowrap;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--pink-bright),
+                    var(--pink)
+                );
+            color: #170d17;
+            box-shadow:
+                0 6px 20px rgba(255, 101, 247, 0.08);
+        }
+
+        .add-button:hover {
+            filter: brightness(1.08);
+            box-shadow:
+                0 8px 25px rgba(255, 101, 247, 0.14);
+        }
+
+
+        /* =========================================
+           LEVEL LIST
+        ========================================== */
+
+        .level-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+
+        /* =========================================
+           LEVEL ROW
+        ========================================== */
+
+        .level-row {
+            position: relative;
+            display: grid;
+            grid-template-columns:
+                70px
+                minmax(200px, 1fr)
+                90px
+                90px
+                80px
+                105px
+                145px;
+            align-items: center;
+            gap: 12px;
+            min-height: 70px;
+            padding: 12px 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background:
+                linear-gradient(
+                    100deg,
+                    rgba(255, 101, 247, 0.055),
+                    rgba(14, 10, 15, 0.98) 38%
+                );
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .level-row::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--pink-bright),
+                    var(--pink-dark),
+                    transparent
+                );
+            opacity: 0.65;
+            box-shadow:
+                0 0 15px rgba(255, 101, 247, 0.35);
+        }
+
+        .level-row:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-hover);
+            background:
+                linear-gradient(
+                    100deg,
+                    rgba(255, 101, 247, 0.09),
+                    rgba(14, 10, 15, 1) 42%
+                );
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.28),
+                0 0 20px rgba(255, 101, 247, 0.04);
+        }
+
+        .todo-row {
+            grid-template-columns:
+                70px
+                minmax(200px, 1fr)
+                100px
+                100px
+                180px;
+        }
+
+
+        /* =========================================
+           RANK
+        ========================================== */
+
+        .rank {
+            color: var(--pink);
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+
+        /* =========================================
+           LEVEL INFO
+        ========================================== */
+
+        .level-name-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            min-width: 0;
+        }
+
+        .level-name {
+            color: #f5edf5;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transition: 0.2s ease;
+        }
+
+        .level-row:hover .level-name {
+            color: white;
+        }
+
+        .publisher {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .main-goal-badge {
+            flex-shrink: 0;
+            padding: 4px 7px;
+            border: 1px solid rgba(255, 138, 250, 0.25);
+            border-radius: 6px;
+            background: rgba(255, 101, 247, 0.07);
+            color: var(--pink-bright);
+            font-size: 7px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            box-shadow:
+                0 0 12px rgba(255, 101, 247, 0.06);
+        }
+
+
+        /* =========================================
+           LEVEL META
+        ========================================== */
+
+        .level-stat {
+            color: #dcd0dc;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .level-stat span {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--muted-dark);
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .progress-stat {
+            color: var(--pink-bright);
+        }
+
+
+        /* =========================================
+           ACTIONS
+        ========================================== */
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .action-button {
+            width: 31px;
+            height: 31px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: rgba(255, 101, 247, 0.025);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .action-button:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+            background: rgba(255, 101, 247, 0.08);
+            box-shadow:
+                0 0 12px rgba(255, 101, 247, 0.04);
+        }
+
+        .edit-button:hover {
+            color: var(--pink-bright);
+        }
+
+        .delete-button:hover {
+            color: #ff6b8a;
+            border-color: rgba(255, 107, 138, 0.25);
+            background: rgba(255, 107, 138, 0.06);
+        }
+
+        .main-goal-button {
+            color: var(--muted);
+        }
+
+        .main-goal-button:hover {
+            color: var(--pink-bright);
+            border-color: rgba(255, 138, 250, 0.35);
+            background: rgba(255, 101, 247, 0.08);
+            box-shadow:
+                0 0 14px rgba(255, 101, 247, 0.08);
+        }
+
+        .main-goal-button.is-main-goal {
+            color: var(--pink-bright);
+            border-color: rgba(255, 138, 250, 0.35);
+            background: rgba(255, 101, 247, 0.10);
+            box-shadow:
+                0 0 14px rgba(255, 101, 247, 0.10);
+        }
+
+
+        /* =========================================
+           MODAL
+        ========================================== */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            padding: 25px;
+            background:
+                rgba(5, 3, 5, 0.78);
+            backdrop-filter: blur(4px);
+            overflow-y: auto;
+        }
+
+        .modal-box {
+            position: relative;
+            width: min(650px, 100%);
+            margin: 40px auto;
+            padding: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 101, 247, 0.2);
+            border-radius: 18px;
+            background:
+                radial-gradient(
+                    circle at 90% 0%,
+                    rgba(255, 101, 247, 0.10),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.025),
+                    rgba(17,12,18,0.97)
+                );
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-box::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--pink-bright),
+                    var(--pink-dark),
+                    transparent
+                );
+            opacity: 0.7;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.7px;
+        }
+
+        .close-button {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            background: rgba(255, 101, 247, 0.025);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            font-size: 18px;
+        }
+
+        .close-button:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+            background: rgba(255, 101, 247, 0.08);
+        }
+
+
+        /* =========================================
+           FORM GRID
+        ========================================== */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 15px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+
+        /* =========================================
+           MODAL ACTIONS
+        ========================================== */
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .cancel-button {
+            padding: 11px 20px;
+            background: rgba(255, 101, 247, 0.025);
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .cancel-button:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+            background: rgba(255, 101, 247, 0.07);
+        }
+
+        .save-button {
+            padding: 11px 25px;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--pink-bright),
+                    var(--pink)
+                );
+            color: #170d17;
+            box-shadow:
+                0 6px 20px rgba(255, 101, 247, 0.08);
+        }
+
+        .save-button:hover {
+            filter: brightness(1.08);
+            box-shadow:
+                0 8px 25px rgba(255, 101, 247, 0.14);
+        }
+
+        #formMessage {
+            margin-top: 15px;
+            color: var(--pink-bright);
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           LOADING / EMPTY STATES
+        ========================================== */
+
+        .level-list > div {
+            color: var(--muted) !important;
+        }
+
+        .level-list > div[style*="ff6b8a"] {
+            color: #ff6b8a !important;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 1000px) {
+
+            .level-row {
+                grid-template-columns:
+                    55px
+                    minmax(180px, 1fr)
+                    85px
+                    85px
+                    85px
+                    125px;
+                gap: 10px;
+            }
+
+            .level-row .level-stat:nth-of-type(3) {
+                display: none;
+            }
+
+            .actions {
+                grid-column: 6;
+            }
+
+            .todo-row {
+                grid-template-columns:
+                    55px
+                    minmax(180px, 1fr)
+                    90px
+                    180px;
+            }
+
+            .todo-row .level-stat:nth-of-type(2) {
+                display: none;
+            }
+
+            .todo-row .actions {
+                grid-column: 4;
+            }
+        }
+
+
+        @media (max-width: 850px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-header {
+                align-items: flex-start;
+            }
+
+            .level-row {
+                grid-template-columns:
+                    50px
+                    minmax(160px, 1fr)
+                    85px
+                    125px;
+                gap: 10px;
+            }
+
+            .level-row .level-stat:nth-of-type(2),
+            .level-row .level-stat:nth-of-type(3) {
+                display: none;
+            }
+
+            .actions {
+                grid-column: 4;
+            }
+
+            .todo-row {
+                grid-template-columns:
+                    50px
+                    minmax(160px, 1fr)
+                    85px
+                    180px;
+            }
+
+            .todo-row .level-stat {
+                display: block;
+            }
+
+            .todo-row .actions {
+                grid-column: 4;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+    .topbar {
+        height: 60px;
+        padding: 0 15px;
+    }
+
+    .brand {
+        font-size: 10px;
+    }
+
+    .brand-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .topbar-right {
+        gap: 8px;
+    }
+
+    .page-links {
+        gap: 3px;
+    }
+
+    .page-link {
+        font-size: 11px;
+        padding: 7px 8px;
+    }
+
+    .socials {
+        display: flex;
+        gap: 6px;
+    }
+
+    .social-link {
+        width: 34px;
+        height: 34px;
+    }
+
+    .social-link img {
+        width: 19px;
+        height: 19px;
+    }
+
+    .dashboard {
+        width: calc(100% - 24px);
+        padding: 30px 0 60px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-title h1 {
+        font-size: 32px;
+        letter-spacing: -1.8px;
+    }
+
+    .dashboard-title p {
+        font-size: 11px;
+    }
+
+    .logout-button {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+
+    .mode-switch {
+        width: 100%;
+    }
+
+    .mode-button {
+        flex: 1;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .stat {
+        min-height: 90px;
+        padding: 15px;
+    }
+
+    .stat-value {
+        font-size: 19px;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .add-button {
+        padding: 13px;
+    }
+
+    .level-row,
+    .todo-row {
+        grid-template-columns:
+            42px
+            1fr
+            auto;
+        gap: 8px;
+        min-height: 65px;
+        padding: 11px 13px;
+    }
+
+    .level-row .level-stat,
+    .todo-row .level-stat {
+        display: none;
+    }
+
+    .rank {
+        font-size: 17px;
+    }
+
+    .level-name {
+        font-size: 13px;
+    }
+
+    .publisher {
+        font-size: 10px;
+    }
+
+    .actions,
+    .todo-row .actions {
+        grid-column: 3;
+        gap: 4px;
+    }
+
+    .action-button {
+        width: 29px;
+        height: 29px;
+        font-size: 12px;
+    }
+
+    .main-goal-badge {
+        font-size: 6px;
+        padding: 3px 5px;
+    }
+
+    .login-box {
+        padding: 27px;
+    }
+
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-box {
+        margin: 15px auto;
+        padding: 22px 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    .modal-header {
+        margin-bottom: 20px;
+    }
+
+    .modal-actions {
+        margin-top: 5px;
+    }
+}
+
+
+        @media (max-width: 400px) {
+
+            .dashboard {
+                width: calc(100% - 20px);
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-title h1 {
+                font-size: 28px;
+            }
+
+            .level-row,
+            .todo-row {
+                grid-template-columns:
+                    36px
+                    1fr
+                    auto;
+            }
+
+            .actions {
+                gap: 3px;
+            }
+
+            .action-button {
+                width: 27px;
+                height: 27px;
+            }
+
+            .main-goal-badge {
+                display: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div class="brand">
+        nWnye
+        <div class="brand-dot"></div>
+    </div>
+
+    <div class="topbar-right">
+
+        <div class="page-links">
+
+            <a href="index.html" class="page-link">
+                completed
+            </a>
+
+            <a href="todo.html" class="page-link">
+                to-do
+            </a>
+
+                <a href="admin.html" class="page-link active">
+                admin
+            </a>
+
+        </div>
+
+        <div class="socials">
+
+            <a
+                href="https://www.youtube.com/@nWnye"
+                class="social-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <img src="images/youtube.png" alt="youtube">
+            </a>
+
+            <a
+                href="https://www.twitch.tv/nwnye"
+                class="social-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <img src="images/twitch.png" alt="twitch">
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     LOGIN
+========================================== -->
+
+<div
+    class="login-screen"
+    id="loginScreen"
+>
+
+    <div class="login-box">
+
+        <h1>Admin</h1>
+
+        <div class="subtitle">
+            nWnye Extreme Demons
+        </div>
+
+
+        <form id="loginForm">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                required
+                autocomplete="email"
+            >
+
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                required
+                autocomplete="current-password"
+            >
+
+
+            <button
+                class="login-button"
+                type="submit"
+            >
+                LOG IN
+            </button>
+
+        </form>
+
+
+        <div id="loginMessage"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     DASHBOARD
+========================================== -->
+
+<main
+    class="dashboard"
+    id="dashboard"
+>
+
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-title">
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                management of the site
+            </p>
+
+        </div>
+
+
+        <button
+            class="logout-button"
+            id="logoutButton"
+        >
+            LOG OUT
+        </button>
+
+    </header>
+
+
+    <!-- =====================================
+         MODE SWITCH
+    ====================================== -->
+
+    <div class="mode-switch">
+
+        <button
+            class="mode-button active"
+            id="completedModeButton"
+            type="button"
+        >
+            Completed
+        </button>
+
+        <button
+            class="mode-button"
+            id="todoModeButton"
+            type="button"
+        >
+            To-Do
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         STATS
+    ====================================== -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Total Levels
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalStat"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Total Attempts
+            </div>
+
+            <div
+                class="stat-value"
+                id="attemptsStat"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Avg. Enjoyment
+            </div>
+
+            <div
+                class="stat-value"
+                id="enjoymentStat"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Hardest
+            </div>
+
+            <div
+                class="stat-value"
+                id="hardestStat"
+            >
+                —
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         CONTROLS
+    ====================================== -->
+
+    <div class="controls">
+
+        <input
+            class="search"
+            id="search"
+            type="text"
+            placeholder="search by level or creator..."
+        >
+
+
+        <button
+            class="add-button"
+            id="addButton"
+            type="button"
+        >
+            + ADD LEVEL
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         LEVELS
+    ====================================== -->
+
+    <div
+        class="level-list"
+        id="levelList"
+    ></div>
+
+
+</main>
+
+
+<!-- =========================================
+     ADD / EDIT MODAL
+========================================== -->
+
+<div
+    class="modal"
+    id="levelModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Level
+            </h2>
+
+
+            <button
+                class="close-button"
+                id="closeModal"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="levelForm">
+
+            <div class="form-grid">
+
+
+                <div>
+
+                    <label for="levelName">
+                        Level Name
+                    </label>
+
+                    <input
+                        id="levelName"
+                        type="text"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label for="publisher">
+                        Publisher
+                    </label>
+
+                    <input
+                        id="publisher"
+                        type="text"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label for="difficultyRank">
+                        Difficulty Rank
+                    </label>
+
+                    <input
+                        id="difficultyRank"
+                        type="number"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div id="attemptsField">
+
+                    <label for="attempts">
+                        Attempts
+                    </label>
+
+                    <input
+                        id="attempts"
+                        type="number"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <div id="enjoymentField">
+
+                    <label for="enjoyment">
+                        Enjoyment (0–100)
+                    </label>
+
+                    <input
+                        id="enjoyment"
+                        type="number"
+                        min="0"
+                        max="100"
+                        required
+                    >
+
+                </div>
+
+
+                <div id="furthestDeathField">
+
+                    <label for="furthestDeath">
+                        Furthest Death (%)
+                    </label>
+
+                    <input
+                        id="furthestDeath"
+                        type="number"
+                        min="0"
+                        max="100"
+                        required
+                    >
+
+                </div>
+
+
+                <div id="completedDateField">
+
+                    <label for="completedDate">
+                        Completed Date
+                    </label>
+
+                    <input
+                        id="completedDate"
+                        type="date"
+                        required
+                    >
+
+                </div>
+
+
+                <div id="progressField" style="display: none;">
+
+                    <label for="progress">
+                        Progress (%)
+                    </label>
+
+                    <input
+                        id="progress"
+                        type="number"
+                        min="0"
+                        max="100"
+                    >
+
+                </div>
+
+
+                <div class="full">
+
+                    <label for="video">
+                        Completion Video
+                    </label>
+
+                    <input
+                        id="video"
+                        type="url"
+                        placeholder="https://youtu.be/..."
+                    >
+
+                </div>
+
+
+                <div class="full">
+
+                    <label for="notes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="optional notes..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel-button"
+                    id="cancelButton"
+                    type="button"
+                >
+                    cancel
+                </button>
+
+
+                <button
+                    class="save-button"
+                    type="submit"
+                >
+                    save level
+                </button>
+
+            </div>
+
+
+            <div id="formMessage"></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    /* =========================================
+       SUPABASE
+    ========================================== */
+
+    const SUPABASE_URL =
+        "https://qzlujqwdojwswvjrmjuh.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_ic3ldKKirovQR5Ca8UNeqw_RxSqpaTV";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    /* =========================================
+       ELEMENTS
+    ========================================== */
+
+    const loginScreen =
+        document.getElementById("loginScreen");
+
+    const dashboard =
+        document.getElementById("dashboard");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const loginMessage =
+        document.getElementById("loginMessage");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    const levelList =
+        document.getElementById("levelList");
+
+    const search =
+        document.getElementById("search");
+
+    const addButton =
+        document.getElementById("addButton");
+
+    const modal =
+        document.getElementById("levelModal");
+
+    const closeModal =
+        document.getElementById("closeModal");
+
+    const cancelButton =
+        document.getElementById("cancelButton");
+
+    const levelForm =
+        document.getElementById("levelForm");
+
+    const modalTitle =
+        document.getElementById("modalTitle");
+
+    const formMessage =
+        document.getElementById("formMessage");
+
+    const completedModeButton =
+        document.getElementById("completedModeButton");
+
+    const todoModeButton =
+        document.getElementById("todoModeButton");
+
+    const attemptsField =
+        document.getElementById("attemptsField");
+
+    const enjoymentField =
+        document.getElementById("enjoymentField");
+
+    const furthestDeathField =
+        document.getElementById("furthestDeathField");
+
+    const completedDateField =
+        document.getElementById("completedDateField");
+
+    const progressField =
+        document.getElementById("progressField");
+
+    const attemptsInput =
+        document.getElementById("attempts");
+
+    const enjoymentInput =
+        document.getElementById("enjoyment");
+
+    const furthestDeathInput =
+        document.getElementById("furthestDeath");
+
+    const completedDateInput =
+        document.getElementById("completedDate");
+
+    const progressInput =
+        document.getElementById("progress");
+
+
+    let levels = [];
+    let editingId = null;
+    let currentMode = "completed";
+    let mainGoalId = null;
+
+
+    /* =========================================
+       TABLE
+    ========================================== */
+
+    function getCurrentTable() {
+
+        return currentMode === "completed"
+            ? "levels"
+            : "todo_levels";
+
+    }
+
+
+    /* =========================================
+       MAIN GOAL
+    ========================================== */
+
+    async function loadMainGoal() {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("site_settings")
+                .select("main_goal_id")
+                .eq("id", 1)
+                .single();
+
+
+        if (error) {
+
+            console.error(
+                "Error loading main goal:",
+                error
+            );
+
+            return;
+
+        }
+
+
+        mainGoalId =
+            data?.main_goal_id ?? null;
+
+    }
+
+
+    window.setMainGoal =
+        async function(id) {
+
+            const newMainGoalId =
+                mainGoalId === id
+                    ? null
+                    : id;
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("site_settings")
+                    .update({
+                        main_goal_id:
+                            newMainGoalId
+                    })
+                    .eq(
+                        "id",
+                        1
+                    );
+
+
+            if (error) {
+
+                console.error(error);
+
+                alert(
+                    error.message
+                );
+
+                return;
+
+            }
+
+
+            mainGoalId =
+                newMainGoalId;
+
+
+            renderLevels();
+
+        };
+
+
+    /* =========================================
+       MODE
+    ========================================== */
+
+    function updateModeUI() {
+
+        const isCompleted =
+            currentMode === "completed";
+
+
+        completedModeButton.classList.toggle(
+            "active",
+            isCompleted
+        );
+
+        todoModeButton.classList.toggle(
+            "active",
+            !isCompleted
+        );
+
+
+        addButton.textContent =
+            isCompleted
+                ? "+ ADD LEVEL"
+                : "+ ADD TO-DO LEVEL";
+
+
+        updateModalFields();
+
+        updateStats();
+
+        renderLevels();
+
+    }
+
+
+    function updateModalFields() {
+
+        const isCompleted =
+            currentMode === "completed";
+
+
+        attemptsField.style.display =
+            isCompleted
+                ? ""
+                : "none";
+
+        enjoymentField.style.display =
+            isCompleted
+                ? ""
+                : "none";
+
+        furthestDeathField.style.display =
+            isCompleted
+                ? ""
+                : "none";
+
+        completedDateField.style.display =
+            isCompleted
+                ? ""
+                : "none";
+
+        progressField.style.display =
+            isCompleted
+                ? "none"
+                : "";
+
+
+        attemptsInput.required =
+            isCompleted;
+
+        enjoymentInput.required =
+            isCompleted;
+
+        furthestDeathInput.required =
+            isCompleted;
+
+        completedDateInput.required =
+            isCompleted;
+
+        progressInput.required =
+            !isCompleted;
+
+
+        if (editingId === null) {
+
+            modalTitle.textContent =
+                isCompleted
+                    ? "ADD LEVEL"
+                    : "ADD TO-DO LEVEL";
+
+        }
+
+    }
+
+
+    completedModeButton.addEventListener(
+        "click",
+        async function() {
+
+            if (currentMode === "completed") {
+                return;
+            }
+
+
+            currentMode = "completed";
+
+            editingId = null;
+
+            search.value = "";
+
+            updateModeUI();
+
+            await loadLevels();
+
+        }
+    );
+
+
+    todoModeButton.addEventListener(
+        "click",
+        async function() {
+
+            if (currentMode === "todo") {
+                return;
+            }
+
+
+            currentMode = "todo";
+
+            editingId = null;
+
+            search.value = "";
+
+            await loadMainGoal();
+
+            updateModeUI();
+
+            await loadLevels();
+
+        }
+    );
+
+
+    /* =========================================
+       AUTH CHECK
+    ========================================== */
+
+    async function checkSession() {
+
+        const {
+            data: {
+                session
+            }
+        } =
+            await supabaseClient
+                .auth
+                .getSession();
+
+
+        if (session) {
+
+            await showDashboard();
+
+        } else {
+
+            showLogin();
+
+        }
+
+    }
+
+
+    function showLogin() {
+
+        loginScreen.style.display =
+            "flex";
+
+        dashboard.style.display =
+            "none";
+
+    }
+
+
+    async function showDashboard() {
+
+        loginScreen.style.display =
+            "none";
+
+        dashboard.style.display =
+            "block";
+
+
+        await loadMainGoal();
+
+        updateModalFields();
+
+        await loadLevels();
+
+    }
+
+
+    /* =========================================
+       LOGIN
+    ========================================== */
+
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            loginMessage.textContent =
+                "Logging in...";
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signInWithPassword({
+                        email,
+                        password
+                    });
+
+
+            if (error) {
+
+                console.error(error);
+
+                loginMessage.textContent =
+                    error.message;
+
+                return;
+
+            }
+
+
+            loginMessage.textContent =
+                "";
+
+            await showDashboard();
+
+        }
+    );
+
+
+    /* =========================================
+       LOGOUT
+    ========================================== */
+
+    logoutButton.addEventListener(
+        "click",
+        async function() {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+            levels = [];
+
+            mainGoalId = null;
+
+            showLogin();
+
+        }
+    );
+
+
+    /* =========================================
+       LOAD LEVELS
+    ========================================== */
+
+    async function loadLevels() {
+
+        levelList.innerHTML =
+            `<div style="padding:20px;color:#8f838f">
+                Loading levels...
+            </div>`;
+
+
+        const table =
+            getCurrentTable();
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from(table)
+                .select("*")
+                .order(
+                    "sort_order",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(error);
+
+            levelList.innerHTML =
+                `<div style="padding:20px;color:#ff6b8a">
+                    Failed to load levels.
+                </div>`;
+
+            return;
+
+        }
+
+
+        levels = data || [];
+
+
+        updateStats();
+
+        renderLevels();
+
+    }
+
+
+    /* =========================================
+       STATS
+    ========================================== */
+
+    function updateStats() {
+
+        const total =
+            levels.length;
+
+
+        const labels =
+            document.querySelectorAll(
+                ".stat-label"
+            );
+
+
+        if (currentMode === "completed") {
+
+            const totalAttempts =
+                levels.reduce(
+                    (sum, level) =>
+                        sum + Number(level.attempts || 0),
+                    0
+                );
+
+
+            const averageEnjoyment =
+                total
+                    ? levels.reduce(
+                        (sum, level) =>
+                            sum + Number(level.enjoyment || 0),
+                        0
+                    ) / total
+                    : 0;
+
+
+            labels[0].textContent =
+                "Total Levels";
+
+            labels[1].textContent =
+                "Total Attempts";
+
+            labels[2].textContent =
+                "Avg. Enjoyment";
+
+            labels[3].textContent =
+                "Hardest";
+
+
+            document
+                .getElementById("totalStat")
+                .textContent =
+                total;
+
+
+            document
+                .getElementById("attemptsStat")
+                .textContent =
+                totalAttempts.toLocaleString();
+
+
+            document
+                .getElementById("enjoymentStat")
+                .textContent =
+                `${averageEnjoyment.toFixed(1)}/100`;
+
+
+            document
+                .getElementById("hardestStat")
+                .textContent =
+                total
+                    ? levels[0].name
+                    : "—";
+
+        }
+
+
+        else {
+
+            const averageProgress =
+                total
+                    ? levels.reduce(
+                        (sum, level) =>
+                            sum + Number(level.progress || 0),
+                        0
+                    ) / total
+                    : 0;
+
+
+            const highestProgress =
+                total
+                    ? Math.max(
+                        ...levels.map(
+                            level =>
+                                Number(level.progress || 0)
+                        )
+                    )
+                    : 0;
+
+
+            const closestLevel =
+                total
+                    ? levels.reduce(
+                        (closest, level) =>
+                            Number(level.progress || 0)
+                                >
+                            Number(closest.progress || 0)
+                                ? level
+                                : closest,
+                        levels[0]
+                    )
+                    : null;
+
+
+            labels[0].textContent =
+                "Total Levels";
+
+            labels[1].textContent =
+                "Avg. Progress";
+
+            labels[2].textContent =
+                "Highest Progress";
+
+            labels[3].textContent =
+                "Closest";
+
+
+            document
+                .getElementById("totalStat")
+                .textContent =
+                total;
+
+
+            document
+                .getElementById("attemptsStat")
+                .textContent =
+                `${averageProgress.toFixed(1)}%`;
+
+
+            document
+                .getElementById("enjoymentStat")
+                .textContent =
+                `${highestProgress}%`;
+
+
+            document
+                .getElementById("hardestStat")
+                .textContent =
+                closestLevel
+                    ? closestLevel.name
+                    : "—";
+
+        }
+
+    }
+
+
+    /* =========================================
+       ACTION BUTTONS
+    ========================================== */
+
+    function actionButtons(level, actualIndex) {
+
+        const mainGoalButton =
+            currentMode === "todo"
+                ? `
+                    <button
+                        class="action-button main-goal-button ${mainGoalId === level.id ? "is-main-goal" : ""}"
+                        title="${mainGoalId === level.id ? "Remove Main Goal" : "Set as Main Goal"}"
+                        onclick="setMainGoal(${level.id})"
+                    >
+                        ${mainGoalId === level.id ? "★" : "☆"}
+                    </button>
+                `
+                : "";
+
+
+        return `
+            <div class="actions">
+
+                ${mainGoalButton}
+
+                <button
+                    class="action-button"
+                    title="Move up"
+                    onclick="moveLevel(${level.id}, -1)"
+                    ${actualIndex === 0 ? "disabled" : ""}
+                >
+                    ↑
+                </button>
+
+                <button
+                    class="action-button"
+                    title="Move down"
+                    onclick="moveLevel(${level.id}, 1)"
+                    ${actualIndex === levels.length - 1 ? "disabled" : ""}
+                >
+                    ↓
+                </button>
+
+                <button
+                    class="action-button edit-button"
+                    title="Edit"
+                    onclick="editLevel(${level.id})"
+                >
+                    ✎
+                </button>
+
+                <button
+                    class="action-button delete-button"
+                    title="Delete"
+                    onclick="deleteLevel(${level.id})"
+                >
+                    ×
+                </button>
+
+            </div>
+        `;
+
+    }
+
+
+    /* =========================================
+       RENDER
+    ========================================== */
+
+    function renderLevels() {
+
+        const searchTerm =
+            search.value
+                .toLowerCase()
+                .trim();
+
+
+        const filtered =
+            levels.filter(level =>
+                level.name
+                    .toLowerCase()
+                    .includes(searchTerm)
+                ||
+                level.publisher
+                    .toLowerCase()
+                    .includes(searchTerm)
+            );
+
+
+        levelList.innerHTML = "";
+
+
+        if (!filtered.length) {
+
+            levelList.innerHTML =
+                `<div style="padding:25px;text-align:center;color:#8f838f">
+                    No levels found.
+                </div>`;
+
+            return;
+
+        }
+
+
+        filtered.forEach(level => {
+
+            const actualIndex =
+                levels.findIndex(
+                    item =>
+                        item.id === level.id
+                );
+
+
+            const row =
+                document.createElement("div");
+
+
+            row.className =
+                currentMode === "completed"
+                    ? "level-row"
+                    : "level-row todo-row";
+
+
+            if (currentMode === "completed") {
+
+                row.innerHTML = `
+
+                    <div class="rank">
+                        #${actualIndex + 1}
+                    </div>
+
+
+                    <div>
+
+                        <div class="level-name">
+                            ${escapeHtml(level.name)}
+                        </div>
+
+                        <div class="publisher">
+                            by ${escapeHtml(level.publisher)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="level-stat">
+
+                        <span>
+                            Attempts
+                        </span>
+
+                        ${Number(level.attempts || 0).toLocaleString()}
+
+                    </div>
+
+
+                    <div class="level-stat">
+
+                        <span>
+                            Enjoyment
+                        </span>
+
+                        ${Number(level.enjoyment || 0)}/100
+
+                    </div>
+
+
+                    <div class="level-stat">
+
+                        <span>
+                            Death
+                        </span>
+
+                        ${Number(level.furthest_death || 0)}%
+
+                    </div>
+
+
+                    <div class="level-stat">
+
+                        <span>
+                            Date
+                        </span>
+
+                        ${formatDate(level.completed_date)}
+
+                    </div>
+
+
+                    ${actionButtons(level, actualIndex)}
+
+                `;
+
+            }
+
+
+            else {
+
+                const isMainGoal =
+                    mainGoalId === level.id;
+
+
+                row.innerHTML = `
+
+                    <div class="rank">
+                        #${actualIndex + 1}
+                    </div>
+
+
+                    <div>
+
+                        <div class="level-name-wrapper">
+
+                            <div class="level-name">
+                                ${escapeHtml(level.name)}
+                            </div>
+
+                            ${
+                                isMainGoal
+                                    ? `
+                                        <span class="main-goal-badge">
+                                            ★ MAIN GOAL
+                                        </span>
+                                    `
+                                    : ""
+                            }
+
+                        </div>
+
+
+                        <div class="publisher">
+                            by ${escapeHtml(level.publisher)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="level-stat progress-stat">
+
+                        <span>
+                            Progress
+                        </span>
+
+                        ${Number(level.progress || 0)}%
+
+                    </div>
+
+
+                    <div class="level-stat">
+
+                        <span>
+                            Video
+                        </span>
+
+                        ${
+                            level.video
+                                ? `<a
+                                    href="${escapeHtml(level.video)}"
+                                    target="_blank"
+                                    rel="noopener"
+                                    style="color:var(--pink);text-decoration:none;"
+                                   >
+                                    View
+                                   </a>`
+                                : "—"
+                        }
+
+                    </div>
+
+
+                    ${actionButtons(level, actualIndex)}
+
+                `;
+
+            }
+
+
+            levelList.appendChild(row);
+
+        });
+
+    }
+
+
+    /* =========================================
+       ESCAPE HTML
+    ========================================== */
+
+    function escapeHtml(value) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            value ?? "";
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =========================================
+       DATE
+    ========================================== */
+
+    function formatDate(dateString) {
+
+        if (!dateString) {
+            return "—";
+        }
+
+
+        const date =
+            new Date(
+                dateString + "T00:00:00"
+            );
+
+
+        const months = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep",
+            "Oct", "Nov", "Dec"
+        ];
+
+
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+
+    }
+
+
+    /* =========================================
+       SEARCH
+    ========================================== */
+
+    search.addEventListener(
+        "input",
+        renderLevels
+    );
+
+
+    /* =========================================
+       ADD
+    ========================================== */
+
+    addButton.addEventListener(
+        "click",
+        function() {
+
+            editingId = null;
+
+
+            modalTitle.textContent =
+                currentMode === "completed"
+                    ? "ADD LEVEL"
+                    : "ADD TO-DO LEVEL";
+
+
+            levelForm.reset();
+
+
+            document
+                .getElementById("difficultyRank")
+                .value =
+                levels.length + 1;
+
+
+            if (currentMode === "todo") {
+
+                progressInput.value = 0;
+
+            }
+
+
+            formMessage.textContent =
+                "";
+
+
+            updateModalFields();
+
+
+            modal.style.display =
+                "block";
+
+        }
+    );
+
+
+    /* =========================================
+       EDIT
+    ========================================== */
+
+    window.editLevel =
+        function(id) {
+
+            const level =
+                levels.find(
+                    item =>
+                        item.id === id
+                );
+
+
+            if (!level) {
+                return;
+            }
+
+
+            editingId = id;
+
+
+            const currentRank =
+                levels.findIndex(
+                    item =>
+                        item.id === id
+                ) + 1;
+
+
+            document
+                .getElementById("difficultyRank")
+                .value =
+                currentRank;
+
+
+            modalTitle.textContent =
+                currentMode === "completed"
+                    ? "EDIT LEVEL"
+                    : "EDIT TO-DO LEVEL";
+
+
+            document
+                .getElementById("levelName")
+                .value =
+                level.name;
+
+
+            document
+                .getElementById("publisher")
+                .value =
+                level.publisher;
+
+
+            if (currentMode === "completed") {
+
+                document
+                    .getElementById("attempts")
+                    .value =
+                    level.attempts ?? 0;
+
+
+                document
+                    .getElementById("enjoyment")
+                    .value =
+                    level.enjoyment ?? 0;
+
+
+                document
+                    .getElementById("furthestDeath")
+                    .value =
+                    level.furthest_death ?? 0;
+
+
+                document
+                    .getElementById("completedDate")
+                    .value =
+                    level.completed_date || "";
+
+            }
+
+
+            else {
+
+                document
+                    .getElementById("progress")
+                    .value =
+                    level.progress ?? 0;
+
+            }
+
+
+            document
+                .getElementById("video")
+                .value =
+                level.video || "";
+
+
+            document
+                .getElementById("notes")
+                .value =
+                level.notes || "";
+
+
+            formMessage.textContent =
+                "";
+
+
+            updateModalFields();
+
+
+            modal.style.display =
+                "block";
+
+        };
+
+
+    /* =========================================
+       SAVE
+    ========================================== */
+
+    levelForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            formMessage.textContent =
+                "Saving...";
+
+
+            const table =
+                getCurrentTable();
+
+
+            const baseData = {
+
+                name:
+                    document
+                        .getElementById("levelName")
+                        .value
+                        .trim(),
+
+                publisher:
+                    document
+                        .getElementById("publisher")
+                        .value
+                        .trim(),
+
+                video:
+                    document
+                        .getElementById("video")
+                        .value
+                        .trim()
+                    ||
+                    null,
+
+                notes:
+                    document
+                        .getElementById("notes")
+                        .value
+                        .trim()
+                    ||
+                    null
+
+            };
+
+
+            let levelData;
+
+
+            if (currentMode === "completed") {
+
+                levelData = {
+
+                    ...baseData,
+
+                    attempts:
+                        Number(
+                            document
+                                .getElementById("attempts")
+                                .value
+                        ),
+
+                    enjoyment:
+                        Number(
+                            document
+                                .getElementById("enjoyment")
+                                .value
+                        ),
+
+                    furthest_death:
+                        Number(
+                            document
+                                .getElementById("furthestDeath")
+                                .value
+                        ),
+
+                    completed_date:
+                        document
+                            .getElementById("completedDate")
+                            .value
+
+                };
+
+            }
+
+
+            else {
+
+                levelData = {
+
+                    ...baseData,
+
+                    progress:
+                        Number(
+                            document
+                                .getElementById("progress")
+                                .value
+                        )
+
+                };
+
+            }
+
+
+            /* =====================================
+               EDIT
+            ====================================== */
+
+            if (editingId !== null) {
+
+                const currentIndex =
+                    levels.findIndex(
+                        level =>
+                            level.id === editingId
+                    );
+
+
+                if (currentIndex === -1) {
+
+                    formMessage.textContent =
+                        "Level not found.";
+
+                    return;
+
+                }
+
+
+                const oldRank =
+                    currentIndex + 1;
+
+
+                let newRank =
+                    Number(
+                        document
+                            .getElementById("difficultyRank")
+                            .value
+                    );
+
+
+                newRank =
+                    Math.max(
+                        1,
+                        Math.min(
+                            newRank,
+                            levels.length
+                        )
+                    );
+
+
+                /* =================================
+                   MOVING DOWN
+                ================================== */
+
+                if (newRank > oldRank) {
+
+                    for (
+                        let i = oldRank;
+                        i < newRank;
+                        i++
+                    ) {
+
+                        const result =
+                            await supabaseClient
+                                .from(table)
+                                .update({
+                                    sort_order: i
+                                })
+                                .eq(
+                                    "id",
+                                    levels[i].id
+                                );
+
+
+                        if (result.error) {
+
+                            console.error(result.error);
+
+                            formMessage.textContent =
+                                result.error.message;
+
+                            return;
+
+                        }
+
+                    }
+
+                }
+
+
+                /* =================================
+                   MOVING UP
+                ================================== */
+
+                else if (newRank < oldRank) {
+
+                    for (
+                        let i = oldRank - 2;
+                        i >= newRank - 1;
+                        i--
+                    ) {
+
+                        const result =
+                            await supabaseClient
+                                .from(table)
+                                .update({
+                                    sort_order: i + 2
+                                })
+                                .eq(
+                                    "id",
+                                    levels[i].id
+                                );
+
+
+                        if (result.error) {
+
+                            console.error(result.error);
+
+                            formMessage.textContent =
+                                result.error.message;
+
+                            return;
+
+                        }
+
+                    }
+
+                }
+
+
+                levelData.sort_order =
+                    newRank;
+
+
+                const result =
+                    await supabaseClient
+                        .from(table)
+                        .update(levelData)
+                        .eq(
+                            "id",
+                            editingId
+                        );
+
+
+                if (result.error) {
+
+                    console.error(result.error);
+
+                    formMessage.textContent =
+                        result.error.message;
+
+                    return;
+
+                }
+
+            }
+
+
+            /* =====================================
+               ADD
+            ====================================== */
+
+            else {
+
+                let newRank =
+                    Number(
+                        document
+                            .getElementById("difficultyRank")
+                            .value
+                    );
+
+
+                newRank =
+                    Math.max(
+                        1,
+                        Math.min(
+                            newRank,
+                            levels.length + 1
+                        )
+                    );
+
+
+                /* =================================
+                   SHIFT EXISTING LEVELS
+                ================================== */
+
+                for (
+                    let i = levels.length - 1;
+                    i >= newRank - 1;
+                    i--
+                ) {
+
+                    const updateResult =
+                        await supabaseClient
+                            .from(table)
+                            .update({
+                                sort_order: i + 2
+                            })
+                            .eq(
+                                "id",
+                                levels[i].id
+                            );
+
+
+                    if (updateResult.error) {
+
+                        console.error(
+                            updateResult.error
+                        );
+
+                        formMessage.textContent =
+                            updateResult.error.message;
+
+                        return;
+
+                    }
+
+                }
+
+
+                levelData.sort_order =
+                    newRank;
+
+
+                const result =
+                    await supabaseClient
+                        .from(table)
+                        .insert(levelData);
+
+
+                if (result.error) {
+
+                    console.error(result.error);
+
+                    formMessage.textContent =
+                        result.error.message;
+
+                    return;
+
+                }
+
+            }
+
+
+            formMessage.textContent =
+                "Saved!";
+
+
+            await loadLevels();
+
+
+            setTimeout(
+                closeLevelModal,
+                400
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       DELETE
+    ========================================== */
+
+    window.deleteLevel =
+        async function(id) {
+
+            const level =
+                levels.find(
+                    item =>
+                        item.id === id
+                );
+
+
+            if (!level) {
+                return;
+            }
+
+
+            const confirmed =
+                confirm(
+                    `Delete "${level.name}"?\n\nThis cannot be undone.`
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            const table =
+                getCurrentTable();
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from(table)
+                    .delete()
+                    .eq(
+                        "id",
+                        id
+                    );
+
+
+            if (error) {
+
+                console.error(error);
+
+                alert(
+                    error.message
+                );
+
+                return;
+
+            }
+
+
+            if (
+                currentMode === "todo" &&
+                mainGoalId === id
+            ) {
+
+                mainGoalId = null;
+
+            }
+
+
+            await loadLevels();
+
+        };
+
+
+    /* =========================================
+       MOVE LEVEL
+    ========================================== */
+
+    window.moveLevel =
+        async function(id, direction) {
+
+            const index =
+                levels.findIndex(
+                    level =>
+                        level.id === id
+                );
+
+
+            const newIndex =
+                index + direction;
+
+
+            if (
+                index < 0 ||
+                newIndex < 0 ||
+                newIndex >= levels.length
+            ) {
+                return;
+            }
+
+
+            const current =
+                levels[index];
+
+            const target =
+                levels[newIndex];
+
+
+            const currentOrder =
+                current.sort_order;
+
+            const targetOrder =
+                target.sort_order;
+
+
+            const table =
+                getCurrentTable();
+
+
+            const firstUpdate =
+                await supabaseClient
+                    .from(table)
+                    .update({
+                        sort_order:
+                            targetOrder
+                    })
+                    .eq(
+                        "id",
+                        current.id
+                    );
+
+
+            if (firstUpdate.error) {
+
+                console.error(
+                    firstUpdate.error
+                );
+
+                alert(
+                    firstUpdate.error.message
+                );
+
+                return;
+
+            }
+
+
+            const secondUpdate =
+                await supabaseClient
+                    .from(table)
+                    .update({
+                        sort_order:
+                            currentOrder
+                    })
+                    .eq(
+                        "id",
+                        target.id
+                    );
+
+
+            if (secondUpdate.error) {
+
+                console.error(
+                    secondUpdate.error
+                );
+
+                alert(
+                    secondUpdate.error.message
+                );
+
+                return;
+
+            }
+
+
+            await loadLevels();
+
+        };
+
+
+    /* =========================================
+       MODAL
+    ========================================== */
+
+    function closeLevelModal() {
+
+        modal.style.display =
+            "none";
+
+
+        editingId = null;
+
+
+        levelForm.reset();
+
+
+        formMessage.textContent =
+            "";
+
+
+        updateModalFields();
+
+    }
+
+
+    closeModal.addEventListener(
+        "click",
+        closeLevelModal
+    );
+
+
+    cancelButton.addEventListener(
+        "click",
+        closeLevelModal
+    );
+
+
+    modal.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === modal
+            ) {
+
+                closeLevelModal();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       AUTH STATE
+    ========================================== */
+
+    supabaseClient
+        .auth
+        .onAuthStateChange(
+            function(event, session) {
+
+                if (session) {
+
+                    showDashboard();
+
+                } else {
+
+                    showLogin();
+
+                }
+
+            }
+        );
+
+
+    /* =========================================
+       START
+    ========================================== */
+
+    updateModalFields();
+
+    checkSession();
+
+
+</script>
+
+
+</body>
+
+</html>
