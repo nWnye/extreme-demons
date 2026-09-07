@@ -1718,16 +1718,16 @@
     const SUPABASE_URL = "https://qzlujqwdojwswvjrmjuh.supabase.co";
     const SUPABASE_KEY = "sb_publishable_ic3ldKKirovQR5Ca8UNeqw_RxSqpaTV";
 
-    const supabase = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+    const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 
 
 
 
-    supabase
+    supabaseClient
     .from("levels")
     .select("id")
     .then(({ data, error }) => {
