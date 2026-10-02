@@ -14,6 +14,7 @@ html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(60% 45% at 50% -8%,rgba(60,140,255,.22),transparent 70%),radial-gradient(40% 35% at 100% 70%,rgba(94,234,212,.07),transparent 70%),radial-gradient(40% 40% at 0% 100%,rgba(80,100,255,.08),transparent 70%)}
 body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#ashfall{position:fixed;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none;opacity:.5}
 ::selection{background:var(--ember);color:#fff}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
@@ -116,6 +117,10 @@ button:disabled{opacity:.25;cursor:default;transform:none;background:var(--glass
 .ab.on{color:var(--amber);border-color:rgba(80,200,240,.4);background:rgba(60,140,255,.15)}
 .ab.del:hover{color:var(--red);border-color:rgba(251,113,133,.35);background:rgba(251,113,133,.08)}
 
+.level-row[draggable=true]{cursor:grab}
+.level-row.dragging{opacity:.35}
+.level-row.over-t{box-shadow:0 -3px 0 0 var(--amber)}
+.level-row.over-b{box-shadow:0 3px 0 0 var(--amber)}
 /* modal */
 .modal{display:none;position:fixed;inset:0;z-index:150;padding:25px;background:rgba(2,6,12,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow-y:auto}
 .modal-box{width:min(650px,100%);margin:30px auto;background:radial-gradient(120% 60% at 100% 0%,rgba(60,140,255,.18),transparent 60%),#0a121d;animation:up .6s var(--e)}
@@ -137,12 +142,13 @@ footer{padding:80px 20px 44px;text-align:center;color:var(--dim);font-size:12px}
 </style>
 </head>
 <body>
+<canvas id="ashfall"></canvas>
 <header class="topbar" id="topbar">
   <div class="brand">nWnye<div class="brand-dot"></div></div>
   <div class="topbar-right">
     <nav class="page-links">
       <a href="index.html" class="page-link">Completed</a>
-      <a href="todo.html" class="page-link">To-Do</a>
+      <a href="todo.html" class="page-link">To-do</a>
       <a href="admin.html" class="page-link active">Admin</a>
     </nav>
     <div class="socials">
@@ -161,7 +167,7 @@ footer{padding:80px 20px 44px;text-align:center;color:var(--dim);font-size:12px}
       <input id="email" type="email" required autocomplete="email">
       <label for="password">Password</label>
       <input id="password" type="password" required autocomplete="current-password">
-      <button class="primary" type="submit">Log In</button>
+      <button class="primary" type="submit">Log in</button>
     </form>
     <div id="loginMessage"></div>
   </div>
@@ -170,10 +176,10 @@ footer{padding:80px 20px 44px;text-align:center;color:var(--dim);font-size:12px}
 <main class="wrap dashboard" id="dashboard">
   <section class="hero">
     <div class="hero-row">
-      <h1 class="rv">Admin<i>Dashboard.</i></h1>
+      <h1 class="rv">Admin<i>dashboard.</i></h1>
       <button class="pill rv" id="logoutButton" style="--i:2">Log out</button>
     </div>
-    <p class="rv" style="--i:2">Manage completed levels, the to-do list and my main goal.</p>
+    <p class="rv" style="--i:2">Manage completed levels, the to-do list and your main goal.</p>
   </section>
 
   <div class="mode-switch rv" style="--i:3">
@@ -210,6 +216,7 @@ footer{padding:80px 20px 44px;text-align:center;color:var(--dim);font-size:12px}
         <div id="enjoymentField"><label for="enjoyment">Enjoyment (0–100)</label><input id="enjoyment" type="number" min="0" max="100" required></div>
         <div id="furthestDeathField"><label for="furthestDeath">Furthest death (%)</label><input id="furthestDeath" type="number" min="0" max="100" required></div>
         <div id="completedDateField"><label for="completedDate">Completed date</label><input id="completedDate" type="date" required></div>
+        <div id="aredlField"><label for="aredl">GD level ID (optional)</label><input id="aredl" type="number" min="1"></div>
         <div id="progressField" style="display:none"><label for="progress">Progress (%)</label><input id="progress" type="number" min="0" max="100"></div>
         <div class="full"><label for="video">Completion video</label><input id="video" type="url" placeholder="https://youtu.be/..."></div>
         <div class="full"><label for="notes">Notes</label><textarea id="notes" placeholder="Optional notes..."></textarea></div>
@@ -228,7 +235,7 @@ footer{padding:80px 20px 44px;text-align:center;color:var(--dim);font-size:12px}
 <script>
 const supabaseClient = window.supabase.createClient("https://qzlujqwdojwswvjrmjuh.supabase.co", "sb_publishable_ic3ldKKirovQR5Ca8UNeqw_RxSqpaTV");
 const $ = id => document.getElementById(id);
-let levels = [], editingId = null, currentMode = "completed", mainGoalId = null;
+let levels = [], editingId = null, completingId = null, currentMode = "completed", mainGoalId = null;
 const getCurrentTable = () => currentMode === "completed" ? "levels" : "todo_levels";
 const escapeHtml = v => { const d = document.createElement("div"); d.textContent = v ?? ""; return d.innerHTML; };
 function formatDate(s) {
@@ -267,12 +274,13 @@ function updateModeUI() {
   updateModalFields(); updateStats(); renderLevels();
 }
 function updateModalFields() {
-  const c = currentMode === "completed";
-  ["attemptsField", "enjoymentField", "furthestDeathField", "completedDateField"].forEach(i => $(i).style.display = c ? "" : "none");
+  const c = completingId !== null || currentMode === "completed";
+  ["attemptsField", "enjoymentField", "furthestDeathField", "completedDateField", "aredlField"].forEach(i => $(i).style.display = c ? "" : "none");
   $("progressField").style.display = c ? "none" : "";
   $("attempts").required = $("enjoyment").required = $("furthestDeath").required = $("completedDate").required = c;
   $("progress").required = !c;
-  if (editingId === null) $("modalTitle").textContent = c ? "Add level" : "Add to-do level";
+  if (completingId !== null) $("modalTitle").textContent = "Mark as completed";
+  else if (editingId === null) $("modalTitle").textContent = c ? "Add level" : "Add to-do level";
 }
 async function switchMode(m) {
   if (currentMode === m) return;
@@ -333,9 +341,10 @@ function updateStats() {
 
 /* render */
 function actionButtons(l, i) {
+  const done = currentMode === "todo" ? `<button class="ab" title="Mark as completed" onclick="completeLevel(${l.id})">✓</button>` : "";
   const star = currentMode === "todo"
     ? `<button class="ab ${mainGoalId === l.id ? "on" : ""}" title="${mainGoalId === l.id ? "Remove main goal" : "Set as main goal"}" onclick="setMainGoal(${l.id})">${mainGoalId === l.id ? "★" : "☆"}</button>` : "";
-  return `<div class="actions">${star}
+  return `<div class="actions">${star}${done}
     <button class="ab" title="Move up" onclick="moveLevel(${l.id},-1)" ${i === 0 ? "disabled" : ""}>↑</button>
     <button class="ab" title="Move down" onclick="moveLevel(${l.id},1)" ${i === levels.length - 1 ? "disabled" : ""}>↓</button>
     <button class="ab" title="Edit" onclick="editLevel(${l.id})">✎</button>
@@ -349,9 +358,10 @@ function renderLevels() {
   f.forEach((l, k) => {
     const i = levels.findIndex(x => x.id === l.id), row = document.createElement("div"), done = currentMode === "completed";
     row.className = `level-row glow ${done ? "cr" : "tr"}`; row.style.setProperty("--i", Math.min(k, 14));
+    row.dataset.id = l.id; row.draggable = !t;
     const rank = `<div class="rank">${i + 1}</div>`;
     if (done) {
-      row.innerHTML = `${rank}<div class="level-info"><div class="level-name">${escapeHtml(l.name)}</div><div class="publisher">by ${escapeHtml(l.publisher)}</div></div>
+      row.innerHTML = `${rank}<div class="level-info"><div class="level-name">${escapeHtml(l.name)}</div><div class="publisher">by ${escapeHtml(l.publisher)}${l.level_id ? ` · ID ${l.level_id}` : ""}</div></div>
         <div class="s">${Number(l.attempts || 0).toLocaleString()}<span>attempts</span></div>
         <div class="s">${Number(l.enjoyment || 0)}/100<span>enjoyment</span></div>
         <div class="s lo">${Number(l.furthest_death || 0)}%<span>death</span></div>
@@ -381,7 +391,7 @@ window.editLevel = function (id) {
   $("levelName").value = l.name; $("publisher").value = l.publisher;
   if (currentMode === "completed") {
     $("attempts").value = l.attempts ?? 0; $("enjoyment").value = l.enjoyment ?? 0;
-    $("furthestDeath").value = l.furthest_death ?? 0; $("completedDate").value = l.completed_date || "";
+    $("furthestDeath").value = l.furthest_death ?? 0; $("completedDate").value = l.completed_date || ""; $("aredl").value = l.level_id ?? "";
   } else $("progress").value = l.progress ?? 0;
   $("video").value = l.video || ""; $("notes").value = l.notes || "";
   $("formMessage").textContent = ""; updateModalFields(); $("levelModal").style.display = "block";
@@ -396,14 +406,31 @@ $("levelForm").addEventListener("submit", async e => {
     name: $("levelName").value.trim(), publisher: $("publisher").value.trim(),
     video: $("video").value.trim() || null, notes: $("notes").value.trim() || null
   };
-  if (currentMode === "completed") Object.assign(data, {
+  if (completingId !== null || currentMode === "completed") Object.assign(data, {
     attempts: Number($("attempts").value), enjoyment: Number($("enjoyment").value),
-    furthest_death: Number($("furthestDeath").value), completed_date: $("completedDate").value
+    furthest_death: Number($("furthestDeath").value), completed_date: $("completedDate").value,
+    level_id: $("aredl").value ? Number($("aredl").value) : null
   });
   else data.progress = Number($("progress").value);
   const rankIn = Number($("difficultyRank").value);
 
-  if (editingId !== null) {
+  if (completingId !== null) {
+    const id = completingId;
+    const { data: comp, error: e1 } = await supabaseClient.from("levels").select("id,sort_order").order("sort_order", { ascending: true });
+    if (e1) return fail(e1);
+    const newRank = Math.max(1, Math.min(rankIn, comp.length + 1));
+    for (let i = comp.length - 1; i >= newRank - 1; i--) {
+      const r = await supabaseClient.from("levels").update({ sort_order: i + 2 }).eq("id", comp[i].id);
+      if (r.error) return fail(r.error);
+    }
+    data.sort_order = newRank;
+    const ins = await supabaseClient.from("levels").insert(data);
+    if (ins.error) return fail(ins.error);
+    if (mainGoalId === id) { await supabaseClient.from("site_settings").update({ main_goal_id: null }).eq("id", 1); mainGoalId = null; }
+    const del = await supabaseClient.from("todo_levels").delete().eq("id", id);
+    if (del.error) return fail(del.error);
+    await Promise.all(levels.filter(l => l.id !== id).map((l, i) => l.sort_order === i + 1 ? null : supabaseClient.from("todo_levels").update({ sort_order: i + 1 }).eq("id", l.id)));
+  } else if (editingId !== null) {
     const cur = levels.findIndex(l => l.id === editingId);
     if (cur === -1) { msg.textContent = "Level not found."; return; }
     const oldRank = cur + 1, newRank = Math.max(1, Math.min(rankIn, levels.length));
@@ -456,9 +483,51 @@ window.moveLevel = async function (id, dir) {
   await loadLevels();
 };
 
+/* mark as completed */
+window.completeLevel = async function (id) {
+  const l = levels.find(x => x.id === id); if (!l) return;
+  completingId = id; editingId = null; $("levelForm").reset();
+  $("levelName").value = l.name; $("publisher").value = l.publisher;
+  $("video").value = l.video || ""; $("notes").value = l.notes || "";
+  $("completedDate").value = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  const { count } = await supabaseClient.from("levels").select("id", { count: "exact", head: true });
+  $("difficultyRank").value = (count ?? 0) + 1;
+  $("formMessage").textContent = ""; updateModalFields(); $("levelModal").style.display = "block";
+};
+
+/* drag & drop reorder */
+let dragId = null;
+const clearDrop = () => document.querySelectorAll(".over-t,.over-b,.dragging").forEach(el => el.classList.remove("over-t", "over-b", "dragging"));
+$("levelList").addEventListener("dragstart", e => {
+  const r = e.target.closest(".level-row"); if (!r || !r.draggable) return;
+  dragId = +r.dataset.id; r.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", String(dragId));
+});
+$("levelList").addEventListener("dragover", e => {
+  if (dragId === null) return; e.preventDefault();
+  document.querySelectorAll(".over-t,.over-b").forEach(el => el.classList.remove("over-t", "over-b"));
+  const r = e.target.closest(".level-row"); if (!r || +r.dataset.id === dragId) return;
+  const b = r.getBoundingClientRect(); r.classList.add(e.clientY < b.top + b.height / 2 ? "over-t" : "over-b");
+});
+$("levelList").addEventListener("drop", async e => {
+  e.preventDefault();
+  const r = e.target.closest(".level-row"), id = dragId; dragId = null;
+  if (!r || id === null || +r.dataset.id === id) return clearDrop();
+  const b = r.getBoundingClientRect(), before = e.clientY < b.top + b.height / 2;
+  clearDrop();
+  const moved = levels.find(l => l.id === id), rest = levels.filter(l => l.id !== id);
+  let at = rest.findIndex(l => l.id === +r.dataset.id); if (!before) at++;
+  rest.splice(at, 0, moved);
+  const table = getCurrentTable(), changed = [];
+  rest.forEach((l, i) => { if (l.sort_order !== i + 1) { l.sort_order = i + 1; changed.push(l); } });
+  levels = rest; renderLevels(); updateStats();
+  const res = await Promise.all(changed.map(l => supabaseClient.from(table).update({ sort_order: l.sort_order }).eq("id", l.id)));
+  if (res.some(x => x.error)) { alert("Reorder failed, reloading."); await loadLevels(); }
+});
+$("levelList").addEventListener("dragend", () => { dragId = null; clearDrop(); });
+
 /* modal */
 function closeLevelModal() {
-  $("levelModal").style.display = "none"; editingId = null;
+  $("levelModal").style.display = "none"; editingId = null; completingId = null;
   $("levelForm").reset(); $("formMessage").textContent = ""; updateModalFields();
 }
 $("closeModal").addEventListener("click", closeLevelModal);
@@ -470,5 +539,6 @@ supabaseClient.auth.onAuthStateChange((ev, session) => session ? showDashboard()
 updateModalFields();
 checkSession();
 </script>
+<script src="ashfall.js"></script>
 </body>
 </html>
