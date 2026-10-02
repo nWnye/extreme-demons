@@ -13,12 +13,11 @@
 html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(60% 45% at 50% -8%,rgba(60,140,255,.22),transparent 70%),radial-gradient(40% 35% at 100% 70%,rgba(94,234,212,.07),transparent 70%),radial-gradient(40% 40% at 0% 100%,rgba(80,100,255,.08),transparent 70%)}
-body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 #ashfall{position:fixed;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none;opacity:.5}
 ::selection{background:var(--ember);color:#fff}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-@keyframes up{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 .rv{animation:up 1s var(--e) backwards;animation-delay:calc(var(--i,0)*110ms)}
 .glow{position:relative}
 .glow::before,.glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .5s var(--e)}
@@ -28,7 +27,7 @@ body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;op
 
 /* nav */
 .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px max(24px,calc((100% - 1120px)/2 + 24px));border-bottom:1px solid transparent;transition:background .5s var(--e),border-color .5s,padding .5s var(--e)}
-.topbar.scrolled{background:rgba(6,11,19,.72);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-color:var(--edge);padding-top:11px;padding-bottom:11px}
+.topbar.scrolled{background:rgba(6,11,19,.88);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-color:var(--edge);padding-top:11px;padding-bottom:11px}
 .brand{display:flex;align-items:center;gap:10px;font:700 20px var(--serif);letter-spacing:-.04em}
 .brand-dot{width:9px;height:9px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px rgba(60,140,255,.15),0 0 18px var(--ember);order:-1}
 .topbar-right,.page-links,.socials{display:flex;align-items:center;gap:4px}
@@ -54,7 +53,7 @@ textarea{height:auto;min-height:110px;padding:16px 20px;border-radius:22px;resiz
 input::placeholder,textarea::placeholder{color:var(--dim)}
 input:hover,textarea:hover{border-color:rgba(180,220,255,.2)}
 input:focus,textarea:focus{border-color:rgba(80,200,240,.6);box-shadow:0 0 0 5px rgba(60,140,255,.1)}
-.card{border:1px solid var(--edge);border-radius:28px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:26px}
+.card{border:1px solid var(--edge);border-radius:28px;background:var(--glass);padding:26px}
 
 /* buttons */
 button{font:inherit;font-weight:600;cursor:pointer;border:1px solid var(--edge);background:var(--glass);color:var(--text);border-radius:99px;transition:transform .4s var(--e),background .3s,border-color .3s,filter .3s}
@@ -79,7 +78,7 @@ button:disabled{opacity:.25;cursor:default;transform:none;background:var(--glass
 .mode-button{padding:9px 20px;background:transparent;border:none;color:var(--muted);font-weight:500}
 .mode-button:hover{color:var(--text);transform:none;background:transparent}
 .mode-button.active{color:var(--text);background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px var(--edge)}
-.strip{display:flex;flex-wrap:wrap;border:1px solid var(--edge);border-radius:26px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-bottom:18px}
+.strip{display:flex;flex-wrap:wrap;border:1px solid var(--edge);border-radius:26px;background:var(--glass);margin-bottom:18px}
 .strip>div{flex:1 1 150px;padding:22px 26px;border-right:1px solid var(--edge);min-width:0}
 .strip>div:last-child{border:none}
 .strip .first{flex:1.5 1 200px}
@@ -98,7 +97,7 @@ button:disabled{opacity:.25;cursor:default;transform:none;background:var(--glass
 .level-list>.msg{padding:60px 20px;text-align:center;color:var(--muted)}
 .level-list>.err{color:var(--red)}
 .level-row{display:grid;align-items:center;gap:14px;padding:14px 20px 14px 12px;border:1px solid var(--edge);border-radius:24px;background:var(--glass);animation:up .8s var(--e) backwards;animation-delay:calc(var(--i,0)*45ms);transition:background .4s,border-color .4s}
-.level-row:hover{background:rgba(180,220,255,.055);border-color:rgba(80,200,240,.2)}
+.level-row:hover{background:rgba(180,220,255,.055);border-color:rgba(80,200,240,.22)}
 .cr{grid-template-columns:56px minmax(0,1fr) 84px 84px 70px 112px auto}
 .tr{grid-template-columns:56px minmax(0,1fr) 90px 70px auto}
 .rank{font:300 26px var(--serif);letter-spacing:-.04em;text-align:center;color:var(--dim)}
@@ -122,7 +121,7 @@ button:disabled{opacity:.25;cursor:default;transform:none;background:var(--glass
 .level-row.over-t{box-shadow:0 -3px 0 0 var(--amber)}
 .level-row.over-b{box-shadow:0 3px 0 0 var(--amber)}
 /* modal */
-.modal{display:none;position:fixed;inset:0;z-index:150;padding:25px;background:rgba(2,6,12,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow-y:auto}
+.modal{display:none;position:fixed;inset:0;z-index:150;padding:25px;background:rgba(2,6,12,.85);overflow-y:auto}
 .modal-box{width:min(650px,100%);margin:30px auto;background:radial-gradient(120% 60% at 100% 0%,rgba(60,140,255,.18),transparent 60%),#0a121d;animation:up .6s var(--e)}
 .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
 .modal-header h2{font:500 24px var(--serif);letter-spacing:-.035em}
@@ -353,11 +352,11 @@ function actionButtons(l, i) {
 function renderLevels() {
   const t = $("search").value.toLowerCase().trim(), list = $("levelList");
   const f = levels.filter(l => l.name.toLowerCase().includes(t) || l.publisher.toLowerCase().includes(t));
-  list.innerHTML = "";
   if (!f.length) { list.innerHTML = `<div class="msg">No levels found.</div>`; return; }
+  const idxById = new Map(levels.map((l, i) => [l.id, i])), frag = document.createDocumentFragment();
   f.forEach((l, k) => {
-    const i = levels.findIndex(x => x.id === l.id), row = document.createElement("div"), done = currentMode === "completed";
-    row.className = `level-row glow ${done ? "cr" : "tr"}`; row.style.setProperty("--i", Math.min(k, 14));
+    const i = idxById.get(l.id), row = document.createElement("div"), done = currentMode === "completed";
+    row.className = `level-row ${done ? "cr" : "tr"}`; row.style.setProperty("--i", Math.min(k, 14));
     row.dataset.id = l.id; row.draggable = !t;
     const rank = `<div class="rank">${i + 1}</div>`;
     if (done) {
@@ -371,10 +370,11 @@ function renderLevels() {
         <div class="s">${Number(l.progress || 0)}%<span>progress</span></div>
         <div class="s">${l.video ? `<a href="${escapeHtml(l.video)}" target="_blank" rel="noopener">View</a>` : "—"}<span>video</span></div>${actionButtons(l, i)}`;
     }
-    list.appendChild(row);
+    frag.appendChild(row);
   });
+  list.innerHTML = ""; list.appendChild(frag);
 }
-$("search").addEventListener("input", renderLevels);
+let st; $("search").addEventListener("input", () => { clearTimeout(st); st = setTimeout(renderLevels, 120); });
 
 /* add / edit */
 $("addButton").addEventListener("click", () => {
@@ -538,7 +538,10 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && $("levelMo
 supabaseClient.auth.onAuthStateChange((ev, session) => session ? showDashboard() : showLogin());
 updateModalFields();
 checkSession();
+
+/* ashfall: skip entirely for reduced-motion users */
+if (matchMedia("(prefers-reduced-motion: reduce)").matches) $("ashfall").remove();
+else { const s = document.createElement("script"); s.src = "ashfall.js"; document.body.appendChild(s); }
 </script>
-<script src="ashfall.js"></script>
 </body>
 </html>
